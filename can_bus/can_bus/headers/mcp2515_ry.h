@@ -161,11 +161,12 @@ uint8_t mcp2515_init(uint8_t speed)
 	// set TXnRTS as inputs
 	mcp2515_write_register(TXRTSCTRL, 0);
 
-	/*
+	
 	// turn off filters => receive any message
 	mcp2515_write_register(RXB0CTRL, (1<<RXM1)|(1<<RXM0));
 	mcp2515_write_register(RXB1CTRL, (1<<RXM1)|(1<<RXM0));
-	*/
+
+/*  filters currently disabled.
 /******************************************************************************
 	CANBUS ID|
 		Most of these have adjacent registers so we can address the register
@@ -240,7 +241,7 @@ uint8_t mcp2515_init(uint8_t speed)
 	SET_H(SS);
 // 	mcp2515_write_register(RXF4SIDH, RxIDHi);//filter4
 // 	mcp2515_write_register(RXF4SIDL, RxIDLow);
-
+*/
 /******************************************************************************/
 
 	// reset device to normal mode
