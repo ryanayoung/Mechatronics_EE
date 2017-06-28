@@ -15,6 +15,7 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <string.h>
+#include <util/atomic.h>
 
 
 /******************************************************************************
@@ -24,7 +25,8 @@
 ******************************************************************************/
 //RxID is your device ID that you allow messages to receive
 //uint8_t RxID = 0x10;  //M
-uint8_t RxID = 0x20;	//S
+//uint8_t RxID = 0x20;	//S
+/*** currently no filter, receiving all messages***/
 
 //TxID is the target ID you're transmitting to
 //uint8_t TxID = 0x20;	//M
@@ -41,7 +43,9 @@ uint8_t TxID = 0x10;	//S
 #include "headers/mcp2515_ry.h"		//MCP2515 functions
 
 tCAN usart_char;	//transmit package
-tCAN spi_char;		//receive package
+volatile tCAN spi_char;		//receive package
+
+volatile uint8_t rx_flag = 0;
 
 /******************************************************************************
 	start of main()|
@@ -72,6 +76,30 @@ int main(void)
 	
 	while (1)
 	{
+		//if rx_flag is set, that means there's a received message stored in
+		//spi_char, so ATOMIC_BLOCK disabled interrupts, then transmits it
+		//over uart.
+		if(rx_flag){
+			ATOMIC_BLOCK(ATOMIC_FORCEON){
+				USART_Transmit(spi_char.id >> 8); //CanID_High
+				USART_Transmit(10);//New Line
+				USART_Transmit(spi_char.id); //CandID_Low
+				USART_Transmit(10);//New Line
+				USART_Transmit(spi_char.header.rtr); //rtr
+				USART_Transmit(10);//New Line
+				USART_Transmit(spi_char.header.length); //length
+				USART_Transmit(10);//New Line
+				
+				//read back all data received.
+				if(!rtr){
+					for (uint8_t t = 0; t < spi_char.header.length;t++) {
+						USART_Transmit(spi_char.data[t]); //data
+						USART_Transmit(10);//New Line
+					}
+				}
+			}
+		}
+		
 		if(!(UCSR0A & (1<<RXC0)))//if data in serial buffer
 		{
 			//get serial data
@@ -89,5 +117,5 @@ int main(void)
 ISR(INT0_vect)
 {
 	mcp2515_get_message(&spi_char);//get canbus message
-	USART_Transmit(spi_char.data[0]); //transmit message over uart
+	rx_flag = 1;  //set flag
 }
