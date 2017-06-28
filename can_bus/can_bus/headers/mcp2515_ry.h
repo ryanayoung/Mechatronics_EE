@@ -42,7 +42,7 @@ RYAN YOUNG
 		It contains:
 			the message ID
 			if it's a "remote transmit receive" frame
-			the length: from 1 to 8 bytes
+			the length: from 0 to 8 bytes(0 if rtr is 1)
 			the 8 bytes
 ******************************************************************************/
 typedef struct
@@ -142,7 +142,7 @@ uint8_t mcp2515_init(uint8_t speed)
 		continue to write into adjacent registers, so the next write goes into
 		0x29, the location of CNF2*/
 	SPI_txrx((1<<BTLMODE)|(1<<PHSEG11));//CFN2
-    SPI_txrx(speed);//writes to BRPn of CNF1
+    	SPI_txrx(speed);//writes to BRPn of CNF1
 
 	// activate interrupts
 	SPI_txrx((1<<RX1IE)|(1<<RX0IE));
@@ -338,7 +338,7 @@ uint8_t mcp2515_send_message(tCAN *message)
 
 	//split 11bit ID into it's respective register positions
 	SPI_txrx(message->id >> 3);
-    SPI_txrx(message->id << 5);
+    	SPI_txrx(message->id << 5);
 
 	SPI_txrx(0);
 	SPI_txrx(0);
