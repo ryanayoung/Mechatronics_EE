@@ -166,7 +166,7 @@ uint8_t mcp2515_init(uint8_t speed)
 	mcp2515_write_register(RXB0CTRL, (1<<RXM1)|(1<<RXM0));
 	mcp2515_write_register(RXB1CTRL, (1<<RXM1)|(1<<RXM0));
 
-/*  filters currently disabled.
+
 /******************************************************************************
 	CANBUS ID|
 		Most of these have adjacent registers so we can address the register
@@ -175,6 +175,8 @@ uint8_t mcp2515_init(uint8_t speed)
 		The original code didn't include this as it was setup to receive all
 		messages on the bus.
 ******************************************************************************/
+/*  filters currently disabled.
+	
 	//enable filtering
 	mcp2515_write_register(RXB0CTRL, (1<<RXM0));//buffer0
 	mcp2515_write_register(RXB1CTRL, (1<<RXM0));//buffer1
