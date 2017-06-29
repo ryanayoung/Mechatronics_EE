@@ -43,7 +43,7 @@ uint8_t TxID = 0x10;	//S
 #include "headers/mcp2515_ry.h"		//MCP2515 functions
 
 tCAN usart_char;	//transmit package
-volatile tCAN spi_char;		//receive package
+tCAN spi_char;		//receive package
 
 volatile uint8_t rx_flag = 0;
 
@@ -66,8 +66,7 @@ int main(void)
 	{
 		USART_Transmit_TX("Can Init FAILURE!");
 	}
-	USART_Transmit(10);//New Line
-	USART_Transmit(13);//Carriage return
+	
 	
 	//setup the transmit frame
 	usart_char.id = TxID;			//set target device ID
@@ -80,26 +79,28 @@ int main(void)
 		//spi_char, so ATOMIC_BLOCK disabled interrupts, then transmits it
 		//over uart.
 		if(rx_flag){
-			ATOMIC_BLOCK(ATOMIC_FORCEON){
+				ATOMIC_BLOCK(ATOMIC_FORCEON){
 				USART_Transmit(spi_char.id >> 8); //CanID_High
-				USART_Transmit(10);//New Line
+
 				USART_Transmit(spi_char.id); //CandID_Low
-				USART_Transmit(10);//New Line
+
 				USART_Transmit(spi_char.header.rtr); //rtr
-				USART_Transmit(10);//New Line
+
 				USART_Transmit(spi_char.header.length); //length
-				USART_Transmit(10);//New Line
+
 				
 				//read back all data received.
-				if(!rtr){
+				if(!spi_char.header.rtr){
 					for (uint8_t t = 0; t < spi_char.header.length;t++) {
 						USART_Transmit(spi_char.data[t]); //data
-						USART_Transmit(10);//New Line
+
 					}
 				}
-			}
+				
+				rx_flag = 0;
+				}
 		}
-		
+		/*
 		if(!(UCSR0A & (1<<RXC0)))//if data in serial buffer
 		{
 			//get serial data
@@ -108,6 +109,7 @@ int main(void)
 			//transmit usart_char over canbus
 			mcp2515_send_message(&usart_char);
 		}
+		*/
 	}
 }/*****end of main()**********************************************************/
 

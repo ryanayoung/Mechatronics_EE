@@ -32,12 +32,12 @@
 		
 ******************************************************************************/
 //RxID is your device ID that you allow messages to receive
-//uint8_t RxID = 0x10;  //M
-uint8_t RxID = 0x20;	//S
+uint8_t RxID = 0x10;  //M
+//uint8_t RxID = 0x20;	//S
 
 //TxID is the target ID you're transmitting to
-//uint8_t TxID = 0x20;	//M
-uint8_t TxID = 0x10;	//S
+uint8_t TxID = 0x20;	//M
+//uint8_t TxID = 0x10;	//S
 /******************************************************************************/
 
 
