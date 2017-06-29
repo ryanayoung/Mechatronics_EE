@@ -3,8 +3,8 @@
 
 
 ### ToDo
-Backplane:
 
+- [ ] Backplane
     - [ ] Research expected output range of current sense opamp outputs
     - [ ] Add voltage sampling to backplane code
         - [ ] 24V - ADC6
