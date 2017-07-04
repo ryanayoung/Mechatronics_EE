@@ -60,14 +60,15 @@ void ADC_init(void)
  
 /****************************************************************************** 
 	8 bit Timer setup| 
+		not currently used.
 ******************************************************************************/ 
-void b8_Timer_init(void) 
+/* void b8_Timer_init(void) 
 { 
 	 TCCR0A |= (1 << WGM01); //set to CTC mode 
 	 TCCR0B |= (1<<CS02) | (1<<CS00); //1024 prescaler 
 	 TIMSK0 |= (1<<OCIE0A); //enable compare interrupt 
 	 OCR0A = 39;//roughly 5ms or 200Hz. 
-}
+} */
 
 /****************************************************************************** 
  map function| map(value, fromLow, fromHigh, toLow, toHigh) 

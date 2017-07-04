@@ -171,5 +171,5 @@ ISR(ADC_vect)
 		default : ADMUX &= 0b11110000; //set ADC0
 		break;
 	}
-	ADCSRA |= (1<<ADSC);
+	ADCSRA |= (1<<ADSC); //start adc sample
 }
