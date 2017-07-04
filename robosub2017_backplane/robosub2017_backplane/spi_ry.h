@@ -20,17 +20,17 @@ void SPI_masterInit(void)
 	SET_L(SCK);
 	
 	//enable SPI
-	SPCR0 |= (1<<SPE) | (1<<MSTR);
+	SPCR |= (1<<SPE) | (1<<MSTR);
 	
 	//set SCK divider to f_osc/8
-	SPCR0 |= 0b11; //sets divider to f_osc/16
+	SPCR |= 0b11; //sets divider to f_osc/16
 	//SPSR |= 1; //f_osc * 2, results in f_osc/8
 }
 
 char SPI_txrx(char val)
 {
-	SPDR0 = val; //send value to buffer
-	while(!(SPSR0 & (1<<SPIF))); //wait until complete
+	SPDR = val; //send value to buffer
+	while(!(SPSR & (1<<SPIF))); //wait until complete
 	_delay_us(50);
-	return(SPDR0);  //return received value
+	return(SPDR);  //return received value
 }

@@ -13,11 +13,15 @@
 /*=============================================================================
 				TODO
 				
-	-RxID needs to be updated, as well as masks edited
-	-a lookup table of all of the id's.  
-		-Actually, might want to make tCAN structs for each device
-		and function.  Possible as it's own header to reuse in
-		everyone's code.
+	-adc setup
+	-measure/store current/voltage sense
+	-setup response frame to tegra request
+	-setup over/under current critical interrupt
+		-setup error lights accordingly
+	
+	-possibly add acceptance of all can messages intended for tegra
+		and relay over serial & trigger error leds
+	-setup backup serial2can interface if tegra can board doesn't work.
 =============================================================================*/
 
 #define F_CPU 16000000UL // 16MHz clock from the debug processor
@@ -25,6 +29,7 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <string.h>
+#include <util/atomic.h>
 
 
 /******************************************************************************
@@ -32,11 +37,10 @@
 		
 ******************************************************************************/
 //RxID is your device ID that you allow messages to receive
-uint8_t RxID = 0x10;  //M
-//uint8_t RxID = 0x20;	//S
+uint16_t RxID = 0x001;  
 
 //TxID is the target ID you're transmitting to
-uint8_t TxID = 0x20;	//M
+uint8_t TxID = 0x020;	//M
 //uint8_t TxID = 0x10;	//S
 /******************************************************************************/
 
@@ -52,18 +56,17 @@ uint8_t TxID = 0x20;	//M
 tCAN usart_char;	//transmit package
 tCAN spi_char;		//receive package
 
+volatile uint8_t rx_flag = 0;
+
+uint16_t voltage_sense[4];
+uint8_t adc_select = 0;
+
 /******************************************************************************
 	start of main()|
 ******************************************************************************/
 int main(void)
 {
-    //set output pins
-	DDRD |= (1<<DDD3); //pin 1 - error LED 1
-	DDRD |= (1<<DDD4); //pin 2 - error LED 2
-	DDRD |= (1<<DDD5); //pin 9 - error LED 3
-	DDRD |= (1<<DDD6); //pin 10 - error LED 4
-	
-		//initialization functions
+  	//initialization functions
 	GPIO_init();
 	INTERRUPT_init();
 	USART_Init(103);//103 sets baud rate at 9600
@@ -96,14 +99,41 @@ int main(void)
 			mcp2515_send_message(&usart_char);
 		}
 		
-		PIND |= (1<<PIND3); //toggle LED
-		_delay_ms(500);
-		PIND |= (1<<PIND4); //toggle LED
-		_delay_ms(500);
-		PIND |= (1<<PIND5); //toggle LED
-		_delay_ms(500);
-		PIND |= (1<<PIND6); //toggle LED
-		_delay_ms(500);
+		if(rx_flag){
+			ATOMIC_BLOCK(ATOMIC_FORCEON){
+				USART_Transmit(spi_char.id >> 8); //CanID_High
+
+				USART_Transmit(spi_char.id); //CandID_Low
+
+				USART_Transmit(spi_char.header.rtr); //rtr
+
+				USART_Transmit(spi_char.header.length); //length
+
+				
+				//read back all data received.
+				if(!spi_char.header.rtr){
+					for (uint8_t t = 0; t < spi_char.header.length;t++) {
+						USART_Transmit(spi_char.data[t]); //data
+					}
+				}
+				rx_flag = 0;
+			}
+		}
+		
+		if(adc_select == 4){
+			USART_Transmit()
+			
+		}
+		
+		TOGGLE(LED1);
+		_delay_ms(200);
+		TOGGLE(LED2);
+		_delay_ms(200);
+		TOGGLE(LED3);
+		_delay_ms(200);
+		TOGGLE(LED4);
+		_delay_ms(200);
+		
     }
 }
 
@@ -113,5 +143,33 @@ int main(void)
 ISR(INT0_vect)
 {
 	mcp2515_get_message(&spi_char);//get canbus message
-	USART_Transmit(spi_char.data[0]); //transmit message over uart
+	rx_flag = 1;  //set flag
+}
+
+/******************************************************************************* 
+	 ADC conversion complete ISR|
+*******************************************************************************/ 
+ISR(ADC_vect) 
+{ 
+	Read_Request_Backplane_Current.data[adc_select] = map(ADC, 0, 1023, 0, 50);
+	
+	adc_select++;
+	if(adc_select > 3)
+		adc_select = 0;
+		
+	
+	
+	switch(adc_select){
+		case 0 : ADMUX &= 0b11110000; //set ADC0
+			break;	
+		case 1 : ADMUX &= 0b11110001; //set ADC1
+		break;
+		case 2 : ADMUX &= 0b11110110; //set ADC6
+		break;
+		case 3 : ADMUX &= 0b11110111; //set ADC7
+		break;
+		default : ADMUX &= 0b11110000; //set ADC0
+		break;
+	}
+	ADCSRA |= (1<<ADSC);
 }

@@ -150,7 +150,7 @@ uint8_t mcp2515_init(uint8_t speed)
 
 	// test if we could read back the value => is the chip accessible?
 	if (mcp2515_read_register(CNF1) != speed) {
-		SET_H(LED4);
+		SET_H(LED2);
 
 		return false;
 	}
@@ -175,16 +175,16 @@ uint8_t mcp2515_init(uint8_t speed)
 		messages on the bus.
 ******************************************************************************/
 	//enable filtering
-	//mcp2515_write_register(RXB0CTRL, (1<<RXM0));//buffer0
-	//mcp2515_write_register(RXB1CTRL, (1<<RXM0));//buffer1
+	mcp2515_write_register(RXB0CTRL, (1<<RXM0));//buffer0
+	mcp2515_write_register(RXB1CTRL, (1<<RXM0));//buffer1
 
 	//Receive Masking:
 	//block all ID's other than the exact RxID for buffer0
 	SET_L(SS);
 	SPI_txrx(CAN_WRITE);
 	SPI_txrx(RXM0SIDH);
-	SPI_txrx(RXMaskHi);
-	SPI_txrx(RxMaskLow);
+	SPI_txrx(0xFF);
+	SPI_txrx(0xE0);
 	SET_H(SS);
 // 	mcp2515_write_register(RXM0SIDH, 0xFF);
 // 	mcp2515_write_register(RXM0SIDL, 0xE0);
@@ -192,8 +192,8 @@ uint8_t mcp2515_init(uint8_t speed)
 	SET_L(SS);
 	SPI_txrx(CAN_WRITE);
 	SPI_txrx(RXM1SIDH);
-	SPI_txrx(RXMaskHi);
-	SPI_txrx(RxMaskLow);
+	SPI_txrx(0xFF);
+	SPI_txrx(0xE0);
 	SET_H(SS);
 // 	mcp2515_write_register(RXM1SIDH, 0xFF);
 // 	mcp2515_write_register(RXM1SIDL, 0xE0);
@@ -245,7 +245,7 @@ uint8_t mcp2515_init(uint8_t speed)
 
 	// reset device to normal mode
 	mcp2515_write_register(CANCTRL, 0);
-	SET_L(LED4);
+	SET_L(LED2);
 	return true;
 }
 

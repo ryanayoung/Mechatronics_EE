@@ -134,9 +134,33 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="headers\defines.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="headers\functions.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="headers\global.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="headers\mcp2515_ry.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="headers\mcp2515_ry_def.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="headers\spi_ry.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="headers\usart_ry.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="headers" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
