@@ -64,3 +64,22 @@ void USART_Transmit_TX(char string[])
 		counter++;
 	}
 }
+
+/******************************************************************************
+	USART CAN FRAME transmit|
+		transmits a full CAN frame struct(tCAN) over UART
+******************************************************************************/
+void USART_CAN_TX( tCAN data )
+{
+	USART_Transmit(data.id >> 8); //CanID_High
+	USART_Transmit(data.id); //CandID_Low
+	USART_Transmit(data.header.rtr); //rtr
+	USART_Transmit(data.header.length); //length
+	
+	//read back all data received.
+	if(!data.header.rtr){
+		for (uint8_t t = 0; t < data.header.length;t++) {
+			USART_Transmit(data.data[t]); //data
+		}
+	}
+}
