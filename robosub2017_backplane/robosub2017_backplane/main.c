@@ -13,14 +13,15 @@
 /*=============================================================================
 				TODO
 				
-	-adc setup
 	-measure/store current/voltage sense
+		-store 4 adc values into buffer array
+		-determine input rant to map to for each input/resistor value
 	-setup response frame to tegra request
 	-setup over/under current critical interrupt
 		-setup error lights accordingly
 	
-	-possibly add acceptance of all can messages intended for tegra
-		and relay over serial & trigger error leds
+	-possibly add acceptance of all can messages intended for tegra into
+		buffer1 and relay over serial & trigger error leds
 	-setup backup serial2can interface if tegra can board doesn't work.
 =============================================================================*/
 
@@ -151,12 +152,25 @@ ISR(INT0_vect)
 *******************************************************************************/ 
 ISR(ADC_vect) 
 { 
-	Read_Request_Backplane_Current.data[adc_select] = map(ADC, 0, 1023, 0, 50);
+	/*
+		store ADC value remapped to 0-5.0Volts
+		this allows them to fit into byte size readings instead of 10bit.
+		hopefully we don't need the full 10 bits.
+		should sit at 2.5V.  above 2.5V is + current, below 2.5 is 
+		negative current.
+		
+			voltage_sens = {ADC0, ADC1, ADC6, ADC7} 
+			which corresponds to
+			voltage_sens = {P5V_SENSE, P20V_SENSE, P24V_SENS, P6V_SENSE} 
+	*/
+	voltage_sense[adc_select] = map(ADC, 0, 1023, 0, 50);
+	
 	
 	adc_select++;
-	if(adc_select > 3)
+	if(adc_select > 3){
 		adc_select = 0;
-		
+		Read_Request_Backplane_Current.data = voltage_sense;
+	}
 	
 	
 	switch(adc_select){
