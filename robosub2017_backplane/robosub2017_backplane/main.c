@@ -90,20 +90,8 @@ int main(void)
 	
 	while(1)
     {
-		//[TODO] update for interrupt driven UART
-		//update to receive a full can frame
-		//	-define "start byte" as 0xEE
-		//"UART Confined CAN FRAME"(UCCF) defined in excel file
-		//	~/"RoboSub 17 CAN Frames Rev.4.xlsx"
-		if(!(UCSR0A & (1<<RXC0)))//if data in serial buffer
-		{
-			//get serial data
-			CANTX_buffer.data[0] = USART_Receive();
-			
-			//transmit usart_char over canbus
-			mcp2515_send_message(&CANTX_buffer);
-		}
 		
+	
 		//if data received on CAN...
 		if(rx_flag){
 			ATOMIC_BLOCK(ATOMIC_FORCEON){//disables interrupts
@@ -174,4 +162,28 @@ ISR(ADC_vect)
 		break;
 	}
 	ADCSRA |= (1<<ADSC); //start adc sample
+}
+
+
+
+/******************************************************************************
+	USART Receive interrupt|
+	
+	[TODO]
+	Implement ring buffer
+	update to receive a full can frame
+		-define "start byte" as 0xEE
+	"UART Confined CAN FRAME"(UCCF) defined in excel file
+		~/"RoboSub 17 CAN Frames Rev.4.xlsx"
+******************************************************************************/
+ISR(USART0_RX_vect)
+{
+	if(!(UCSR0A & (1<<RXC)))//if data in serial buffer
+	{
+		//get serial data
+		CANTX_buffer.data[0] = USART_Receive();
+
+		//transmit usart_char over canbus
+		mcp2515_send_message(&CANTX_buffer);
+	}
 }
