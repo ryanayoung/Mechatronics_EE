@@ -16,8 +16,8 @@ void USART_Init( unsigned int ubrr)
 	UBRR0H = (unsigned char)(ubrr>>8);
 	UBRR0L = (unsigned char)ubrr;
 	
-	UCSR0B |= (1<<RXEN0)|(1<<TXEN0);
-		/*Enable receiver and transmitter */
+	UCSR0B |= (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE);
+		/*Enable receiver, transmitter, and receive interrupt */
 	
 	UCSR0C |= (3<<UCSZ00);
 		//(3<<UCSZ00) shifts 0b11 left into the UCSZ[1:0] position
@@ -69,7 +69,7 @@ void USART_Transmit_TX(char string[])
 	USART CAN FRAME transmit|
 		transmits a full CAN frame struct(tCAN) over UART
 ******************************************************************************/
-void USART_CAN_TX( tCAN data )
+void USART_CAN_TX(tCAN data)
 {
 	USART_Transmit(data.id >> 8); //CanID_High
 	USART_Transmit(data.id); //CandID_Low
