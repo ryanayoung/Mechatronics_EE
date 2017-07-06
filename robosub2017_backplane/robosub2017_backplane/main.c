@@ -4,25 +4,24 @@
 	Description:
 		Backplane for SDSU Mechatronics 2017 Robosub Perseverance
 		
-
 	Created:	06/13/2017
 	Author:		Ryan Young
 	Email:		RyanaYoung81@gmail.com
 ******************************************************************************/
 
 /*=============================================================================
-				TODO
+				[TODO]
 				
-	-measure/store current/voltage sense
-		-store 4 adc values into buffer array
-		-determine input rant to map to for each input/resistor value
-	-setup response frame to tegra request
+	-change UART to interrupt driven code
+	-determine ADC input rant to map to for each input/resistor value
+		-adjust response frame to tegra request
 	-setup over/under current critical interrupt
 		-setup error lights accordingly
 	
 	-possibly add acceptance of all can messages intended for tegra into
 		buffer1 and relay over serial & trigger error leds
 	-setup backup serial2can interface if tegra can board doesn't work.
+		-create FIFO buffer and do zero message interpretting.
 =============================================================================*/
 
 #define F_CPU 16000000UL // 16MHz clock from the debug processor
@@ -54,8 +53,8 @@ uint8_t TxID = 0x020;	//M
 #include "headers/mcp2515_ry_def.h"	//MCP2515 register and bit definitions
 #include "headers/mcp2515_ry.h"		//MCP2515 functions
 
-tCAN usart_char;	//transmit package
-tCAN spi_char;		//receive package
+tCAN CANTX_buffer;	//transmit package
+tCAN CANRX_buffer;	//receive package
 
 volatile uint8_t rx_flag = 0;
 
@@ -75,7 +74,7 @@ int main(void)
 	
 	//MCP2515 initialization
 	if(mcp2515_init(CANSPEED_500))
-	{
+	{//[TODO]these need to be updated to RAW serial messages
 		USART_Transmit_TX("Can Init SUCCESS!");
 	}else
 	{
@@ -85,65 +84,54 @@ int main(void)
 	USART_Transmit(13);//Carriage return
 	
 	//setup the transmit frame
-	usart_char.id = TxID;			//set target device ID
-	usart_char.header.rtr = 0;		//no remote transmit(i.e. request info)
-	usart_char.header.length = 1;	//single byte(could be up to 8)
+	CANTX_buffer.id = TxID;			//set target device ID
+	CANTX_buffer.header.rtr = 0;		//no remote transmit(i.e. request info)
+	UARTTX_buCANTX_bufferffer.header.length = 1;	//single byte(could be up to 8)
 	
 	while(1)
     {
+		//[TODO] update for interrupt driven UART
+		//update to receive a full can frame
+		//	-define "start byte" as 0xEE
+		//"UART Confined CAN FRAME"(UCCF) defined in excel file
+		//	~/"RoboSub 17 CAN Frames Rev.4.xlsx"
 		if(!(UCSR0A & (1<<RXC0)))//if data in serial buffer
 		{
 			//get serial data
-			usart_char.data[0] = USART_Receive();
+			CANTX_buffer.data[0] = USART_Receive();
 			
 			//transmit usart_char over canbus
-			mcp2515_send_message(&usart_char);
+			mcp2515_send_message(&CANTX_buffer);
 		}
 		
+		//if data received on CAN...
 		if(rx_flag){
-			ATOMIC_BLOCK(ATOMIC_FORCEON){
-				USART_Transmit(spi_char.id >> 8); //CanID_High
-
-				USART_Transmit(spi_char.id); //CandID_Low
-
-				USART_Transmit(spi_char.header.rtr); //rtr
-
-				USART_Transmit(spi_char.header.length); //length
-
+			ATOMIC_BLOCK(ATOMIC_FORCEON){//disables interrupts
+				//[FOR DEBUGGING]transimts received frame over uart.
+				USART_CAN_TX(CANRX_buffer);
 				
-				//read back all data received.
-				if(!spi_char.header.rtr){
-					for (uint8_t t = 0; t < spi_char.header.length;t++) {
-						USART_Transmit(spi_char.data[t]); //data
-					}
+				//matches received ID.  if current request, returns
+				//	current data
+				//if more cases are required, will convert to a switch-case
+				if(CANRX_buffer.id == Read_Request_Backplane_Current.id){
+					USART_CAN_TX(Request_Response_Backplane_Current);
+						//send over uart
+					mcp2515_send_message(&Request_Response_Backplane_Current);
+						//send over can
 				}
-				rx_flag = 0;
-			}
+				rx_flag = 0;//clear receive flag
+			}//end ATOMIC_BLOCK
 		}
-		
-		if(adc_select == 4){
-			USART_Transmit()
-			
-		}
-		
-		TOGGLE(LED1);
-		_delay_ms(200);
-		TOGGLE(LED2);
-		_delay_ms(200);
-		TOGGLE(LED3);
-		_delay_ms(200);
-		TOGGLE(LED4);
-		_delay_ms(200);
 		
     }
 }
 
 /******************************************************************************
-	RECEIVE interrupt on pin PD2|
+	CAN RECEIVE interrupt on pin PD2|
 ******************************************************************************/
 ISR(INT0_vect)
 {
-	mcp2515_get_message(&spi_char);//get canbus message
+	mcp2515_get_message(&CANRX_buffer);//get canbus message
 	rx_flag = 1;  //set flag
 }
 
@@ -167,12 +155,12 @@ ISR(ADC_vect)
 	
 	
 	adc_select++;
-	if(adc_select > 3){
+	if(adc_select > 3){//resets count at 4 and stores values in CAN frame
 		adc_select = 0;
-		Read_Request_Backplane_Current.data = voltage_sense;
+		Request_Response_Backplane_Current.data = voltage_sense;
 	}
 	
-	
+	//select which adc to sample from
 	switch(adc_select){
 		case 0 : ADMUX &= 0b11110000; //set ADC0
 			break;	
