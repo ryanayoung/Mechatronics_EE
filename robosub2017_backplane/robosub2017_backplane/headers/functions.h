@@ -24,6 +24,9 @@ void GPIO_init(void)
 	SET_OUTPUT(LED3);
 	SET_OUTPUT(LED4);
 	
+	
+	
+	
 	//set inputs for current sense
 	SET_INPUT(V24_pin);
 	SET_INPUT(V6_pin);
@@ -49,13 +52,14 @@ void INTERRUPT_init(void)
 /******************************************************************************
 	ADC initiation|
 ******************************************************************************/
+
 void ADC_init(void) 
 { 
 	 ADMUX |= (1<<REFS0); //Vcc reference, ADC0 start by default
-	 ADCSRA |= (1<<ADEN) | (1<<ADATE) | (1<<ADIE); 
+	 ADCSRA |= (1<<ADEN) | (1<<ADLAR) | (1<<ADIE); 
 	 //enables the ADC, enables the auto trigger, enables ADC interrupts 
  
-	 ADCSRB |= (1<<ADTS1) | (1<<ADTS0); //set auto trigger for Timer0 match A. 
+	 //ADCSRB |= (1<<ADTS1) | (1<<ADTS0); //set auto trigger for Timer0 match A. 
 } 
  
 /****************************************************************************** 

@@ -16,7 +16,7 @@ void USART_Init( unsigned int ubrr)
 	UBRR0H = (unsigned char)(ubrr>>8);
 	UBRR0L = (unsigned char)ubrr;
 	
-	UCSR0B |= (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE);
+	UCSR0B |= (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0);
 		/*Enable receiver, transmitter, and receive interrupt */
 	
 	UCSR0C |= (3<<UCSZ00);
@@ -71,10 +71,9 @@ void USART_Transmit_TX(char string[])
 ******************************************************************************/
 void USART_CAN_TX(tCAN data)
 {
-	USART_Transmit(data.id >> 8); //CanID_High
-	USART_Transmit(data.id); //CandID_Low
-	USART_Transmit(data.header.rtr); //rtr
-	USART_Transmit(data.header.length); //length
+	USART_Transmit(data.id >> 3); //CanID_High
+	
+	USART_Transmit((data.id << 5) | (data.header.rtr <<4) | data.header.length);
 	
 	//read back all data received.
 	if(!data.header.rtr){

@@ -3,667 +3,1573 @@ can_bus.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000026  00800100  0000047e  00000512  2**0
+  0 .data         00000026  00800100  0000082c  000008c0  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000047e  00000000  00000000  00000094  2**1
+  1 .text         0000082c  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000017  00800126  00800126  00000538  2**0
+  2 .bss          00000017  00800126  00800126  000008e6  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000538  2**0
+  3 .comment      00000030  00000000  00000000  000008e6  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000568  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000918  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000a0  00000000  00000000  000005a8  2**0
+  5 .debug_aranges 000000a8  00000000  00000000  00000958  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000a84  00000000  00000000  00000648  2**0
+  6 .debug_info   00001119  00000000  00000000  00000a00  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000338  00000000  00000000  000010cc  2**0
+  7 .debug_abbrev 00000338  00000000  00000000  00001b19  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000006af  00000000  00000000  00001404  2**0
+  8 .debug_line   000007f2  00000000  00000000  00001e51  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000021c  00000000  00000000  00001ab4  2**2
+  9 .debug_frame  00000274  00000000  00000000  00002644  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000337  00000000  00000000  00001cd0  2**0
+ 10 .debug_str    00000831  00000000  00000000  000028b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000006e4  00000000  00000000  00002007  2**0
+ 11 .debug_loc    00000914  00000000  00000000  000030e9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000c0  00000000  00000000  000026eb  2**0
+ 12 .debug_ranges 000000c8  00000000  00000000  000039fd  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
-   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
-   4:	0c 94 14 02 	jmp	0x428	; 0x428 <__vector_1>
-   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   0:	0c 94 54 00 	jmp	0xa8	; 0xa8 <__ctors_end>
+   4:	0c 94 be 02 	jmp	0x57c	; 0x57c <__vector_1>
+   8:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+   c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  10:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  14:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  18:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  1c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  20:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  24:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  28:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  2c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  30:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  34:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  38:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  3c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  40:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  44:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  48:	0c 94 e7 02 	jmp	0x5ce	; 0x5ce <__vector_18>
+  4c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  50:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  54:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  58:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  5c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  60:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  64:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  68:	41 03       	mulsu	r20, r17
+  6a:	5a 03       	fmul	r21, r18
+  6c:	73 03       	mulsu	r23, r19
+  6e:	8c 03       	fmulsu	r16, r20
+  70:	a5 03       	fmuls	r18, r21
+  72:	be 03       	fmulsu	r19, r22
+  74:	d7 03       	fmuls	r21, r23
+  76:	f0 03       	fmuls	r23, r16
+  78:	fa 03       	fmulsu	r23, r18
+  7a:	fa 03       	fmulsu	r23, r18
+  7c:	fa 03       	fmulsu	r23, r18
+  7e:	fa 03       	fmulsu	r23, r18
+  80:	fa 03       	fmulsu	r23, r18
+  82:	fa 03       	fmulsu	r23, r18
+  84:	fa 03       	fmulsu	r23, r18
+  86:	08 03       	fmul	r16, r16
+  88:	fa 03       	fmulsu	r23, r18
+  8a:	fa 03       	fmulsu	r23, r18
+  8c:	fa 03       	fmulsu	r23, r18
+  8e:	fa 03       	fmulsu	r23, r18
+  90:	fa 03       	fmulsu	r23, r18
+  92:	fa 03       	fmulsu	r23, r18
+  94:	fa 03       	fmulsu	r23, r18
+  96:	fa 03       	fmulsu	r23, r18
+  98:	fa 03       	fmulsu	r23, r18
+  9a:	fa 03       	fmulsu	r23, r18
+  9c:	fa 03       	fmulsu	r23, r18
+  9e:	fa 03       	fmulsu	r23, r18
+  a0:	fa 03       	fmulsu	r23, r18
+  a2:	fa 03       	fmulsu	r23, r18
+  a4:	fa 03       	fmulsu	r23, r18
+  a6:	1b 03       	fmul	r17, r19
 
-00000068 <__ctors_end>:
-  68:	11 24       	eor	r1, r1
-  6a:	1f be       	out	0x3f, r1	; 63
-  6c:	cf ef       	ldi	r28, 0xFF	; 255
-  6e:	d8 e0       	ldi	r29, 0x08	; 8
-  70:	de bf       	out	0x3e, r29	; 62
-  72:	cd bf       	out	0x3d, r28	; 61
+000000a8 <__ctors_end>:
+  a8:	11 24       	eor	r1, r1
+  aa:	1f be       	out	0x3f, r1	; 63
+  ac:	cf ef       	ldi	r28, 0xFF	; 255
+  ae:	d8 e0       	ldi	r29, 0x08	; 8
+  b0:	de bf       	out	0x3e, r29	; 62
+  b2:	cd bf       	out	0x3d, r28	; 61
 
-00000074 <__do_copy_data>:
-  74:	11 e0       	ldi	r17, 0x01	; 1
-  76:	a0 e0       	ldi	r26, 0x00	; 0
-  78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	ee e7       	ldi	r30, 0x7E	; 126
-  7c:	f4 e0       	ldi	r31, 0x04	; 4
-  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
-  80:	05 90       	lpm	r0, Z+
-  82:	0d 92       	st	X+, r0
-  84:	a6 32       	cpi	r26, 0x26	; 38
-  86:	b1 07       	cpc	r27, r17
-  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+000000b4 <__do_copy_data>:
+  b4:	11 e0       	ldi	r17, 0x01	; 1
+  b6:	a0 e0       	ldi	r26, 0x00	; 0
+  b8:	b1 e0       	ldi	r27, 0x01	; 1
+  ba:	ec e2       	ldi	r30, 0x2C	; 44
+  bc:	f8 e0       	ldi	r31, 0x08	; 8
+  be:	02 c0       	rjmp	.+4      	; 0xc4 <__do_copy_data+0x10>
+  c0:	05 90       	lpm	r0, Z+
+  c2:	0d 92       	st	X+, r0
+  c4:	a6 32       	cpi	r26, 0x26	; 38
+  c6:	b1 07       	cpc	r27, r17
+  c8:	d9 f7       	brne	.-10     	; 0xc0 <__do_copy_data+0xc>
 
-0000008a <__do_clear_bss>:
-  8a:	21 e0       	ldi	r18, 0x01	; 1
-  8c:	a6 e2       	ldi	r26, 0x26	; 38
-  8e:	b1 e0       	ldi	r27, 0x01	; 1
-  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+000000ca <__do_clear_bss>:
+  ca:	21 e0       	ldi	r18, 0x01	; 1
+  cc:	a6 e2       	ldi	r26, 0x26	; 38
+  ce:	b1 e0       	ldi	r27, 0x01	; 1
+  d0:	01 c0       	rjmp	.+2      	; 0xd4 <.do_clear_bss_start>
 
-00000092 <.do_clear_bss_loop>:
-  92:	1d 92       	st	X+, r1
+000000d2 <.do_clear_bss_loop>:
+  d2:	1d 92       	st	X+, r1
 
-00000094 <.do_clear_bss_start>:
-  94:	ad 33       	cpi	r26, 0x3D	; 61
-  96:	b2 07       	cpc	r27, r18
-  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
-  9a:	0e 94 b1 01 	call	0x362	; 0x362 <main>
-  9e:	0c 94 3d 02 	jmp	0x47a	; 0x47a <_exit>
+000000d4 <.do_clear_bss_start>:
+  d4:	ad 33       	cpi	r26, 0x3D	; 61
+  d6:	b2 07       	cpc	r27, r18
+  d8:	e1 f7       	brne	.-8      	; 0xd2 <.do_clear_bss_loop>
+  da:	0e 94 5c 02 	call	0x4b8	; 0x4b8 <main>
+  de:	0c 94 14 04 	jmp	0x828	; 0x828 <_exit>
 
-000000a2 <__bad_interrupt>:
-  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+000000e2 <__bad_interrupt>:
+  e2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-000000a6 <GPIO_init>:
+000000e6 <GPIO_init>:
+void GPIO_init(void)
+{
+	//SPI GPIO set in spi_ry.h
+	
+	//set input for INT line PD2
+	SET_INPUT(INT);
+  e6:	52 98       	cbi	0x0a, 2	; 10
+	
+	//set output for status LED on PB0
+	SET_OUTPUT(LED2);
+  e8:	20 9a       	sbi	0x04, 0	; 4
+  ea:	08 95       	ret
+
+000000ec <INTERRUPT_init>:
+	interrupt initiation|
+******************************************************************************/
+void INTERRUPT_init(void)
+{
+	//enable external interrupt for INT line from mcp2515
+	EIMSK |= (1<<INT0);//enable
+  ec:	e8 9a       	sbi	0x1d, 0	; 29
+	EICRA &= ~(3<<ISC00);//low level interrupt for INT0
+  ee:	e9 e6       	ldi	r30, 0x69	; 105
+  f0:	f0 e0       	ldi	r31, 0x00	; 0
+  f2:	80 81       	ld	r24, Z
+  f4:	8c 7f       	andi	r24, 0xFC	; 252
+  f6:	80 83       	st	Z, r24
+	
+	sei(); //global interrupt enable
+  f8:	78 94       	sei
+  fa:	08 95       	ret
+
+000000fc <SPI_masterInit>:
+
+******************************************************************************/
+void SPI_masterInit(void)
+{
+	//set SS, MOSI, & SCK OUTPUT
+	SET_OUTPUT(SS);
+  fc:	22 9a       	sbi	0x04, 2	; 4
+	SET_OUTPUT(MOSI);
+  fe:	23 9a       	sbi	0x04, 3	; 4
+	SET_OUTPUT(SCK);
+ 100:	25 9a       	sbi	0x04, 5	; 4
+	
+	//SS high
+	SET_H(SS);
+ 102:	2a 9a       	sbi	0x05, 2	; 5
+	// MOSI & SCK low
+	SET_L(MOSI);
+ 104:	2b 98       	cbi	0x05, 3	; 5
+	SET_L(SCK);
+ 106:	2d 98       	cbi	0x05, 5	; 5
+	
+	//enable SPI
+	SPCR |= (1<<SPE) | (1<<MSTR);
+ 108:	8c b5       	in	r24, 0x2c	; 44
+ 10a:	80 65       	ori	r24, 0x50	; 80
+ 10c:	8c bd       	out	0x2c, r24	; 44
+	
+	//set SCK divider to f_osc/8
+	SPCR |= 0b11; //sets divider to f_osc/16
+ 10e:	8c b5       	in	r24, 0x2c	; 44
+ 110:	83 60       	ori	r24, 0x03	; 3
+ 112:	8c bd       	out	0x2c, r24	; 44
+ 114:	08 95       	ret
+
+00000116 <SPI_txrx>:
+	//SPSR |= 1; //f_osc * 2, results in f_osc/8
+}
+
+char SPI_txrx(char val)
+{
+	SPDR = val; //send value to buffer
+ 116:	8e bd       	out	0x2e, r24	; 46
+	while(!(SPSR & (1<<SPIF))); //wait until complete
+ 118:	0d b4       	in	r0, 0x2d	; 45
+ 11a:	07 fe       	sbrs	r0, 7
+ 11c:	fd cf       	rjmp	.-6      	; 0x118 <SPI_txrx+0x2>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 11e:	87 ec       	ldi	r24, 0xC7	; 199
+ 120:	90 e0       	ldi	r25, 0x00	; 0
+ 122:	01 97       	sbiw	r24, 0x01	; 1
+ 124:	f1 f7       	brne	.-4      	; 0x122 <SPI_txrx+0xc>
+ 126:	00 c0       	rjmp	.+0      	; 0x128 <SPI_txrx+0x12>
+ 128:	00 00       	nop
+	_delay_us(50);
+	return(SPDR);  //return received value
+ 12a:	8e b5       	in	r24, 0x2e	; 46
+ 12c:	08 95       	ret
+
+0000012e <USART_Init>:
+	USART initialization|
+******************************************************************************/
+void USART_Init( unsigned int ubrr)
+{
+	/*Set baud rate */
+	UBRR0H = (unsigned char)(ubrr>>8);
+ 12e:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
+	UBRR0L = (unsigned char)ubrr;
+ 132:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+	
+	UCSR0B |= (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0);
+ 136:	e1 ec       	ldi	r30, 0xC1	; 193
+ 138:	f0 e0       	ldi	r31, 0x00	; 0
+ 13a:	80 81       	ld	r24, Z
+ 13c:	88 69       	ori	r24, 0x98	; 152
+ 13e:	80 83       	st	Z, r24
+		/*Enable receiver and transmitter */
+	
+	UCSR0C |= (3<<UCSZ00);
+ 140:	e2 ec       	ldi	r30, 0xC2	; 194
+ 142:	f0 e0       	ldi	r31, 0x00	; 0
+ 144:	80 81       	ld	r24, Z
+ 146:	86 60       	ori	r24, 0x06	; 6
+ 148:	80 83       	st	Z, r24
+ 14a:	08 95       	ret
+
+0000014c <USART_Receive>:
+		currently not used
+******************************************************************************/
+uint8_t USART_Receive( void )
+{
+	/* Wait for data to be received */
+	while (!(UCSR0A & (1<<RXC0)));
+ 14c:	e0 ec       	ldi	r30, 0xC0	; 192
+ 14e:	f0 e0       	ldi	r31, 0x00	; 0
+ 150:	80 81       	ld	r24, Z
+ 152:	88 23       	and	r24, r24
+ 154:	ec f7       	brge	.-6      	; 0x150 <USART_Receive+0x4>
+	/* Get and return received data from buffer */
+	return UDR0;
+ 156:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+}
+ 15a:	08 95       	ret
+
+0000015c <USART_Transmit>:
+		transmits a character across the uart tx/rx pins
+******************************************************************************/
+void USART_Transmit( uint8_t data )
+{
+	/* Wait for empty transmit buffer */
+	while ( !( UCSR0A & (1<<UDRE0)) );
+ 15c:	e0 ec       	ldi	r30, 0xC0	; 192
+ 15e:	f0 e0       	ldi	r31, 0x00	; 0
+ 160:	90 81       	ld	r25, Z
+ 162:	95 ff       	sbrs	r25, 5
+ 164:	fd cf       	rjmp	.-6      	; 0x160 <USART_Transmit+0x4>
+	/* Put data into buffer, sends the data */
+	UDR0 = data;
+ 166:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+ 16a:	08 95       	ret
+
+0000016c <USART_Transmit_TX>:
+	USART string transmit|
+		parses a string argument and passes each character to the
+		USART_Transmit function.
+******************************************************************************/
+void USART_Transmit_TX(char string[])
+{
+ 16c:	ef 92       	push	r14
+ 16e:	ff 92       	push	r15
+ 170:	0f 93       	push	r16
+ 172:	1f 93       	push	r17
+ 174:	cf 93       	push	r28
+ 176:	df 93       	push	r29
+	int wordsize = strlen(string);
+ 178:	fc 01       	movw	r30, r24
+ 17a:	01 90       	ld	r0, Z+
+ 17c:	00 20       	and	r0, r0
+ 17e:	e9 f7       	brne	.-6      	; 0x17a <USART_Transmit_TX+0xe>
+ 180:	31 97       	sbiw	r30, 0x01	; 1
+ 182:	7f 01       	movw	r14, r30
+ 184:	e8 1a       	sub	r14, r24
+ 186:	f9 0a       	sbc	r15, r25
+	int counter = 0;
+	
+	while(wordsize != counter)
+ 188:	61 f0       	breq	.+24     	; 0x1a2 <USART_Transmit_TX+0x36>
+ 18a:	8c 01       	movw	r16, r24
+ 18c:	c0 e0       	ldi	r28, 0x00	; 0
+ 18e:	d0 e0       	ldi	r29, 0x00	; 0
+	{
+		USART_Transmit(string[counter]);
+ 190:	f8 01       	movw	r30, r16
+ 192:	81 91       	ld	r24, Z+
+ 194:	8f 01       	movw	r16, r30
+ 196:	0e 94 ae 00 	call	0x15c	; 0x15c <USART_Transmit>
+		counter++;
+ 19a:	21 96       	adiw	r28, 0x01	; 1
+void USART_Transmit_TX(char string[])
+{
+	int wordsize = strlen(string);
+	int counter = 0;
+	
+	while(wordsize != counter)
+ 19c:	ec 16       	cp	r14, r28
+ 19e:	fd 06       	cpc	r15, r29
+ 1a0:	b9 f7       	brne	.-18     	; 0x190 <USART_Transmit_TX+0x24>
+	{
+		USART_Transmit(string[counter]);
+		counter++;
+	}
+ 1a2:	df 91       	pop	r29
+ 1a4:	cf 91       	pop	r28
+ 1a6:	1f 91       	pop	r17
+ 1a8:	0f 91       	pop	r16
+ 1aa:	ff 90       	pop	r15
+ 1ac:	ef 90       	pop	r14
+ 1ae:	08 95       	ret
+
+000001b0 <mcp2515_write_register>:
+	uint8_t data[8];
+} tCAN;
+
+
+void mcp2515_write_register( uint8_t adress, uint8_t data )
+{
+ 1b0:	cf 93       	push	r28
+ 1b2:	df 93       	push	r29
+ 1b4:	d8 2f       	mov	r29, r24
+ 1b6:	c6 2f       	mov	r28, r22
+	SET_L(SS);//enable slave
+ 1b8:	2a 98       	cbi	0x05, 2	; 5
+
+	SPI_txrx(CAN_WRITE);//send write instruction
+ 1ba:	82 e0       	ldi	r24, 0x02	; 2
+ 1bc:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SPI_txrx(adress);//send address
+ 1c0:	8d 2f       	mov	r24, r29
+ 1c2:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SPI_txrx(data);//send value
+ 1c6:	8c 2f       	mov	r24, r28
+ 1c8:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	SET_H(SS);//disable slave
+ 1cc:	2a 9a       	sbi	0x05, 2	; 5
+}
+ 1ce:	df 91       	pop	r29
+ 1d0:	cf 91       	pop	r28
+ 1d2:	08 95       	ret
+
+000001d4 <mcp2515_read_register>:
+
+uint8_t mcp2515_read_register(uint8_t adress)
+{
+ 1d4:	cf 93       	push	r28
+ 1d6:	c8 2f       	mov	r28, r24
+	uint8_t data;
+
+	SET_L(SS);//enable slave
+ 1d8:	2a 98       	cbi	0x05, 2	; 5
+
+	SPI_txrx(CAN_READ);
+ 1da:	83 e0       	ldi	r24, 0x03	; 3
+ 1dc:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SPI_txrx(adress);
+ 1e0:	8c 2f       	mov	r24, r28
+ 1e2:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	data = SPI_txrx(0xff);
+ 1e6:	8f ef       	ldi	r24, 0xFF	; 255
+ 1e8:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	SET_H(SS);//disable slave
+ 1ec:	2a 9a       	sbi	0x05, 2	; 5
+
+	return data;
+}
+ 1ee:	cf 91       	pop	r28
+ 1f0:	08 95       	ret
+
+000001f2 <mcp2515_bit_modify>:
+
+// -------------------------------------------------------------------------
+void mcp2515_bit_modify(uint8_t adress, uint8_t mask, uint8_t data)
+{
+ 1f2:	1f 93       	push	r17
+ 1f4:	cf 93       	push	r28
+ 1f6:	df 93       	push	r29
+ 1f8:	18 2f       	mov	r17, r24
+ 1fa:	d6 2f       	mov	r29, r22
+ 1fc:	c4 2f       	mov	r28, r20
+	SET_L(SS);
+ 1fe:	2a 98       	cbi	0x05, 2	; 5
+
+	SPI_txrx(CAN_BIT_MODIFY);
+ 200:	85 e0       	ldi	r24, 0x05	; 5
+ 202:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SPI_txrx(adress);
+ 206:	81 2f       	mov	r24, r17
+ 208:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SPI_txrx(mask);
+ 20c:	8d 2f       	mov	r24, r29
+ 20e:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SPI_txrx(data);
+ 212:	8c 2f       	mov	r24, r28
+ 214:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	SET_H(SS);
+ 218:	2a 9a       	sbi	0x05, 2	; 5
+}
+ 21a:	df 91       	pop	r29
+ 21c:	cf 91       	pop	r28
+ 21e:	1f 91       	pop	r17
+ 220:	08 95       	ret
+
+00000222 <mcp2515_read_status>:
+// ----------------------------------------------------------------------------
+uint8_t mcp2515_read_status(uint8_t type)
+{
+	uint8_t data;
+
+	SET_L(SS);
+ 222:	2a 98       	cbi	0x05, 2	; 5
+
+	SPI_txrx(type);
+ 224:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	data = SPI_txrx(0xff);
+ 228:	8f ef       	ldi	r24, 0xFF	; 255
+ 22a:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	SET_H(SS);
+ 22e:	2a 9a       	sbi	0x05, 2	; 5
+
+	return data;
+}
+ 230:	08 95       	ret
+
+00000232 <mcp2515_init>:
+			and receive filters for the canbus transceiver.
+		
+		If error, PB0 is set high to turn on an error LED.
+******************************************************************************/
+uint8_t mcp2515_init(uint8_t speed)
+{
+ 232:	cf 93       	push	r28
+ 234:	c8 2f       	mov	r28, r24
+
+	// resets MCP2515 and puts it into configuration mode.
+	SET_L(SS);
+ 236:	2a 98       	cbi	0x05, 2	; 5
+	SPI_txrx(CAN_RESET);
+ 238:	80 ec       	ldi	r24, 0xC0	; 192
+ 23a:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SET_H(SS);
+ 23e:	2a 9a       	sbi	0x05, 2	; 5
+ 240:	8a e6       	ldi	r24, 0x6A	; 106
+ 242:	8a 95       	dec	r24
+ 244:	f1 f7       	brne	.-4      	; 0x242 <mcp2515_init+0x10>
+ 246:	00 c0       	rjmp	.+0      	; 0x248 <mcp2515_init+0x16>
+	//I had to increase this from 10 to 20, as otherwise it would fail.
+	//		The MCP2515 needed more time to reset.
+	_delay_us(20);
+
+	// load CNF1..3 Register
+	SET_L(SS);
+ 248:	2a 98       	cbi	0x05, 2	; 5
+	SPI_txrx(CAN_WRITE);
+ 24a:	82 e0       	ldi	r24, 0x02	; 2
+ 24c:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SPI_txrx(CNF3);  //address 0x28
+ 250:	88 e2       	ldi	r24, 0x28	; 40
+ 252:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	SPI_txrx((1<<PHSEG21));		// Bitrate 500 kbps at 16 MHz
+ 256:	82 e0       	ldi	r24, 0x02	; 2
+ 258:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	/*after tx the MCP2515 increments the address automatically, so you can
+		continue to write into adjacent registers, so the next write goes into
+		0x29, the location of CNF2*/
+	SPI_txrx((1<<BTLMODE)|(1<<PHSEG11));//CFN2
+ 25c:	80 e9       	ldi	r24, 0x90	; 144
+ 25e:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+    	SPI_txrx(speed);//writes to BRPn of CNF1
+ 262:	8c 2f       	mov	r24, r28
+ 264:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	// activate interrupts
+	SPI_txrx((1<<RX1IE)|(1<<RX0IE));
+ 268:	83 e0       	ldi	r24, 0x03	; 3
+ 26a:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SET_H(SS);
+ 26e:	2a 9a       	sbi	0x05, 2	; 5
+
+	// test if we could read back the value => is the chip accessible?
+	if (mcp2515_read_register(CNF1) != speed) {
+ 270:	8a e2       	ldi	r24, 0x2A	; 42
+ 272:	0e 94 ea 00 	call	0x1d4	; 0x1d4 <mcp2515_read_register>
+ 276:	8c 17       	cp	r24, r28
+ 278:	19 f0       	breq	.+6      	; 0x280 <mcp2515_init+0x4e>
+		SET_H(LED2);
+ 27a:	28 9a       	sbi	0x05, 0	; 5
+
+		return false;
+ 27c:	80 e0       	ldi	r24, 0x00	; 0
+ 27e:	16 c0       	rjmp	.+44     	; 0x2ac <mcp2515_init+0x7a>
+	}
+
+	// deactivate the RXnBF Pins (High Impedance State)
+	mcp2515_write_register(BFPCTRL, 0);
+ 280:	60 e0       	ldi	r22, 0x00	; 0
+ 282:	8c e0       	ldi	r24, 0x0C	; 12
+ 284:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <mcp2515_write_register>
+
+	// set TXnRTS as inputs
+	mcp2515_write_register(TXRTSCTRL, 0);
+ 288:	60 e0       	ldi	r22, 0x00	; 0
+ 28a:	8d e0       	ldi	r24, 0x0D	; 13
+ 28c:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <mcp2515_write_register>
+
+	
+	// turn off filters => receive any message
+	mcp2515_write_register(RXB0CTRL, (1<<RXM1)|(1<<RXM0));
+ 290:	60 e6       	ldi	r22, 0x60	; 96
+ 292:	80 e6       	ldi	r24, 0x60	; 96
+ 294:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <mcp2515_write_register>
+	mcp2515_write_register(RXB1CTRL, (1<<RXM1)|(1<<RXM0));
+ 298:	60 e6       	ldi	r22, 0x60	; 96
+ 29a:	80 e7       	ldi	r24, 0x70	; 112
+ 29c:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <mcp2515_write_register>
+// 	mcp2515_write_register(RXF4SIDL, RxIDLow);
+*/
+/******************************************************************************/
+
+	// reset device to normal mode
+	mcp2515_write_register(CANCTRL, 0);
+ 2a0:	60 e0       	ldi	r22, 0x00	; 0
+ 2a2:	8f e0       	ldi	r24, 0x0F	; 15
+ 2a4:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <mcp2515_write_register>
+	SET_L(LED2);
+ 2a8:	28 98       	cbi	0x05, 0	; 5
+	return true;
+ 2aa:	81 e0       	ldi	r24, 0x01	; 1
+}
+ 2ac:	cf 91       	pop	r28
+ 2ae:	08 95       	ret
+
+000002b0 <mcp2515_get_message>:
+
+// ----------------------------------------------------------------------------
+uint8_t mcp2515_get_message(tCAN *message)
+{
+ 2b0:	cf 92       	push	r12
+ 2b2:	df 92       	push	r13
+ 2b4:	ef 92       	push	r14
+ 2b6:	ff 92       	push	r15
+ 2b8:	0f 93       	push	r16
+ 2ba:	1f 93       	push	r17
+ 2bc:	cf 93       	push	r28
+ 2be:	df 93       	push	r29
+ 2c0:	1f 92       	push	r1
+ 2c2:	cd b7       	in	r28, 0x3d	; 61
+ 2c4:	de b7       	in	r29, 0x3e	; 62
+ 2c6:	6c 01       	movw	r12, r24
+	// read status
+	uint8_t status = mcp2515_read_status(CAN_RX_STATUS);
+ 2c8:	80 eb       	ldi	r24, 0xB0	; 176
+ 2ca:	0e 94 11 01 	call	0x222	; 0x222 <mcp2515_read_status>
+ 2ce:	89 83       	std	Y+1, r24	; 0x01
+	uint8_t addr;
+	uint8_t t;
+	if (bit_is_set(status,6)) {
+ 2d0:	99 81       	ldd	r25, Y+1	; 0x01
+ 2d2:	89 2f       	mov	r24, r25
+ 2d4:	80 74       	andi	r24, 0x40	; 64
+ 2d6:	96 fd       	sbrc	r25, 6
+ 2d8:	06 c0       	rjmp	.+12     	; 0x2e6 <mcp2515_get_message+0x36>
+		// message in buffer 0
+		addr = CAN_READ_RX_BUFF;
+	}
+	else if (bit_is_set(status,7)) {
+ 2da:	99 81       	ldd	r25, Y+1	; 0x01
+ 2dc:	99 23       	and	r25, r25
+ 2de:	0c f0       	brlt	.+2      	; 0x2e2 <mcp2515_get_message+0x32>
+ 2e0:	5e c0       	rjmp	.+188    	; 0x39e <mcp2515_get_message+0xee>
+		// message in buffer 1
+		addr = CAN_READ_RX_BUFF | 0x04;
+ 2e2:	84 e9       	ldi	r24, 0x94	; 148
+ 2e4:	01 c0       	rjmp	.+2      	; 0x2e8 <mcp2515_get_message+0x38>
+	uint8_t status = mcp2515_read_status(CAN_RX_STATUS);
+	uint8_t addr;
+	uint8_t t;
+	if (bit_is_set(status,6)) {
+		// message in buffer 0
+		addr = CAN_READ_RX_BUFF;
+ 2e6:	80 e9       	ldi	r24, 0x90	; 144
+	else {
+		// Error: no message available
+		return 0;
+	}
+
+	SET_L(SS);
+ 2e8:	2a 98       	cbi	0x05, 2	; 5
+	SPI_txrx(addr);
+ 2ea:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	// read id
+	message->id  = (uint16_t) SPI_txrx(0xff) << 3;
+ 2ee:	8f ef       	ldi	r24, 0xFF	; 255
+ 2f0:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+ 2f4:	28 e0       	ldi	r18, 0x08	; 8
+ 2f6:	82 9f       	mul	r24, r18
+ 2f8:	c0 01       	movw	r24, r0
+ 2fa:	11 24       	eor	r1, r1
+ 2fc:	f6 01       	movw	r30, r12
+ 2fe:	91 83       	std	Z+1, r25	; 0x01
+ 300:	80 83       	st	Z, r24
+	message->id |=            SPI_txrx(0xff) >> 5;
+ 302:	8f ef       	ldi	r24, 0xFF	; 255
+ 304:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+ 308:	28 2f       	mov	r18, r24
+ 30a:	22 95       	swap	r18
+ 30c:	26 95       	lsr	r18
+ 30e:	27 70       	andi	r18, 0x07	; 7
+ 310:	f6 01       	movw	r30, r12
+ 312:	80 81       	ld	r24, Z
+ 314:	91 81       	ldd	r25, Z+1	; 0x01
+ 316:	82 2b       	or	r24, r18
+ 318:	91 83       	std	Z+1, r25	; 0x01
+ 31a:	80 83       	st	Z, r24
+
+	SPI_txrx(0xff);
+ 31c:	8f ef       	ldi	r24, 0xFF	; 255
+ 31e:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SPI_txrx(0xff);
+ 322:	8f ef       	ldi	r24, 0xFF	; 255
+ 324:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	// read DLC
+	uint8_t length = SPI_txrx(0xff) & 0x0f;
+ 328:	8f ef       	ldi	r24, 0xFF	; 255
+ 32a:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+ 32e:	98 2f       	mov	r25, r24
+ 330:	9f 70       	andi	r25, 0x0F	; 15
+
+	message->header.length = length;
+ 332:	29 2f       	mov	r18, r25
+ 334:	22 0f       	add	r18, r18
+ 336:	f6 01       	movw	r30, r12
+ 338:	82 81       	ldd	r24, Z+2	; 0x02
+ 33a:	81 7e       	andi	r24, 0xE1	; 225
+ 33c:	82 2b       	or	r24, r18
+ 33e:	82 83       	std	Z+2, r24	; 0x02
+	message->header.rtr = (bit_is_set(status, 3)) ? 1 : 0;
+ 340:	29 81       	ldd	r18, Y+1	; 0x01
+ 342:	23 fb       	bst	r18, 3
+ 344:	22 27       	eor	r18, r18
+ 346:	20 f9       	bld	r18, 0
+ 348:	20 fb       	bst	r18, 0
+ 34a:	80 f9       	bld	r24, 0
+ 34c:	82 83       	std	Z+2, r24	; 0x02
+
+	// read data
+	for (t=0;t<length;t++) {
+ 34e:	99 23       	and	r25, r25
+ 350:	a1 f0       	breq	.+40     	; 0x37a <mcp2515_get_message+0xca>
+ 352:	86 01       	movw	r16, r12
+ 354:	0d 5f       	subi	r16, 0xFD	; 253
+ 356:	1f 4f       	sbci	r17, 0xFF	; 255
+ 358:	91 50       	subi	r25, 0x01	; 1
+ 35a:	e9 2e       	mov	r14, r25
+ 35c:	f1 2c       	mov	r15, r1
+ 35e:	f4 e0       	ldi	r31, 0x04	; 4
+ 360:	ef 0e       	add	r14, r31
+ 362:	f1 1c       	adc	r15, r1
+ 364:	ec 0c       	add	r14, r12
+ 366:	fd 1c       	adc	r15, r13
+		message->data[t] = SPI_txrx(0xff);
+ 368:	8f ef       	ldi	r24, 0xFF	; 255
+ 36a:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+ 36e:	f8 01       	movw	r30, r16
+ 370:	81 93       	st	Z+, r24
+ 372:	8f 01       	movw	r16, r30
+
+	message->header.length = length;
+	message->header.rtr = (bit_is_set(status, 3)) ? 1 : 0;
+
+	// read data
+	for (t=0;t<length;t++) {
+ 374:	ee 15       	cp	r30, r14
+ 376:	ff 05       	cpc	r31, r15
+ 378:	b9 f7       	brne	.-18     	; 0x368 <mcp2515_get_message+0xb8>
+		message->data[t] = SPI_txrx(0xff);
+	}
+	SET_H(SS);
+ 37a:	2a 9a       	sbi	0x05, 2	; 5
+
+	// clear interrupt flag
+	if (bit_is_set(status, 6)) {
+ 37c:	89 81       	ldd	r24, Y+1	; 0x01
+ 37e:	86 ff       	sbrs	r24, 6
+ 380:	06 c0       	rjmp	.+12     	; 0x38e <mcp2515_get_message+0xde>
+		mcp2515_bit_modify(CANINTF, (1<<RX0IF), 0);
+ 382:	40 e0       	ldi	r20, 0x00	; 0
+ 384:	61 e0       	ldi	r22, 0x01	; 1
+ 386:	8c e2       	ldi	r24, 0x2C	; 44
+ 388:	0e 94 f9 00 	call	0x1f2	; 0x1f2 <mcp2515_bit_modify>
+ 38c:	05 c0       	rjmp	.+10     	; 0x398 <mcp2515_get_message+0xe8>
+	}
+	else {
+		mcp2515_bit_modify(CANINTF, (1<<RX1IF), 0);
+ 38e:	40 e0       	ldi	r20, 0x00	; 0
+ 390:	62 e0       	ldi	r22, 0x02	; 2
+ 392:	8c e2       	ldi	r24, 0x2C	; 44
+ 394:	0e 94 f9 00 	call	0x1f2	; 0x1f2 <mcp2515_bit_modify>
+	}
+
+	return (status & 0x07) + 1;
+ 398:	89 81       	ldd	r24, Y+1	; 0x01
+ 39a:	87 70       	andi	r24, 0x07	; 7
+ 39c:	8f 5f       	subi	r24, 0xFF	; 255
+}
+ 39e:	0f 90       	pop	r0
+ 3a0:	df 91       	pop	r29
+ 3a2:	cf 91       	pop	r28
+ 3a4:	1f 91       	pop	r17
+ 3a6:	0f 91       	pop	r16
+ 3a8:	ff 90       	pop	r15
+ 3aa:	ef 90       	pop	r14
+ 3ac:	df 90       	pop	r13
+ 3ae:	cf 90       	pop	r12
+ 3b0:	08 95       	ret
+
+000003b2 <mcp2515_send_message>:
+
+// ----------------------------------------------------------------------------
+uint8_t mcp2515_send_message(tCAN *message)
+{
+ 3b2:	bf 92       	push	r11
+ 3b4:	cf 92       	push	r12
+ 3b6:	df 92       	push	r13
+ 3b8:	ef 92       	push	r14
+ 3ba:	ff 92       	push	r15
+ 3bc:	0f 93       	push	r16
+ 3be:	1f 93       	push	r17
+ 3c0:	cf 93       	push	r28
+ 3c2:	df 93       	push	r29
+ 3c4:	1f 92       	push	r1
+ 3c6:	cd b7       	in	r28, 0x3d	; 61
+ 3c8:	de b7       	in	r29, 0x3e	; 62
+ 3ca:	6c 01       	movw	r12, r24
+	uint8_t status = mcp2515_read_status(CAN_READ_STATUS);
+ 3cc:	80 ea       	ldi	r24, 0xA0	; 160
+ 3ce:	0e 94 11 01 	call	0x222	; 0x222 <mcp2515_read_status>
+ 3d2:	89 83       	std	Y+1, r24	; 0x01
+	   6	TXB2CNTRL.TXREQ
+	 */
+	uint8_t address;
+	uint8_t t;
+
+	if (bit_is_clear(status, 2)) {
+ 3d4:	89 81       	ldd	r24, Y+1	; 0x01
+ 3d6:	82 ff       	sbrs	r24, 2
+ 3d8:	0a c0       	rjmp	.+20     	; 0x3ee <mcp2515_send_message+0x3c>
+		address = 0x00;
+	}
+	else if (bit_is_clear(status, 4)) {
+ 3da:	89 81       	ldd	r24, Y+1	; 0x01
+ 3dc:	84 ff       	sbrs	r24, 4
+ 3de:	09 c0       	rjmp	.+18     	; 0x3f2 <mcp2515_send_message+0x40>
+		address = 0x02;
+	}
+	else if (bit_is_clear(status, 6)) {
+ 3e0:	89 81       	ldd	r24, Y+1	; 0x01
+ 3e2:	86 fd       	sbrc	r24, 6
+ 3e4:	5d c0       	rjmp	.+186    	; 0x4a0 <__FUSE_REGION_LENGTH__+0xa0>
+		address = 0x04;
+ 3e6:	68 94       	set
+ 3e8:	bb 24       	eor	r11, r11
+ 3ea:	b2 f8       	bld	r11, 2
+ 3ec:	05 c0       	rjmp	.+10     	; 0x3f8 <mcp2515_send_message+0x46>
+	 */
+	uint8_t address;
+	uint8_t t;
+
+	if (bit_is_clear(status, 2)) {
+		address = 0x00;
+ 3ee:	b1 2c       	mov	r11, r1
+ 3f0:	03 c0       	rjmp	.+6      	; 0x3f8 <mcp2515_send_message+0x46>
+	}
+	else if (bit_is_clear(status, 4)) {
+		address = 0x02;
+ 3f2:	68 94       	set
+ 3f4:	bb 24       	eor	r11, r11
+ 3f6:	b1 f8       	bld	r11, 1
+	else {
+		// all buffer used => could not send message
+		return 0;
+	}
+
+	SET_L(SS);
+ 3f8:	2a 98       	cbi	0x05, 2	; 5
+	SPI_txrx(CAN_LOAD_TX_BUFF | address);
+ 3fa:	8b 2d       	mov	r24, r11
+ 3fc:	80 64       	ori	r24, 0x40	; 64
+ 3fe:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	//split 11bit ID into it's respective register positions
+	SPI_txrx(message->id >> 3);
+ 402:	f6 01       	movw	r30, r12
+ 404:	80 81       	ld	r24, Z
+ 406:	91 81       	ldd	r25, Z+1	; 0x01
+ 408:	96 95       	lsr	r25
+ 40a:	87 95       	ror	r24
+ 40c:	96 95       	lsr	r25
+ 40e:	87 95       	ror	r24
+ 410:	96 95       	lsr	r25
+ 412:	87 95       	ror	r24
+ 414:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+    	SPI_txrx(message->id << 5);
+ 418:	f6 01       	movw	r30, r12
+ 41a:	80 81       	ld	r24, Z
+ 41c:	82 95       	swap	r24
+ 41e:	88 0f       	add	r24, r24
+ 420:	80 7e       	andi	r24, 0xE0	; 224
+ 422:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	SPI_txrx(0);
+ 426:	80 e0       	ldi	r24, 0x00	; 0
+ 428:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SPI_txrx(0);
+ 42c:	80 e0       	ldi	r24, 0x00	; 0
+ 42e:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+	uint8_t length = message->header.length & 0x0f;
+ 432:	f6 01       	movw	r30, r12
+ 434:	82 81       	ldd	r24, Z+2	; 0x02
+ 436:	f8 2e       	mov	r15, r24
+ 438:	f6 94       	lsr	r15
+ 43a:	ff 2d       	mov	r31, r15
+ 43c:	ff 70       	andi	r31, 0x0F	; 15
+ 43e:	ff 2e       	mov	r15, r31
+
+	if (message->header.rtr) {
+ 440:	80 ff       	sbrs	r24, 0
+ 442:	05 c0       	rjmp	.+10     	; 0x44e <__FUSE_REGION_LENGTH__+0x4e>
+		// a rtr-frame has a length, but contains no data
+		SPI_txrx((1<<RTR) | length);
+ 444:	8f 2f       	mov	r24, r31
+ 446:	80 64       	ori	r24, 0x40	; 64
+ 448:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+ 44c:	18 c0       	rjmp	.+48     	; 0x47e <__FUSE_REGION_LENGTH__+0x7e>
+	}
+	else {
+		// set message length
+		SPI_txrx(length);
+ 44e:	8f 2f       	mov	r24, r31
+ 450:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+
+		// data
+		for (t=0;t<length;t++) {
+ 454:	ff 20       	and	r15, r15
+ 456:	99 f0       	breq	.+38     	; 0x47e <__FUSE_REGION_LENGTH__+0x7e>
+ 458:	86 01       	movw	r16, r12
+ 45a:	0d 5f       	subi	r16, 0xFD	; 253
+ 45c:	1f 4f       	sbci	r17, 0xFF	; 255
+ 45e:	fa 94       	dec	r15
+ 460:	ef 2c       	mov	r14, r15
+ 462:	f1 2c       	mov	r15, r1
+ 464:	84 e0       	ldi	r24, 0x04	; 4
+ 466:	e8 0e       	add	r14, r24
+ 468:	f1 1c       	adc	r15, r1
+ 46a:	ec 0c       	add	r14, r12
+ 46c:	fd 1c       	adc	r15, r13
+			SPI_txrx(message->data[t]);
+ 46e:	f8 01       	movw	r30, r16
+ 470:	81 91       	ld	r24, Z+
+ 472:	8f 01       	movw	r16, r30
+ 474:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	else {
+		// set message length
+		SPI_txrx(length);
+
+		// data
+		for (t=0;t<length;t++) {
+ 478:	0e 15       	cp	r16, r14
+ 47a:	1f 05       	cpc	r17, r15
+ 47c:	c1 f7       	brne	.-16     	; 0x46e <__FUSE_REGION_LENGTH__+0x6e>
+			SPI_txrx(message->data[t]);
+		}
+	}
+	SET_H(SS);
+ 47e:	2a 9a       	sbi	0x05, 2	; 5
+ 480:	f5 e0       	ldi	r31, 0x05	; 5
+ 482:	fa 95       	dec	r31
+ 484:	f1 f7       	brne	.-4      	; 0x482 <__FUSE_REGION_LENGTH__+0x82>
+ 486:	00 00       	nop
+
+	//Wait for message to "settle" in register
+	_delay_us(1);
+
+	// send message
+	SET_L(SS);
+ 488:	2a 98       	cbi	0x05, 2	; 5
+	address = (address == 0) ? 1 : address;
+ 48a:	b1 10       	cpse	r11, r1
+ 48c:	02 c0       	rjmp	.+4      	; 0x492 <__FUSE_REGION_LENGTH__+0x92>
+ 48e:	bb 24       	eor	r11, r11
+ 490:	b3 94       	inc	r11
+	SPI_txrx(CAN_RTS | address);
+ 492:	8b 2d       	mov	r24, r11
+ 494:	80 68       	ori	r24, 0x80	; 128
+ 496:	0e 94 8b 00 	call	0x116	; 0x116 <SPI_txrx>
+	SET_H(SS);
+ 49a:	2a 9a       	sbi	0x05, 2	; 5
+
+	return address;
+ 49c:	8b 2d       	mov	r24, r11
+ 49e:	01 c0       	rjmp	.+2      	; 0x4a2 <__FUSE_REGION_LENGTH__+0xa2>
+	else if (bit_is_clear(status, 6)) {
+		address = 0x04;
+	}
+	else {
+		// all buffer used => could not send message
+		return 0;
+ 4a0:	80 e0       	ldi	r24, 0x00	; 0
 	address = (address == 0) ? 1 : address;
 	SPI_txrx(CAN_RTS | address);
 	SET_H(SS);
 
 	return address;
 }
-  a6:	52 98       	cbi	0x0a, 2	; 10
-  a8:	20 9a       	sbi	0x04, 0	; 4
-  aa:	08 95       	ret
+ 4a2:	0f 90       	pop	r0
+ 4a4:	df 91       	pop	r29
+ 4a6:	cf 91       	pop	r28
+ 4a8:	1f 91       	pop	r17
+ 4aa:	0f 91       	pop	r16
+ 4ac:	ff 90       	pop	r15
+ 4ae:	ef 90       	pop	r14
+ 4b0:	df 90       	pop	r13
+ 4b2:	cf 90       	pop	r12
+ 4b4:	bf 90       	pop	r11
+ 4b6:	08 95       	ret
 
-000000ac <INTERRUPT_init>:
-  ac:	e8 9a       	sbi	0x1d, 0	; 29
-  ae:	e9 e6       	ldi	r30, 0x69	; 105
-  b0:	f0 e0       	ldi	r31, 0x00	; 0
-  b2:	80 81       	ld	r24, Z
-  b4:	8c 7f       	andi	r24, 0xFC	; 252
-  b6:	80 83       	st	Z, r24
-  b8:	78 94       	sei
-  ba:	08 95       	ret
-
-000000bc <SPI_masterInit>:
-  bc:	22 9a       	sbi	0x04, 2	; 4
-  be:	23 9a       	sbi	0x04, 3	; 4
-  c0:	25 9a       	sbi	0x04, 5	; 4
-  c2:	2a 9a       	sbi	0x05, 2	; 5
-  c4:	2b 98       	cbi	0x05, 3	; 5
-  c6:	2d 98       	cbi	0x05, 5	; 5
-  c8:	8c b5       	in	r24, 0x2c	; 44
-  ca:	80 65       	ori	r24, 0x50	; 80
-  cc:	8c bd       	out	0x2c, r24	; 44
-  ce:	8c b5       	in	r24, 0x2c	; 44
-  d0:	83 60       	ori	r24, 0x03	; 3
-  d2:	8c bd       	out	0x2c, r24	; 44
-  d4:	08 95       	ret
-
-000000d6 <SPI_txrx>:
-  d6:	8e bd       	out	0x2e, r24	; 46
-  d8:	0d b4       	in	r0, 0x2d	; 45
-  da:	07 fe       	sbrs	r0, 7
-  dc:	fd cf       	rjmp	.-6      	; 0xd8 <SPI_txrx+0x2>
-  de:	87 ec       	ldi	r24, 0xC7	; 199
-  e0:	90 e0       	ldi	r25, 0x00	; 0
-  e2:	01 97       	sbiw	r24, 0x01	; 1
-  e4:	f1 f7       	brne	.-4      	; 0xe2 <SPI_txrx+0xc>
-  e6:	00 c0       	rjmp	.+0      	; 0xe8 <SPI_txrx+0x12>
-  e8:	00 00       	nop
-  ea:	8e b5       	in	r24, 0x2e	; 46
-  ec:	08 95       	ret
-
-000000ee <USART_Init>:
-  ee:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
-  f2:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
-  f6:	e1 ec       	ldi	r30, 0xC1	; 193
-  f8:	f0 e0       	ldi	r31, 0x00	; 0
-  fa:	80 81       	ld	r24, Z
-  fc:	88 61       	ori	r24, 0x18	; 24
-  fe:	80 83       	st	Z, r24
- 100:	e2 ec       	ldi	r30, 0xC2	; 194
- 102:	f0 e0       	ldi	r31, 0x00	; 0
- 104:	80 81       	ld	r24, Z
- 106:	86 60       	ori	r24, 0x06	; 6
- 108:	80 83       	st	Z, r24
- 10a:	08 95       	ret
-
-0000010c <USART_Transmit>:
- 10c:	e0 ec       	ldi	r30, 0xC0	; 192
- 10e:	f0 e0       	ldi	r31, 0x00	; 0
- 110:	90 81       	ld	r25, Z
- 112:	95 ff       	sbrs	r25, 5
- 114:	fd cf       	rjmp	.-6      	; 0x110 <USART_Transmit+0x4>
- 116:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
- 11a:	08 95       	ret
-
-0000011c <USART_Transmit_TX>:
- 11c:	ef 92       	push	r14
- 11e:	ff 92       	push	r15
- 120:	0f 93       	push	r16
- 122:	1f 93       	push	r17
- 124:	cf 93       	push	r28
- 126:	df 93       	push	r29
- 128:	fc 01       	movw	r30, r24
- 12a:	01 90       	ld	r0, Z+
- 12c:	00 20       	and	r0, r0
- 12e:	e9 f7       	brne	.-6      	; 0x12a <USART_Transmit_TX+0xe>
- 130:	31 97       	sbiw	r30, 0x01	; 1
- 132:	7f 01       	movw	r14, r30
- 134:	e8 1a       	sub	r14, r24
- 136:	f9 0a       	sbc	r15, r25
- 138:	61 f0       	breq	.+24     	; 0x152 <USART_Transmit_TX+0x36>
- 13a:	8c 01       	movw	r16, r24
- 13c:	c0 e0       	ldi	r28, 0x00	; 0
- 13e:	d0 e0       	ldi	r29, 0x00	; 0
- 140:	f8 01       	movw	r30, r16
- 142:	81 91       	ld	r24, Z+
- 144:	8f 01       	movw	r16, r30
- 146:	0e 94 86 00 	call	0x10c	; 0x10c <USART_Transmit>
- 14a:	21 96       	adiw	r28, 0x01	; 1
- 14c:	ec 16       	cp	r14, r28
- 14e:	fd 06       	cpc	r15, r29
- 150:	b9 f7       	brne	.-18     	; 0x140 <USART_Transmit_TX+0x24>
- 152:	df 91       	pop	r29
- 154:	cf 91       	pop	r28
- 156:	1f 91       	pop	r17
- 158:	0f 91       	pop	r16
- 15a:	ff 90       	pop	r15
- 15c:	ef 90       	pop	r14
- 15e:	08 95       	ret
-
-00000160 <mcp2515_write_register>:
- 160:	cf 93       	push	r28
- 162:	df 93       	push	r29
- 164:	d8 2f       	mov	r29, r24
- 166:	c6 2f       	mov	r28, r22
- 168:	2a 98       	cbi	0x05, 2	; 5
- 16a:	82 e0       	ldi	r24, 0x02	; 2
- 16c:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 170:	8d 2f       	mov	r24, r29
- 172:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 176:	8c 2f       	mov	r24, r28
- 178:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 17c:	2a 9a       	sbi	0x05, 2	; 5
- 17e:	df 91       	pop	r29
- 180:	cf 91       	pop	r28
- 182:	08 95       	ret
-
-00000184 <mcp2515_read_register>:
- 184:	cf 93       	push	r28
- 186:	c8 2f       	mov	r28, r24
- 188:	2a 98       	cbi	0x05, 2	; 5
- 18a:	83 e0       	ldi	r24, 0x03	; 3
- 18c:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 190:	8c 2f       	mov	r24, r28
- 192:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 196:	8f ef       	ldi	r24, 0xFF	; 255
- 198:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 19c:	2a 9a       	sbi	0x05, 2	; 5
- 19e:	cf 91       	pop	r28
- 1a0:	08 95       	ret
-
-000001a2 <mcp2515_bit_modify>:
- 1a2:	1f 93       	push	r17
- 1a4:	cf 93       	push	r28
- 1a6:	df 93       	push	r29
- 1a8:	18 2f       	mov	r17, r24
- 1aa:	d6 2f       	mov	r29, r22
- 1ac:	c4 2f       	mov	r28, r20
- 1ae:	2a 98       	cbi	0x05, 2	; 5
- 1b0:	85 e0       	ldi	r24, 0x05	; 5
- 1b2:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 1b6:	81 2f       	mov	r24, r17
- 1b8:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 1bc:	8d 2f       	mov	r24, r29
- 1be:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 1c2:	8c 2f       	mov	r24, r28
- 1c4:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 1c8:	2a 9a       	sbi	0x05, 2	; 5
- 1ca:	df 91       	pop	r29
- 1cc:	cf 91       	pop	r28
- 1ce:	1f 91       	pop	r17
- 1d0:	08 95       	ret
-
-000001d2 <mcp2515_read_status>:
- 1d2:	2a 98       	cbi	0x05, 2	; 5
- 1d4:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 1d8:	8f ef       	ldi	r24, 0xFF	; 255
- 1da:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 1de:	2a 9a       	sbi	0x05, 2	; 5
- 1e0:	08 95       	ret
-
-000001e2 <mcp2515_init>:
- 1e2:	cf 93       	push	r28
- 1e4:	c8 2f       	mov	r28, r24
- 1e6:	2a 98       	cbi	0x05, 2	; 5
- 1e8:	80 ec       	ldi	r24, 0xC0	; 192
- 1ea:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 1ee:	2a 9a       	sbi	0x05, 2	; 5
- 1f0:	8a e6       	ldi	r24, 0x6A	; 106
- 1f2:	8a 95       	dec	r24
- 1f4:	f1 f7       	brne	.-4      	; 0x1f2 <mcp2515_init+0x10>
- 1f6:	00 c0       	rjmp	.+0      	; 0x1f8 <mcp2515_init+0x16>
- 1f8:	2a 98       	cbi	0x05, 2	; 5
- 1fa:	82 e0       	ldi	r24, 0x02	; 2
- 1fc:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 200:	88 e2       	ldi	r24, 0x28	; 40
- 202:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 206:	82 e0       	ldi	r24, 0x02	; 2
- 208:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 20c:	80 e9       	ldi	r24, 0x90	; 144
- 20e:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 212:	8c 2f       	mov	r24, r28
- 214:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 218:	83 e0       	ldi	r24, 0x03	; 3
- 21a:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 21e:	2a 9a       	sbi	0x05, 2	; 5
- 220:	8a e2       	ldi	r24, 0x2A	; 42
- 222:	0e 94 c2 00 	call	0x184	; 0x184 <mcp2515_read_register>
- 226:	8c 17       	cp	r24, r28
- 228:	19 f0       	breq	.+6      	; 0x230 <mcp2515_init+0x4e>
- 22a:	28 9a       	sbi	0x05, 0	; 5
- 22c:	80 e0       	ldi	r24, 0x00	; 0
- 22e:	16 c0       	rjmp	.+44     	; 0x25c <mcp2515_init+0x7a>
- 230:	60 e0       	ldi	r22, 0x00	; 0
- 232:	8c e0       	ldi	r24, 0x0C	; 12
- 234:	0e 94 b0 00 	call	0x160	; 0x160 <mcp2515_write_register>
- 238:	60 e0       	ldi	r22, 0x00	; 0
- 23a:	8d e0       	ldi	r24, 0x0D	; 13
- 23c:	0e 94 b0 00 	call	0x160	; 0x160 <mcp2515_write_register>
- 240:	60 e6       	ldi	r22, 0x60	; 96
- 242:	80 e6       	ldi	r24, 0x60	; 96
- 244:	0e 94 b0 00 	call	0x160	; 0x160 <mcp2515_write_register>
- 248:	60 e6       	ldi	r22, 0x60	; 96
- 24a:	80 e7       	ldi	r24, 0x70	; 112
- 24c:	0e 94 b0 00 	call	0x160	; 0x160 <mcp2515_write_register>
- 250:	60 e0       	ldi	r22, 0x00	; 0
- 252:	8f e0       	ldi	r24, 0x0F	; 15
- 254:	0e 94 b0 00 	call	0x160	; 0x160 <mcp2515_write_register>
- 258:	28 98       	cbi	0x05, 0	; 5
- 25a:	81 e0       	ldi	r24, 0x01	; 1
- 25c:	cf 91       	pop	r28
- 25e:	08 95       	ret
-
-00000260 <mcp2515_get_message>:
- 260:	cf 92       	push	r12
- 262:	df 92       	push	r13
- 264:	ef 92       	push	r14
- 266:	ff 92       	push	r15
- 268:	0f 93       	push	r16
- 26a:	1f 93       	push	r17
- 26c:	cf 93       	push	r28
- 26e:	df 93       	push	r29
- 270:	1f 92       	push	r1
- 272:	cd b7       	in	r28, 0x3d	; 61
- 274:	de b7       	in	r29, 0x3e	; 62
- 276:	6c 01       	movw	r12, r24
- 278:	80 eb       	ldi	r24, 0xB0	; 176
- 27a:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <mcp2515_read_status>
- 27e:	89 83       	std	Y+1, r24	; 0x01
- 280:	99 81       	ldd	r25, Y+1	; 0x01
- 282:	89 2f       	mov	r24, r25
- 284:	80 74       	andi	r24, 0x40	; 64
- 286:	96 fd       	sbrc	r25, 6
- 288:	06 c0       	rjmp	.+12     	; 0x296 <mcp2515_get_message+0x36>
- 28a:	99 81       	ldd	r25, Y+1	; 0x01
- 28c:	99 23       	and	r25, r25
- 28e:	0c f0       	brlt	.+2      	; 0x292 <mcp2515_get_message+0x32>
- 290:	5e c0       	rjmp	.+188    	; 0x34e <mcp2515_get_message+0xee>
- 292:	84 e9       	ldi	r24, 0x94	; 148
- 294:	01 c0       	rjmp	.+2      	; 0x298 <mcp2515_get_message+0x38>
- 296:	80 e9       	ldi	r24, 0x90	; 144
- 298:	2a 98       	cbi	0x05, 2	; 5
- 29a:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 29e:	8f ef       	ldi	r24, 0xFF	; 255
- 2a0:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 2a4:	28 e0       	ldi	r18, 0x08	; 8
- 2a6:	82 9f       	mul	r24, r18
- 2a8:	c0 01       	movw	r24, r0
- 2aa:	11 24       	eor	r1, r1
- 2ac:	f6 01       	movw	r30, r12
- 2ae:	91 83       	std	Z+1, r25	; 0x01
- 2b0:	80 83       	st	Z, r24
- 2b2:	8f ef       	ldi	r24, 0xFF	; 255
- 2b4:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 2b8:	28 2f       	mov	r18, r24
- 2ba:	22 95       	swap	r18
- 2bc:	26 95       	lsr	r18
- 2be:	27 70       	andi	r18, 0x07	; 7
- 2c0:	f6 01       	movw	r30, r12
- 2c2:	80 81       	ld	r24, Z
- 2c4:	91 81       	ldd	r25, Z+1	; 0x01
- 2c6:	82 2b       	or	r24, r18
- 2c8:	91 83       	std	Z+1, r25	; 0x01
- 2ca:	80 83       	st	Z, r24
- 2cc:	8f ef       	ldi	r24, 0xFF	; 255
- 2ce:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 2d2:	8f ef       	ldi	r24, 0xFF	; 255
- 2d4:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 2d8:	8f ef       	ldi	r24, 0xFF	; 255
- 2da:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 2de:	98 2f       	mov	r25, r24
- 2e0:	9f 70       	andi	r25, 0x0F	; 15
- 2e2:	29 2f       	mov	r18, r25
- 2e4:	22 0f       	add	r18, r18
- 2e6:	f6 01       	movw	r30, r12
- 2e8:	82 81       	ldd	r24, Z+2	; 0x02
- 2ea:	81 7e       	andi	r24, 0xE1	; 225
- 2ec:	82 2b       	or	r24, r18
- 2ee:	82 83       	std	Z+2, r24	; 0x02
- 2f0:	29 81       	ldd	r18, Y+1	; 0x01
- 2f2:	23 fb       	bst	r18, 3
- 2f4:	22 27       	eor	r18, r18
- 2f6:	20 f9       	bld	r18, 0
- 2f8:	20 fb       	bst	r18, 0
- 2fa:	80 f9       	bld	r24, 0
- 2fc:	82 83       	std	Z+2, r24	; 0x02
- 2fe:	99 23       	and	r25, r25
- 300:	a1 f0       	breq	.+40     	; 0x32a <mcp2515_get_message+0xca>
- 302:	86 01       	movw	r16, r12
- 304:	0d 5f       	subi	r16, 0xFD	; 253
- 306:	1f 4f       	sbci	r17, 0xFF	; 255
- 308:	91 50       	subi	r25, 0x01	; 1
- 30a:	e9 2e       	mov	r14, r25
- 30c:	f1 2c       	mov	r15, r1
- 30e:	f4 e0       	ldi	r31, 0x04	; 4
- 310:	ef 0e       	add	r14, r31
- 312:	f1 1c       	adc	r15, r1
- 314:	ec 0c       	add	r14, r12
- 316:	fd 1c       	adc	r15, r13
- 318:	8f ef       	ldi	r24, 0xFF	; 255
- 31a:	0e 94 6b 00 	call	0xd6	; 0xd6 <SPI_txrx>
- 31e:	f8 01       	movw	r30, r16
- 320:	81 93       	st	Z+, r24
- 322:	8f 01       	movw	r16, r30
- 324:	ee 15       	cp	r30, r14
- 326:	ff 05       	cpc	r31, r15
- 328:	b9 f7       	brne	.-18     	; 0x318 <mcp2515_get_message+0xb8>
- 32a:	2a 9a       	sbi	0x05, 2	; 5
- 32c:	89 81       	ldd	r24, Y+1	; 0x01
- 32e:	86 ff       	sbrs	r24, 6
- 330:	06 c0       	rjmp	.+12     	; 0x33e <mcp2515_get_message+0xde>
- 332:	40 e0       	ldi	r20, 0x00	; 0
- 334:	61 e0       	ldi	r22, 0x01	; 1
- 336:	8c e2       	ldi	r24, 0x2C	; 44
- 338:	0e 94 d1 00 	call	0x1a2	; 0x1a2 <mcp2515_bit_modify>
- 33c:	05 c0       	rjmp	.+10     	; 0x348 <mcp2515_get_message+0xe8>
- 33e:	40 e0       	ldi	r20, 0x00	; 0
- 340:	62 e0       	ldi	r22, 0x02	; 2
- 342:	8c e2       	ldi	r24, 0x2C	; 44
- 344:	0e 94 d1 00 	call	0x1a2	; 0x1a2 <mcp2515_bit_modify>
- 348:	89 81       	ldd	r24, Y+1	; 0x01
- 34a:	87 70       	andi	r24, 0x07	; 7
- 34c:	8f 5f       	subi	r24, 0xFF	; 255
- 34e:	0f 90       	pop	r0
- 350:	df 91       	pop	r29
- 352:	cf 91       	pop	r28
- 354:	1f 91       	pop	r17
- 356:	0f 91       	pop	r16
- 358:	ff 90       	pop	r15
- 35a:	ef 90       	pop	r14
- 35c:	df 90       	pop	r13
- 35e:	cf 90       	pop	r12
- 360:	08 95       	ret
-
-00000362 <main>:
+000004b8 <main>:
 	start of main()|
 ******************************************************************************/
 int main(void)
 {
 		//initialization functions
 	GPIO_init();
- 362:	0e 94 53 00 	call	0xa6	; 0xa6 <GPIO_init>
+ 4b8:	0e 94 73 00 	call	0xe6	; 0xe6 <GPIO_init>
 	INTERRUPT_init();
- 366:	0e 94 56 00 	call	0xac	; 0xac <INTERRUPT_init>
+ 4bc:	0e 94 76 00 	call	0xec	; 0xec <INTERRUPT_init>
 	USART_Init(103);//103 sets baud rate at 9600
- 36a:	87 e6       	ldi	r24, 0x67	; 103
- 36c:	90 e0       	ldi	r25, 0x00	; 0
- 36e:	0e 94 77 00 	call	0xee	; 0xee <USART_Init>
+ 4c0:	87 e6       	ldi	r24, 0x67	; 103
+ 4c2:	90 e0       	ldi	r25, 0x00	; 0
+ 4c4:	0e 94 97 00 	call	0x12e	; 0x12e <USART_Init>
 	SPI_masterInit();
- 372:	0e 94 5e 00 	call	0xbc	; 0xbc <SPI_masterInit>
+ 4c8:	0e 94 7e 00 	call	0xfc	; 0xfc <SPI_masterInit>
 	
 	//MCP2515 initialization
 	if(mcp2515_init(CANSPEED_500))
- 376:	81 e0       	ldi	r24, 0x01	; 1
- 378:	0e 94 f1 00 	call	0x1e2	; 0x1e2 <mcp2515_init>
- 37c:	88 23       	and	r24, r24
- 37e:	29 f0       	breq	.+10     	; 0x38a <main+0x28>
+ 4cc:	81 e0       	ldi	r24, 0x01	; 1
+ 4ce:	0e 94 19 01 	call	0x232	; 0x232 <mcp2515_init>
+ 4d2:	88 23       	and	r24, r24
+ 4d4:	61 f0       	breq	.+24     	; 0x4ee <main+0x36>
 	{
 		USART_Transmit_TX("Can Init SUCCESS!");
- 380:	81 e0       	ldi	r24, 0x01	; 1
- 382:	91 e0       	ldi	r25, 0x01	; 1
- 384:	0e 94 8e 00 	call	0x11c	; 0x11c <USART_Transmit_TX>
- 388:	04 c0       	rjmp	.+8      	; 0x392 <main+0x30>
-	}else
-	{
-		USART_Transmit_TX("Can Init FAILURE!");
- 38a:	83 e1       	ldi	r24, 0x13	; 19
- 38c:	91 e0       	ldi	r25, 0x01	; 1
- 38e:	0e 94 8e 00 	call	0x11c	; 0x11c <USART_Transmit_TX>
-	}
-	
-	
-	//setup the transmit frame
-	usart_char.id = TxID;			//set target device ID
- 392:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <TxID>
- 396:	90 e0       	ldi	r25, 0x00	; 0
- 398:	90 93 33 01 	sts	0x0133, r25	; 0x800133 <usart_char+0x1>
- 39c:	80 93 32 01 	sts	0x0132, r24	; 0x800132 <usart_char>
-	usart_char.header.rtr = 0;		//no remote transmit(i.e. request info)
- 3a0:	e4 e3       	ldi	r30, 0x34	; 52
- 3a2:	f1 e0       	ldi	r31, 0x01	; 1
- 3a4:	80 81       	ld	r24, Z
-	usart_char.header.length = 1;	//single byte(could be up to 8)
- 3a6:	80 7e       	andi	r24, 0xE0	; 224
- 3a8:	82 60       	ori	r24, 0x02	; 2
- 3aa:	80 83       	st	Z, r24
+ 4d6:	81 e0       	ldi	r24, 0x01	; 1
+ 4d8:	91 e0       	ldi	r25, 0x01	; 1
+ 4da:	0e 94 b6 00 	call	0x16c	; 0x16c <USART_Transmit_TX>
 		//if rx_flag is set, that means there's a received message stored in
 		//spi_char, so ATOMIC_BLOCK disabled interrupts, then transmits it
 		//over uart.
 		if(rx_flag){
 				ATOMIC_BLOCK(ATOMIC_FORCEON){
-				USART_Transmit(spi_char.id >> 8); //CanID_High
- 3ac:	07 e2       	ldi	r16, 0x27	; 39
- 3ae:	11 e0       	ldi	r17, 0x01	; 1
-
-				USART_Transmit(spi_char.id); //CandID_Low
-
-				USART_Transmit(spi_char.header.rtr); //rtr
- 3b0:	c9 e2       	ldi	r28, 0x29	; 41
- 3b2:	d1 e0       	ldi	r29, 0x01	; 1
-				USART_Transmit(spi_char.header.length); //length
+				USART_Transmit(spi_char.id >> 3); //CanID_High
+ 4de:	07 e2       	ldi	r16, 0x27	; 39
+ 4e0:	11 e0       	ldi	r17, 0x01	; 1
+				
+				USART_Transmit((spi_char.id << 5) | (spi_char.header.rtr <<4) | spi_char.header.length); //CandID_Low
+ 4e2:	c9 e2       	ldi	r28, 0x29	; 41
+ 4e4:	d1 e0       	ldi	r29, 0x01	; 1
+				//USART_Transmit(spi_char.header.length); //length
 
 				
 				//read back all data received.
 				if(!spi_char.header.rtr){
 					for (uint8_t t = 0; t < spi_char.header.length;t++) {
- 3b4:	c1 2c       	mov	r12, r1
- 3b6:	d1 2c       	mov	r13, r1
- 3b8:	e1 2c       	mov	r14, r1
+ 4e6:	c1 2c       	mov	r12, r1
+ 4e8:	d1 2c       	mov	r13, r1
+ 4ea:	e1 2c       	mov	r14, r1
+ 4ec:	05 c0       	rjmp	.+10     	; 0x4f8 <main+0x40>
+	if(mcp2515_init(CANSPEED_500))
+	{
+		USART_Transmit_TX("Can Init SUCCESS!");
+	}else
+	{
+		USART_Transmit_TX("Can Init FAILURE!");
+ 4ee:	83 e1       	ldi	r24, 0x13	; 19
+ 4f0:	91 e0       	ldi	r25, 0x01	; 1
+ 4f2:	0e 94 b6 00 	call	0x16c	; 0x16c <USART_Transmit_TX>
+ 4f6:	f3 cf       	rjmp	.-26     	; 0x4de <main+0x26>
 	while (1)
 	{
 		//if rx_flag is set, that means there's a received message stored in
 		//spi_char, so ATOMIC_BLOCK disabled interrupts, then transmits it
 		//over uart.
 		if(rx_flag){
- 3ba:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
- 3be:	88 23       	and	r24, r24
- 3c0:	e1 f3       	breq	.-8      	; 0x3ba <main+0x58>
+ 4f8:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
+ 4fc:	88 23       	and	r24, r24
+ 4fe:	e1 f3       	breq	.-8      	; 0x4f8 <main+0x40>
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
- 3c2:	f8 94       	cli
+ 500:	f8 94       	cli
 				ATOMIC_BLOCK(ATOMIC_FORCEON){
-				USART_Transmit(spi_char.id >> 8); //CanID_High
- 3c4:	f8 01       	movw	r30, r16
- 3c6:	81 81       	ldd	r24, Z+1	; 0x01
- 3c8:	0e 94 86 00 	call	0x10c	; 0x10c <USART_Transmit>
+				USART_Transmit(spi_char.id >> 3); //CanID_High
+ 502:	f8 01       	movw	r30, r16
+ 504:	80 81       	ld	r24, Z
+ 506:	91 81       	ldd	r25, Z+1	; 0x01
+ 508:	96 95       	lsr	r25
+ 50a:	87 95       	ror	r24
+ 50c:	96 95       	lsr	r25
+ 50e:	87 95       	ror	r24
+ 510:	96 95       	lsr	r25
+ 512:	87 95       	ror	r24
+ 514:	0e 94 ae 00 	call	0x15c	; 0x15c <USART_Transmit>
+				
+				USART_Transmit((spi_char.id << 5) | (spi_char.header.rtr <<4) | spi_char.header.length); //CandID_Low
+ 518:	f8 01       	movw	r30, r16
+ 51a:	90 81       	ld	r25, Z
+ 51c:	92 95       	swap	r25
+ 51e:	99 0f       	add	r25, r25
+ 520:	90 7e       	andi	r25, 0xE0	; 224
+ 522:	28 81       	ld	r18, Y
+ 524:	82 2f       	mov	r24, r18
+ 526:	87 95       	ror	r24
+ 528:	88 27       	eor	r24, r24
+ 52a:	87 95       	ror	r24
+ 52c:	88 0f       	add	r24, r24
+ 52e:	88 0b       	sbc	r24, r24
+ 530:	82 95       	swap	r24
+ 532:	80 7f       	andi	r24, 0xF0	; 240
+ 534:	98 2b       	or	r25, r24
+ 536:	82 2f       	mov	r24, r18
+ 538:	86 95       	lsr	r24
+ 53a:	8f 70       	andi	r24, 0x0F	; 15
+ 53c:	89 2b       	or	r24, r25
+ 53e:	0e 94 ae 00 	call	0x15c	; 0x15c <USART_Transmit>
 
-				USART_Transmit(spi_char.id); //CandID_Low
- 3cc:	f8 01       	movw	r30, r16
- 3ce:	80 81       	ld	r24, Z
- 3d0:	0e 94 86 00 	call	0x10c	; 0x10c <USART_Transmit>
-
-				USART_Transmit(spi_char.header.rtr); //rtr
- 3d4:	88 81       	ld	r24, Y
- 3d6:	87 95       	ror	r24
- 3d8:	88 27       	eor	r24, r24
- 3da:	87 95       	ror	r24
- 3dc:	88 0f       	add	r24, r24
- 3de:	88 0b       	sbc	r24, r24
- 3e0:	0e 94 86 00 	call	0x10c	; 0x10c <USART_Transmit>
-
-				USART_Transmit(spi_char.header.length); //length
- 3e4:	88 81       	ld	r24, Y
- 3e6:	86 95       	lsr	r24
- 3e8:	8f 70       	andi	r24, 0x0F	; 15
- 3ea:	0e 94 86 00 	call	0x10c	; 0x10c <USART_Transmit>
+				//USART_Transmit(spi_char.header.length); //length
 
 				
 				//read back all data received.
 				if(!spi_char.header.rtr){
- 3ee:	88 81       	ld	r24, Y
- 3f0:	80 fd       	sbrc	r24, 0
- 3f2:	16 c0       	rjmp	.+44     	; 0x420 <__FUSE_REGION_LENGTH__+0x20>
+ 542:	88 81       	ld	r24, Y
+ 544:	80 fd       	sbrc	r24, 0
+ 546:	16 c0       	rjmp	.+44     	; 0x574 <main+0xbc>
 					for (uint8_t t = 0; t < spi_char.header.length;t++) {
- 3f4:	86 95       	lsr	r24
- 3f6:	8f 70       	andi	r24, 0x0F	; 15
- 3f8:	99 f0       	breq	.+38     	; 0x420 <__FUSE_REGION_LENGTH__+0x20>
- 3fa:	2c 2d       	mov	r18, r12
- 3fc:	3d 2d       	mov	r19, r13
- 3fe:	fe 2c       	mov	r15, r14
+ 548:	86 95       	lsr	r24
+ 54a:	8f 70       	andi	r24, 0x0F	; 15
+ 54c:	99 f0       	breq	.+38     	; 0x574 <main+0xbc>
+ 54e:	2c 2d       	mov	r18, r12
+ 550:	3d 2d       	mov	r19, r13
+ 552:	fe 2c       	mov	r15, r14
 						USART_Transmit(spi_char.data[t]); //data
- 400:	f9 01       	movw	r30, r18
- 402:	e9 5d       	subi	r30, 0xD9	; 217
- 404:	fe 4f       	sbci	r31, 0xFE	; 254
- 406:	83 81       	ldd	r24, Z+3	; 0x03
- 408:	0e 94 86 00 	call	0x10c	; 0x10c <USART_Transmit>
-				USART_Transmit(spi_char.header.length); //length
+ 554:	f9 01       	movw	r30, r18
+ 556:	e9 5d       	subi	r30, 0xD9	; 217
+ 558:	fe 4f       	sbci	r31, 0xFE	; 254
+ 55a:	83 81       	ldd	r24, Z+3	; 0x03
+ 55c:	0e 94 ae 00 	call	0x15c	; 0x15c <USART_Transmit>
+				//USART_Transmit(spi_char.header.length); //length
 
 				
 				//read back all data received.
 				if(!spi_char.header.rtr){
 					for (uint8_t t = 0; t < spi_char.header.length;t++) {
- 40c:	f3 94       	inc	r15
- 40e:	2f 2d       	mov	r18, r15
- 410:	30 e0       	ldi	r19, 0x00	; 0
- 412:	88 81       	ld	r24, Y
- 414:	86 95       	lsr	r24
- 416:	8f 70       	andi	r24, 0x0F	; 15
- 418:	90 e0       	ldi	r25, 0x00	; 0
- 41a:	28 17       	cp	r18, r24
- 41c:	39 07       	cpc	r19, r25
- 41e:	84 f3       	brlt	.-32     	; 0x400 <__FUSE_REGION_LENGTH__>
+ 560:	f3 94       	inc	r15
+ 562:	2f 2d       	mov	r18, r15
+ 564:	30 e0       	ldi	r19, 0x00	; 0
+ 566:	88 81       	ld	r24, Y
+ 568:	86 95       	lsr	r24
+ 56a:	8f 70       	andi	r24, 0x0F	; 15
+ 56c:	90 e0       	ldi	r25, 0x00	; 0
+ 56e:	28 17       	cp	r18, r24
+ 570:	39 07       	cpc	r19, r25
+ 572:	84 f3       	brlt	.-32     	; 0x554 <main+0x9c>
 						USART_Transmit(spi_char.data[t]); //data
 
 					}
 				}
 				
 				rx_flag = 0;
- 420:	e0 92 26 01 	sts	0x0126, r14	; 0x800126 <__data_end>
+ 574:	e0 92 26 01 	sts	0x0126, r14	; 0x800126 <__data_end>
     return 1;
 }
 
 static __inline__ void __iSeiParam(const uint8_t *__s)
 {
     sei();
- 424:	78 94       	sei
+ 578:	78 94       	sei
     __asm__ volatile ("" ::: "memory");
- 426:	c9 cf       	rjmp	.-110    	; 0x3ba <main+0x58>
+ 57a:	be cf       	rjmp	.-132    	; 0x4f8 <main+0x40>
 
-00000428 <__vector_1>:
+0000057c <__vector_1>:
 
 /******************************************************************************
 	RECEIVE interrupt on pin PD2|
 ******************************************************************************/
 ISR(INT0_vect)
 {
- 428:	1f 92       	push	r1
- 42a:	0f 92       	push	r0
- 42c:	0f b6       	in	r0, 0x3f	; 63
- 42e:	0f 92       	push	r0
- 430:	11 24       	eor	r1, r1
- 432:	2f 93       	push	r18
- 434:	3f 93       	push	r19
- 436:	4f 93       	push	r20
- 438:	5f 93       	push	r21
- 43a:	6f 93       	push	r22
- 43c:	7f 93       	push	r23
- 43e:	8f 93       	push	r24
- 440:	9f 93       	push	r25
- 442:	af 93       	push	r26
- 444:	bf 93       	push	r27
- 446:	ef 93       	push	r30
- 448:	ff 93       	push	r31
+ 57c:	1f 92       	push	r1
+ 57e:	0f 92       	push	r0
+ 580:	0f b6       	in	r0, 0x3f	; 63
+ 582:	0f 92       	push	r0
+ 584:	11 24       	eor	r1, r1
+ 586:	2f 93       	push	r18
+ 588:	3f 93       	push	r19
+ 58a:	4f 93       	push	r20
+ 58c:	5f 93       	push	r21
+ 58e:	6f 93       	push	r22
+ 590:	7f 93       	push	r23
+ 592:	8f 93       	push	r24
+ 594:	9f 93       	push	r25
+ 596:	af 93       	push	r26
+ 598:	bf 93       	push	r27
+ 59a:	ef 93       	push	r30
+ 59c:	ff 93       	push	r31
 	mcp2515_get_message(&spi_char);//get canbus message
- 44a:	87 e2       	ldi	r24, 0x27	; 39
- 44c:	91 e0       	ldi	r25, 0x01	; 1
- 44e:	0e 94 30 01 	call	0x260	; 0x260 <mcp2515_get_message>
+ 59e:	87 e2       	ldi	r24, 0x27	; 39
+ 5a0:	91 e0       	ldi	r25, 0x01	; 1
+ 5a2:	0e 94 58 01 	call	0x2b0	; 0x2b0 <mcp2515_get_message>
 	rx_flag = 1;  //set flag
- 452:	81 e0       	ldi	r24, 0x01	; 1
- 454:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <__data_end>
+ 5a6:	81 e0       	ldi	r24, 0x01	; 1
+ 5a8:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <__data_end>
 }
- 458:	ff 91       	pop	r31
- 45a:	ef 91       	pop	r30
- 45c:	bf 91       	pop	r27
- 45e:	af 91       	pop	r26
- 460:	9f 91       	pop	r25
- 462:	8f 91       	pop	r24
- 464:	7f 91       	pop	r23
- 466:	6f 91       	pop	r22
- 468:	5f 91       	pop	r21
- 46a:	4f 91       	pop	r20
- 46c:	3f 91       	pop	r19
- 46e:	2f 91       	pop	r18
- 470:	0f 90       	pop	r0
- 472:	0f be       	out	0x3f, r0	; 63
- 474:	0f 90       	pop	r0
- 476:	1f 90       	pop	r1
- 478:	18 95       	reti
+ 5ac:	ff 91       	pop	r31
+ 5ae:	ef 91       	pop	r30
+ 5b0:	bf 91       	pop	r27
+ 5b2:	af 91       	pop	r26
+ 5b4:	9f 91       	pop	r25
+ 5b6:	8f 91       	pop	r24
+ 5b8:	7f 91       	pop	r23
+ 5ba:	6f 91       	pop	r22
+ 5bc:	5f 91       	pop	r21
+ 5be:	4f 91       	pop	r20
+ 5c0:	3f 91       	pop	r19
+ 5c2:	2f 91       	pop	r18
+ 5c4:	0f 90       	pop	r0
+ 5c6:	0f be       	out	0x3f, r0	; 63
+ 5c8:	0f 90       	pop	r0
+ 5ca:	1f 90       	pop	r1
+ 5cc:	18 95       	reti
 
-0000047a <_exit>:
- 47a:	f8 94       	cli
+000005ce <__vector_18>:
 
-0000047c <__stop_program>:
- 47c:	ff cf       	rjmp	.-2      	; 0x47c <__stop_program>
+ISR(USART_RX_vect)
+{
+ 5ce:	1f 92       	push	r1
+ 5d0:	0f 92       	push	r0
+ 5d2:	0f b6       	in	r0, 0x3f	; 63
+ 5d4:	0f 92       	push	r0
+ 5d6:	11 24       	eor	r1, r1
+ 5d8:	2f 93       	push	r18
+ 5da:	3f 93       	push	r19
+ 5dc:	4f 93       	push	r20
+ 5de:	5f 93       	push	r21
+ 5e0:	6f 93       	push	r22
+ 5e2:	7f 93       	push	r23
+ 5e4:	8f 93       	push	r24
+ 5e6:	9f 93       	push	r25
+ 5e8:	af 93       	push	r26
+ 5ea:	bf 93       	push	r27
+ 5ec:	ef 93       	push	r30
+ 5ee:	ff 93       	push	r31
+	
+	
+	
+		uint8_t receive_buff = USART_Receive();
+ 5f0:	0e 94 a6 00 	call	0x14c	; 0x14c <USART_Receive>
+	//transmit usart_char over canbus
+	mcp2515_send_message(&CANTX_buffer);
+	*/
+	
+	//select which adc to sample from
+	switch(Rx_frame_state){
+ 5f4:	e0 91 00 01 	lds	r30, 0x0100	; 0x800100 <Rx_frame_state>
+ 5f8:	4e 2f       	mov	r20, r30
+ 5fa:	50 e0       	ldi	r21, 0x00	; 0
+ 5fc:	fa 01       	movw	r30, r20
+ 5fe:	31 97       	sbiw	r30, 0x01	; 1
+ 600:	e0 32       	cpi	r30, 0x20	; 32
+ 602:	f1 05       	cpc	r31, r1
+ 604:	08 f0       	brcs	.+2      	; 0x608 <__vector_18+0x3a>
+ 606:	f6 c0       	rjmp	.+492    	; 0x7f4 <__vector_18+0x226>
+ 608:	ec 5c       	subi	r30, 0xCC	; 204
+ 60a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 60c:	0c 94 0e 04 	jmp	0x81c	; 0x81c <__tablejump2__>
+		case s_RxIDH : //frameID High
+		
+			CANTX_buffer.id |= receive_buff <<3;
+ 610:	e2 e3       	ldi	r30, 0x32	; 50
+ 612:	f1 e0       	ldi	r31, 0x01	; 1
+ 614:	90 e0       	ldi	r25, 0x00	; 0
+ 616:	88 0f       	add	r24, r24
+ 618:	99 1f       	adc	r25, r25
+ 61a:	88 0f       	add	r24, r24
+ 61c:	99 1f       	adc	r25, r25
+ 61e:	88 0f       	add	r24, r24
+ 620:	99 1f       	adc	r25, r25
+ 622:	20 81       	ld	r18, Z
+ 624:	31 81       	ldd	r19, Z+1	; 0x01
+ 626:	82 2b       	or	r24, r18
+ 628:	93 2b       	or	r25, r19
+ 62a:	91 83       	std	Z+1, r25	; 0x01
+ 62c:	80 83       	st	Z, r24
+			Rx_frame_state = s_RxIDL;
+ 62e:	80 e2       	ldi	r24, 0x20	; 32
+ 630:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+		break;
+ 634:	e2 c0       	rjmp	.+452    	; 0x7fa <__vector_18+0x22c>
+		case s_RxIDL : //frameID Low, rtr, & length = 0bXXXYZZZZ
+
+			CANTX_buffer.id |= (receive_buff >>5);
+ 636:	e2 e3       	ldi	r30, 0x32	; 50
+ 638:	f1 e0       	ldi	r31, 0x01	; 1
+ 63a:	98 2f       	mov	r25, r24
+ 63c:	92 95       	swap	r25
+ 63e:	96 95       	lsr	r25
+ 640:	97 70       	andi	r25, 0x07	; 7
+ 642:	20 81       	ld	r18, Z
+ 644:	31 81       	ldd	r19, Z+1	; 0x01
+ 646:	29 2b       	or	r18, r25
+ 648:	31 83       	std	Z+1, r19	; 0x01
+ 64a:	20 83       	st	Z, r18
+			CANTX_buffer.header.rtr =  ((receive_buff >>4) & 0x01);
+ 64c:	28 2f       	mov	r18, r24
+ 64e:	22 95       	swap	r18
+ 650:	2f 70       	andi	r18, 0x0F	; 15
+ 652:	e4 e3       	ldi	r30, 0x34	; 52
+ 654:	f1 e0       	ldi	r31, 0x01	; 1
+ 656:	90 81       	ld	r25, Z
+ 658:	20 fb       	bst	r18, 0
+ 65a:	90 f9       	bld	r25, 0
+			CANTX_buffer.header.length = (receive_buff & 0x0F);
+ 65c:	8f 70       	andi	r24, 0x0F	; 15
+ 65e:	88 0f       	add	r24, r24
+ 660:	91 7e       	andi	r25, 0xE1	; 225
+ 662:	89 2b       	or	r24, r25
+ 664:	80 83       	st	Z, r24
+			
+			if(CANTX_buffer.header.rtr){
+ 666:	80 ff       	sbrs	r24, 0
+ 668:	08 c0       	rjmp	.+16     	; 0x67a <__vector_18+0xac>
+				mcp2515_send_message(&CANTX_buffer);
+ 66a:	82 e3       	ldi	r24, 0x32	; 50
+ 66c:	91 e0       	ldi	r25, 0x01	; 1
+ 66e:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <mcp2515_send_message>
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+ 672:	80 e1       	ldi	r24, 0x10	; 16
+ 674:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 678:	c0 c0       	rjmp	.+384    	; 0x7fa <__vector_18+0x22c>
+				
+			} else {
+				Rx_frame_state = s_Rxdata1;
+ 67a:	81 e0       	ldi	r24, 0x01	; 1
+ 67c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 680:	bc c0       	rjmp	.+376    	; 0x7fa <__vector_18+0x22c>
+				
+			}
+		
+		break;
+		case s_Rxdata1 : //data1
+			CANTX_buffer.data[0] = receive_buff;
+ 682:	80 93 35 01 	sts	0x0135, r24	; 0x800135 <CANTX_buffer+0x3>
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+ 686:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <Rx_frame_state>
+ 68a:	30 e0       	ldi	r19, 0x00	; 0
+ 68c:	80 91 34 01 	lds	r24, 0x0134	; 0x800134 <CANTX_buffer+0x2>
+ 690:	86 95       	lsr	r24
+ 692:	8f 70       	andi	r24, 0x0F	; 15
+ 694:	90 e0       	ldi	r25, 0x00	; 0
+ 696:	28 17       	cp	r18, r24
+ 698:	39 07       	cpc	r19, r25
+ 69a:	24 f4       	brge	.+8      	; 0x6a4 <__vector_18+0xd6>
+				Rx_frame_state = s_Rxdata2;
+ 69c:	82 e0       	ldi	r24, 0x02	; 2
+ 69e:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 6a2:	ab c0       	rjmp	.+342    	; 0x7fa <__vector_18+0x22c>
+				
+			}else{
+				mcp2515_send_message(&CANTX_buffer);
+ 6a4:	82 e3       	ldi	r24, 0x32	; 50
+ 6a6:	91 e0       	ldi	r25, 0x01	; 1
+ 6a8:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <mcp2515_send_message>
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+ 6ac:	80 e1       	ldi	r24, 0x10	; 16
+ 6ae:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 6b2:	a3 c0       	rjmp	.+326    	; 0x7fa <__vector_18+0x22c>
+			
+			}
+		break;
+		case s_Rxdata2 ://data2
+			CANTX_buffer.data[1] = receive_buff;
+ 6b4:	80 93 36 01 	sts	0x0136, r24	; 0x800136 <CANTX_buffer+0x4>
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+ 6b8:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <Rx_frame_state>
+ 6bc:	30 e0       	ldi	r19, 0x00	; 0
+ 6be:	80 91 34 01 	lds	r24, 0x0134	; 0x800134 <CANTX_buffer+0x2>
+ 6c2:	86 95       	lsr	r24
+ 6c4:	8f 70       	andi	r24, 0x0F	; 15
+ 6c6:	90 e0       	ldi	r25, 0x00	; 0
+ 6c8:	28 17       	cp	r18, r24
+ 6ca:	39 07       	cpc	r19, r25
+ 6cc:	24 f4       	brge	.+8      	; 0x6d6 <__vector_18+0x108>
+				Rx_frame_state = s_Rxdata3;
+ 6ce:	83 e0       	ldi	r24, 0x03	; 3
+ 6d0:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 6d4:	92 c0       	rjmp	.+292    	; 0x7fa <__vector_18+0x22c>
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+ 6d6:	82 e3       	ldi	r24, 0x32	; 50
+ 6d8:	91 e0       	ldi	r25, 0x01	; 1
+ 6da:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <mcp2515_send_message>
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+ 6de:	80 e1       	ldi	r24, 0x10	; 16
+ 6e0:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 6e4:	8a c0       	rjmp	.+276    	; 0x7fa <__vector_18+0x22c>
+			}
+		break;
+		case s_Rxdata3 ://data3
+			CANTX_buffer.data[2] = receive_buff;
+ 6e6:	80 93 37 01 	sts	0x0137, r24	; 0x800137 <CANTX_buffer+0x5>
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+ 6ea:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <Rx_frame_state>
+ 6ee:	30 e0       	ldi	r19, 0x00	; 0
+ 6f0:	80 91 34 01 	lds	r24, 0x0134	; 0x800134 <CANTX_buffer+0x2>
+ 6f4:	86 95       	lsr	r24
+ 6f6:	8f 70       	andi	r24, 0x0F	; 15
+ 6f8:	90 e0       	ldi	r25, 0x00	; 0
+ 6fa:	28 17       	cp	r18, r24
+ 6fc:	39 07       	cpc	r19, r25
+ 6fe:	24 f4       	brge	.+8      	; 0x708 <__vector_18+0x13a>
+				Rx_frame_state = s_Rxdata4;
+ 700:	84 e0       	ldi	r24, 0x04	; 4
+ 702:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 706:	79 c0       	rjmp	.+242    	; 0x7fa <__vector_18+0x22c>
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+ 708:	82 e3       	ldi	r24, 0x32	; 50
+ 70a:	91 e0       	ldi	r25, 0x01	; 1
+ 70c:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <mcp2515_send_message>
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+ 710:	80 e1       	ldi	r24, 0x10	; 16
+ 712:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 716:	71 c0       	rjmp	.+226    	; 0x7fa <__vector_18+0x22c>
+			}
+		break;
+		case s_Rxdata4 ://data4
+			CANTX_buffer.data[3] = receive_buff;
+ 718:	80 93 38 01 	sts	0x0138, r24	; 0x800138 <CANTX_buffer+0x6>
+	
+			if(Rx_frame_state < CANTX_buffer.header.length){
+ 71c:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <Rx_frame_state>
+ 720:	30 e0       	ldi	r19, 0x00	; 0
+ 722:	80 91 34 01 	lds	r24, 0x0134	; 0x800134 <CANTX_buffer+0x2>
+ 726:	86 95       	lsr	r24
+ 728:	8f 70       	andi	r24, 0x0F	; 15
+ 72a:	90 e0       	ldi	r25, 0x00	; 0
+ 72c:	28 17       	cp	r18, r24
+ 72e:	39 07       	cpc	r19, r25
+ 730:	24 f4       	brge	.+8      	; 0x73a <__vector_18+0x16c>
+				Rx_frame_state = s_Rxdata5;
+ 732:	85 e0       	ldi	r24, 0x05	; 5
+ 734:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 738:	60 c0       	rjmp	.+192    	; 0x7fa <__vector_18+0x22c>
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+ 73a:	82 e3       	ldi	r24, 0x32	; 50
+ 73c:	91 e0       	ldi	r25, 0x01	; 1
+ 73e:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <mcp2515_send_message>
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+ 742:	80 e1       	ldi	r24, 0x10	; 16
+ 744:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 748:	58 c0       	rjmp	.+176    	; 0x7fa <__vector_18+0x22c>
+			}
+		break;
+		case s_Rxdata5 ://data5
+			CANTX_buffer.data[4] = receive_buff;
+ 74a:	80 93 39 01 	sts	0x0139, r24	; 0x800139 <CANTX_buffer+0x7>
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+ 74e:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <Rx_frame_state>
+ 752:	30 e0       	ldi	r19, 0x00	; 0
+ 754:	80 91 34 01 	lds	r24, 0x0134	; 0x800134 <CANTX_buffer+0x2>
+ 758:	86 95       	lsr	r24
+ 75a:	8f 70       	andi	r24, 0x0F	; 15
+ 75c:	90 e0       	ldi	r25, 0x00	; 0
+ 75e:	28 17       	cp	r18, r24
+ 760:	39 07       	cpc	r19, r25
+ 762:	24 f4       	brge	.+8      	; 0x76c <__vector_18+0x19e>
+				Rx_frame_state = s_Rxdata6;
+ 764:	86 e0       	ldi	r24, 0x06	; 6
+ 766:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 76a:	47 c0       	rjmp	.+142    	; 0x7fa <__vector_18+0x22c>
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+ 76c:	82 e3       	ldi	r24, 0x32	; 50
+ 76e:	91 e0       	ldi	r25, 0x01	; 1
+ 770:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <mcp2515_send_message>
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+ 774:	80 e1       	ldi	r24, 0x10	; 16
+ 776:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 77a:	3f c0       	rjmp	.+126    	; 0x7fa <__vector_18+0x22c>
+			}
+		break;
+		case s_Rxdata6 ://data6
+			CANTX_buffer.data[5] = receive_buff;
+ 77c:	80 93 3a 01 	sts	0x013A, r24	; 0x80013a <CANTX_buffer+0x8>
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+ 780:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <Rx_frame_state>
+ 784:	30 e0       	ldi	r19, 0x00	; 0
+ 786:	80 91 34 01 	lds	r24, 0x0134	; 0x800134 <CANTX_buffer+0x2>
+ 78a:	86 95       	lsr	r24
+ 78c:	8f 70       	andi	r24, 0x0F	; 15
+ 78e:	90 e0       	ldi	r25, 0x00	; 0
+ 790:	28 17       	cp	r18, r24
+ 792:	39 07       	cpc	r19, r25
+ 794:	24 f4       	brge	.+8      	; 0x79e <__vector_18+0x1d0>
+				Rx_frame_state = s_Rxdata7;
+ 796:	87 e0       	ldi	r24, 0x07	; 7
+ 798:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 79c:	2e c0       	rjmp	.+92     	; 0x7fa <__vector_18+0x22c>
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+ 79e:	82 e3       	ldi	r24, 0x32	; 50
+ 7a0:	91 e0       	ldi	r25, 0x01	; 1
+ 7a2:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <mcp2515_send_message>
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+ 7a6:	80 e1       	ldi	r24, 0x10	; 16
+ 7a8:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 7ac:	26 c0       	rjmp	.+76     	; 0x7fa <__vector_18+0x22c>
+			}
+		break;
+		case s_Rxdata7 ://data7
+			CANTX_buffer.data[6] = receive_buff;
+ 7ae:	80 93 3b 01 	sts	0x013B, r24	; 0x80013b <CANTX_buffer+0x9>
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+ 7b2:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <Rx_frame_state>
+ 7b6:	30 e0       	ldi	r19, 0x00	; 0
+ 7b8:	80 91 34 01 	lds	r24, 0x0134	; 0x800134 <CANTX_buffer+0x2>
+ 7bc:	86 95       	lsr	r24
+ 7be:	8f 70       	andi	r24, 0x0F	; 15
+ 7c0:	90 e0       	ldi	r25, 0x00	; 0
+ 7c2:	28 17       	cp	r18, r24
+ 7c4:	39 07       	cpc	r19, r25
+ 7c6:	24 f4       	brge	.+8      	; 0x7d0 <__vector_18+0x202>
+				Rx_frame_state = s_Rxdata8;
+ 7c8:	88 e0       	ldi	r24, 0x08	; 8
+ 7ca:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 7ce:	15 c0       	rjmp	.+42     	; 0x7fa <__vector_18+0x22c>
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+ 7d0:	82 e3       	ldi	r24, 0x32	; 50
+ 7d2:	91 e0       	ldi	r25, 0x01	; 1
+ 7d4:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <mcp2515_send_message>
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+ 7d8:	80 e1       	ldi	r24, 0x10	; 16
+ 7da:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+ 7de:	0d c0       	rjmp	.+26     	; 0x7fa <__vector_18+0x22c>
+			}
+		break;
+		case s_Rxdata8 ://data8
+			CANTX_buffer.data[7] = receive_buff;
+ 7e0:	80 93 3c 01 	sts	0x013C, r24	; 0x80013c <CANTX_buffer+0xa>
+			
+			mcp2515_send_message(&CANTX_buffer);
+ 7e4:	82 e3       	ldi	r24, 0x32	; 50
+ 7e6:	91 e0       	ldi	r25, 0x01	; 1
+ 7e8:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <mcp2515_send_message>
+			receive_buff = 0;
+			Rx_frame_state = s_RxIDH;
+ 7ec:	80 e1       	ldi	r24, 0x10	; 16
+ 7ee:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+		break;
+ 7f2:	03 c0       	rjmp	.+6      	; 0x7fa <__vector_18+0x22c>
+		default : Rx_frame_state = s_RxIDH;
+ 7f4:	80 e1       	ldi	r24, 0x10	; 16
+ 7f6:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <Rx_frame_state>
+		
+		break;
+	}
+		
+	
+ 7fa:	ff 91       	pop	r31
+ 7fc:	ef 91       	pop	r30
+ 7fe:	bf 91       	pop	r27
+ 800:	af 91       	pop	r26
+ 802:	9f 91       	pop	r25
+ 804:	8f 91       	pop	r24
+ 806:	7f 91       	pop	r23
+ 808:	6f 91       	pop	r22
+ 80a:	5f 91       	pop	r21
+ 80c:	4f 91       	pop	r20
+ 80e:	3f 91       	pop	r19
+ 810:	2f 91       	pop	r18
+ 812:	0f 90       	pop	r0
+ 814:	0f be       	out	0x3f, r0	; 63
+ 816:	0f 90       	pop	r0
+ 818:	1f 90       	pop	r1
+ 81a:	18 95       	reti
+
+0000081c <__tablejump2__>:
+ 81c:	ee 0f       	add	r30, r30
+ 81e:	ff 1f       	adc	r31, r31
+ 820:	05 90       	lpm	r0, Z+
+ 822:	f4 91       	lpm	r31, Z
+ 824:	e0 2d       	mov	r30, r0
+ 826:	09 94       	ijmp
+
+00000828 <_exit>:
+ 828:	f8 94       	cli
+
+0000082a <__stop_program>:
+ 82a:	ff cf       	rjmp	.-2      	; 0x82a <__stop_program>

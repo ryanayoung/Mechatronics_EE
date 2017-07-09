@@ -12,13 +12,12 @@
 /*=============================================================================
 				[TODO]
 				
-	-change UART to interrupt driven code
-	-determine ADC input rant to map to for each input/resistor value
+	-determine ADC input range to map to for each input/resistor value
 		-adjust response frame to tegra request
 	-setup over/under current critical interrupt
 		-setup error lights accordingly
 	
-	-possibly add acceptance of all can messages intended for tegra into
+	-add acceptance of all can messages intended for tegra into
 		buffer1 and relay over serial & trigger error leds
 	-setup backup serial2can interface if tegra can board doesn't work.
 		-create FIFO buffer and do zero message interpretting.
@@ -37,7 +36,12 @@
 		
 ******************************************************************************/
 //RxID is your device ID that you allow messages to receive
-uint16_t RxID = 0x001;  
+#define Rx0ID  0x000
+#define Rx1ID  0x000
+#define Rx2ID  0x001
+#define Rx3ID  0x001
+#define Rx4ID  0x001
+#define Rx5ID  0x001
 
 //TxID is the target ID you're transmitting to
 uint8_t TxID = 0x020;	//M
@@ -49,14 +53,19 @@ uint8_t TxID = 0x020;	//M
 #include "headers/defines.h"		//Pin name definitions
 #include "headers/functions.h"		//general functions
 #include "headers/spi_ry.h"			//SPI protocol implementation
-#include "headers/usart_ry.h"		//serial communication with PC
 #include "headers/mcp2515_ry_def.h"	//MCP2515 register and bit definitions
 #include "headers/mcp2515_ry.h"		//MCP2515 functions
+#include "headers/usart_ry.h"		//serial communication with PC
+#include "headers/can_frames.h"		//CAN frames in tCAN struct format
+
+
+		
 
 tCAN CANTX_buffer;	//transmit package
 tCAN CANRX_buffer;	//receive package
 
 volatile uint8_t rx_flag = 0;
+volatile uint8_t Rx_frame_state = 0x10;
 
 uint16_t voltage_sense[4];
 uint8_t adc_select = 0;
@@ -69,6 +78,7 @@ int main(void)
   	//initialization functions
 	GPIO_init();
 	INTERRUPT_init();
+	ADC_init();
 	USART_Init(103);//103 sets baud rate at 9600
 	SPI_masterInit();
 	
@@ -85,18 +95,26 @@ int main(void)
 	
 	//setup the transmit frame
 	CANTX_buffer.id = TxID;			//set target device ID
-	CANTX_buffer.header.rtr = 0;		//no remote transmit(i.e. request info)
-	UARTTX_buCANTX_bufferffer.header.length = 1;	//single byte(could be up to 8)
+	CANTX_buffer.header.rtr = 0;	//no remote transmit(i.e. request info)
+	CANTX_buffer.header.length = 1;//single byte(could be up to 8)
+	
+
+	
+	ADCSRA |= (1<<ADSC); //start adc sample
 	
 	while(1)
     {
 		
+		
+		
+		
 	
 		//if data received on CAN...
 		if(rx_flag){
-			ATOMIC_BLOCK(ATOMIC_FORCEON){//disables interrupts
+			ATOMIC_BLOCK(ATOMIC_RESTORESTATE){//disables interrupts
 				//[FOR DEBUGGING]transimts received frame over uart.
 				USART_CAN_TX(CANRX_buffer);
+				TOGGLE(LED4);
 				
 				//matches received ID.  if current request, returns
 				//	current data
@@ -128,6 +146,7 @@ ISR(INT0_vect)
 *******************************************************************************/ 
 ISR(ADC_vect) 
 { 
+	
 	/*
 		store ADC value remapped to 0-5.0Volts
 		this allows them to fit into byte size readings instead of 10bit.
@@ -139,26 +158,35 @@ ISR(ADC_vect)
 			which corresponds to
 			voltage_sens = {P5V_SENSE, P20V_SENSE, P24V_SENS, P6V_SENSE} 
 	*/
-	voltage_sense[adc_select] = map(ADC, 0, 1023, 0, 50);
+	voltage_sense[adc_select] = ADCH;
 	
 	
 	adc_select++;
 	if(adc_select > 3){//resets count at 4 and stores values in CAN frame
 		adc_select = 0;
-		Request_Response_Backplane_Current.data = voltage_sense;
+		for(uint8_t j = 0; j < 4; j++){
+		Request_Response_Backplane_Current.data[j] = voltage_sense[j];
+		
+		}
+		
 	}
 	
 	//select which adc to sample from
 	switch(adc_select){
 		case 0 : ADMUX &= 0b11110000; //set ADC0
+		
 			break;	
 		case 1 : ADMUX &= 0b11110001; //set ADC1
+		
 		break;
 		case 2 : ADMUX &= 0b11110110; //set ADC6
+		
 		break;
 		case 3 : ADMUX &= 0b11110111; //set ADC7
+		
 		break;
 		default : ADMUX &= 0b11110000; //set ADC0
+		
 		break;
 	}
 	ADCSRA |= (1<<ADSC); //start adc sample
@@ -178,12 +206,130 @@ ISR(ADC_vect)
 ******************************************************************************/
 ISR(USART0_RX_vect)
 {
-	if(!(UCSR0A & (1<<RXC)))//if data in serial buffer
-	{
-		//get serial data
-		CANTX_buffer.data[0] = USART_Receive();
+	
+	uint8_t receive_buff = USART_Receive();
+	/*
+	//get serial data
+	CANTX_buffer.data[0] = USART_Receive();
 
-		//transmit usart_char over canbus
-		mcp2515_send_message(&CANTX_buffer);
+	//transmit usart_char over canbus
+	mcp2515_send_message(&CANTX_buffer);
+	*/
+	
+	//select which adc to sample from
+	switch(Rx_frame_state){
+		case s_RxIDH : //frameID High
+		
+			CANTX_buffer.id |= receive_buff <<3;
+			Rx_frame_state = s_RxIDL;
+		break;
+		case s_RxIDL : //frameID Low, rtr, & length = 0bXXXYZZZZ
+
+			CANTX_buffer.id |= (receive_buff >>5);
+			CANTX_buffer.header.rtr =  ((receive_buff >>4) & 0x01);
+			CANTX_buffer.header.length = (receive_buff & 0x0F);
+			
+			if(CANTX_buffer.header.rtr){
+				mcp2515_send_message(&CANTX_buffer);
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+				TOGGLE(LED1);
+			} else {
+				Rx_frame_state = s_Rxdata1;
+				TOGGLE(LED2);
+			}
+		
+		break;
+		case s_Rxdata1 : //data1
+			CANTX_buffer.data[0] = receive_buff;
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+				Rx_frame_state = s_Rxdata2;
+				TOGGLE(LED3);
+			}else{
+				mcp2515_send_message(&CANTX_buffer);
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+				TOGGLE(LED4);
+			}
+		break;
+		case s_Rxdata2 ://data2
+			CANTX_buffer.data[1] = receive_buff;
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+				Rx_frame_state = s_Rxdata3;
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+			}
+		break;
+		case s_Rxdata3 ://data3
+			CANTX_buffer.data[2] = receive_buff;
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+				Rx_frame_state = s_Rxdata4;
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+			}
+		break;
+		case s_Rxdata4 ://data4
+			CANTX_buffer.data[3] = receive_buff;
+	
+			if(Rx_frame_state < CANTX_buffer.header.length){
+				Rx_frame_state = s_Rxdata5;
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+			}
+		break;
+		case s_Rxdata5 ://data5
+			CANTX_buffer.data[4] = receive_buff;
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+				Rx_frame_state = s_Rxdata6;
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+			}
+		break;
+		case s_Rxdata6 ://data6
+			CANTX_buffer.data[5] = receive_buff;
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+				Rx_frame_state = s_Rxdata7;
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+			}
+		break;
+		case s_Rxdata7 ://data7
+			CANTX_buffer.data[6] = receive_buff;
+			
+			if(Rx_frame_state < CANTX_buffer.header.length){
+				Rx_frame_state = s_Rxdata8;
+				}else{
+				mcp2515_send_message(&CANTX_buffer);
+				receive_buff = 0;
+				Rx_frame_state = s_RxIDH;
+			}
+		break;
+		case s_Rxdata8 ://data8
+			CANTX_buffer.data[7] = receive_buff;
+			
+			mcp2515_send_message(&CANTX_buffer);
+			receive_buff = 0;
+			Rx_frame_state = s_RxIDH;
+		break;
+		default : Rx_frame_state = s_RxIDH;
+		
+		break;
 	}
+	
+	
 }

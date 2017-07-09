@@ -117,7 +117,7 @@ uint8_t mcp2515_read_status(uint8_t type)
 		sets up speed, initial conditions, interrupts, GPIO, 
 			and receive filters for the canbus transceiver.
 		
-		If error, PB0 is set high to turn on an error LED.
+		
 ******************************************************************************/
 uint8_t mcp2515_init(uint8_t speed)
 {
@@ -202,8 +202,8 @@ uint8_t mcp2515_init(uint8_t speed)
 	SET_L(SS);
 	SPI_txrx(CAN_WRITE);
 	SPI_txrx(RXF0SIDH);
-	SPI_txrx(RxIDHi);
-	SPI_txrx(RxIDLow);
+	SPI_txrx(Rx0IDHi);
+	SPI_txrx(Rx0IDLow);
 	SET_H(SS);
 // 	mcp2515_write_register(RXF0SIDH, RxIDHi);//filter0
 // 	mcp2515_write_register(RXF0SIDL, RxIDLow);
@@ -211,35 +211,44 @@ uint8_t mcp2515_init(uint8_t speed)
 	SET_L(SS);
 	SPI_txrx(CAN_WRITE);
 	SPI_txrx(RXF1SIDH);
-	SPI_txrx(RxIDHi);
-	SPI_txrx(RxIDLow);
+	SPI_txrx(Rx1IDHi);
+	SPI_txrx(Rx1IDLow);
 	SET_H(SS);
 // 	mcp2515_write_register(RXF1SIDH, RxIDHi);//filter1
 // 	mcp2515_write_register(RXF1SIDL, RxIDLow);
 	SET_L(SS);
 	SPI_txrx(CAN_WRITE);
 	SPI_txrx(RXF2SIDH);
-	SPI_txrx(RxIDHi);
-	SPI_txrx(RxIDLow);
+	SPI_txrx(Rx2IDHi);
+	SPI_txrx(Rx2IDLow);
 	SET_H(SS);
 // 	mcp2515_write_register(RXF2SIDH, RxIDHi);//filter2
 // 	mcp2515_write_register(RXF2SIDL, RxIDLow);
 	SET_L(SS);
 	SPI_txrx(CAN_WRITE);
 	SPI_txrx(RXF3SIDH);
-	SPI_txrx(RxIDHi);
-	SPI_txrx(RxIDLow);
+	SPI_txrx(Rx3IDHi);
+	SPI_txrx(Rx3IDLow);
 	SET_H(SS);
 // 	mcp2515_write_register(RXF3SIDH, RxIDHi);//filter3
 // 	mcp2515_write_register(RXF3SIDL, RxIDLow);
 	SET_L(SS);
 	SPI_txrx(CAN_WRITE);
 	SPI_txrx(RXF4SIDH);
-	SPI_txrx(RxIDHi);
-	SPI_txrx(RxIDLow);
+	SPI_txrx(Rx4IDHi);
+	SPI_txrx(Rx4IDLow);
 	SET_H(SS);
 // 	mcp2515_write_register(RXF4SIDH, RxIDHi);//filter4
 // 	mcp2515_write_register(RXF4SIDL, RxIDLow);
+
+	SET_L(SS);
+	SPI_txrx(CAN_WRITE);
+	SPI_txrx(RXF5SIDH);
+	SPI_txrx(Rx5IDHi);
+	SPI_txrx(Rx5IDLow);
+	SET_H(SS);
+	// 	mcp2515_write_register(RXF4SIDH, RxIDHi);//filter5
+	// 	mcp2515_write_register(RXF4SIDL, RxIDLow);
 
 /******************************************************************************/
 
@@ -365,6 +374,14 @@ uint8_t mcp2515_send_message(tCAN *message)
 	address = (address == 0) ? 1 : address;
 	SPI_txrx(CAN_RTS | address);
 	SET_H(SS);
+	
+	message->id = 0;
+	message->header.rtr = 0;
+	message->header.length = 0;
+	memset(message->data, 0, sizeof(message->data));
+	
+	
+	
 
 	return address;
 }

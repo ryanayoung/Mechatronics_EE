@@ -18,8 +18,9 @@ main.d main.o: .././main.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\4.9.2\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\atomic.h \
  .././headers/global.h .././headers/defines.h .././headers/functions.h \
- .././headers/spi_ry.h .././headers/usart_ry.h \
- .././headers/mcp2515_ry_def.h .././headers/mcp2515_ry.h
+ .././headers/spi_ry.h .././headers/mcp2515_ry_def.h \
+ .././headers/mcp2515_ry.h .././headers/usart_ry.h \
+ .././headers/can_frames.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -65,8 +66,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 .././headers/spi_ry.h:
 
-.././headers/usart_ry.h:
-
 .././headers/mcp2515_ry_def.h:
 
 .././headers/mcp2515_ry.h:
+
+.././headers/usart_ry.h:
+
+.././headers/can_frames.h:
