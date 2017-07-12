@@ -77,6 +77,7 @@ volatile uint8_t rx_flag = 0;
 int main(void)
 {
 	setup();
+	
 	/*
 	//This is temporary. Reference back to know how to make the frame
 	spi_char.id = 0x10;
@@ -96,13 +97,84 @@ int main(void)
 		 {
 			 ATOMIC_BLOCK(ATOMIC_RESTORESTATE)	// disables interrupts
 			 {
-				 // Laser_2();	// debugging 
-				 //matches received ID.  if current request, returns current data
-				 //if more cases are required, will convert to a switch-case
-				 if(CANRX_buffer.id == Weapon1_Command.id)
+				 // matches received ID.  if current request, returns current data
+				 // if more cases are required, will convert to a switch-case
+				 if (CANRX_buffer.id == Weapon1_Command.id)
 				 {
 					 mcp2515_send_message(&Weapon1_Confirm);
 					 Laser_1();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon2_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon2_Confirm);
+					 Laser_2();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon3_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon3_Confirm);
+					 Torpedo_1();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon4_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon4_Confirm);
+					 Torpedo_2();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon5_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon5_Confirm);
+					 Dropper_1();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon6_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon6_Confirm);
+					 Dropper_2();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon7_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon7_Confirm);
+					 Claw_1();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon8_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon8_Confirm);
+					 Claw_2();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon9_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon9_Confirm);
+					 Claw_3();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon10_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon10_Confirm);
+					 Claw_4();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon11_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon11_Confirm);
+					 Claw_5();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon12_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon12_Confirm);
+					 Claw_6();
+					 //send over can
+				 }
+				 else if (CANRX_buffer.id == Weapon13_Command.id)
+				 {
+					 mcp2515_send_message(&Weapon13_Confirm);
+					 Spare();
 					 //send over can
 				 }
 				 rx_flag = 0;	// clear receive flag
@@ -114,7 +186,7 @@ int main(void)
 
 
 void setup()
-{	
+{
 	// Set outputs
 	DDRB |= (1<<DDB0);	// D8 -> PB0	Claw 4
 	DDRB |= (1<<DDB1);	// D9 -> PB1	Claw 3

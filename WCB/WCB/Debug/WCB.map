@@ -19,22 +19,6 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .text.Laser_2  0x00000000        0xa main.o
- .text.Torpedo_1
-                0x00000000       0x1e main.o
- .text.Torpedo_2
-                0x00000000       0x1e main.o
- .text.Dropper_1
-                0x00000000       0x1e main.o
- .text.Dropper_2
-                0x00000000       0x1e main.o
- .text.Claw_1   0x00000000        0xa main.o
- .text.Claw_2   0x00000000        0xa main.o
- .text.Claw_3   0x00000000        0xa main.o
- .text.Claw_4   0x00000000        0xa main.o
- .text.Claw_5   0x00000000        0x8 main.o
- .text.Claw_6   0x00000000        0xa main.o
- .text.Spare    0x00000000        0xa main.o
  .text.Poker    0x00000000       0x58 main.o
  .data.Read_Request_Backplane_Current
                 0x00000000        0xb main.o
@@ -102,54 +86,6 @@ Discarded input sections
  .data.ESC3     0x00000000        0xb main.o
  .data.ESC2     0x00000000        0xb main.o
  .data.ESC1     0x00000000        0xb main.o
- .data.Weapon13_Confirm
-                0x00000000        0xb main.o
- .data.Weapon12_Confirm
-                0x00000000        0xb main.o
- .data.Weapon11_Confirm
-                0x00000000        0xb main.o
- .data.Weapon10_Confirm
-                0x00000000        0xb main.o
- .data.Weapon9_Confirm
-                0x00000000        0xb main.o
- .data.Weapon8_Confirm
-                0x00000000        0xb main.o
- .data.Weapon7_Confirm
-                0x00000000        0xb main.o
- .data.Weapon6_Confirm
-                0x00000000        0xb main.o
- .data.Weapon5_Confirm
-                0x00000000        0xb main.o
- .data.Weapon4_Confirm
-                0x00000000        0xb main.o
- .data.Weapon3_Confirm
-                0x00000000        0xb main.o
- .data.Weapon2_Confirm
-                0x00000000        0xb main.o
- .data.Weapon13_Command
-                0x00000000        0xb main.o
- .data.Weapon12_Command
-                0x00000000        0xb main.o
- .data.Weapon11_Command
-                0x00000000        0xb main.o
- .data.Weapon10_Command
-                0x00000000        0xb main.o
- .data.Weapon9_Command
-                0x00000000        0xb main.o
- .data.Weapon8_Command
-                0x00000000        0xb main.o
- .data.Weapon7_Command
-                0x00000000        0xb main.o
- .data.Weapon6_Command
-                0x00000000        0xb main.o
- .data.Weapon5_Command
-                0x00000000        0xb main.o
- .data.Weapon4_Command
-                0x00000000        0xb main.o
- .data.Weapon3_Command
-                0x00000000        0xb main.o
- .data.Weapon2_Command
-                0x00000000        0xb main.o
  .data.CI_Auto  0x00000000        0xb main.o
  .data.CI_Backplane_Current
                 0x00000000        0xb main.o
@@ -341,7 +277,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x610
+.text           0x00000000      0x858
  *(.vectors)
  .vectors       0x00000000       0xb4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
                 0x00000000                __vector_default
@@ -483,16 +419,44 @@ END GROUP
                 0x00000522                setup
  .text.Laser_1  0x0000056a        0xa main.o
                 0x0000056a                Laser_1
- .text.main     0x00000574       0x46 main.o
-                0x00000574                main
+ .text.Laser_2  0x00000574        0xa main.o
+                0x00000574                Laser_2
+ .text.Torpedo_1
+                0x0000057e       0x1e main.o
+                0x0000057e                Torpedo_1
+ .text.Torpedo_2
+                0x0000059c       0x1e main.o
+                0x0000059c                Torpedo_2
+ .text.Dropper_1
+                0x000005ba       0x1e main.o
+                0x000005ba                Dropper_1
+ .text.Dropper_2
+                0x000005d8       0x1e main.o
+                0x000005d8                Dropper_2
+ .text.Claw_1   0x000005f6        0xa main.o
+                0x000005f6                Claw_1
+ .text.Claw_2   0x00000600        0xa main.o
+                0x00000600                Claw_2
+ .text.Claw_3   0x0000060a        0xa main.o
+                0x0000060a                Claw_3
+ .text.Claw_4   0x00000614        0xa main.o
+                0x00000614                Claw_4
+ .text.Claw_5   0x0000061e        0x8 main.o
+                0x0000061e                Claw_5
+ .text.Claw_6   0x00000626        0xa main.o
+                0x00000626                Claw_6
+ .text.Spare    0x00000630        0xa main.o
+                0x00000630                Spare
+ .text.main     0x0000063a      0x1c8 main.o
+                0x0000063a                main
  .text.__vector_1
-                0x000005ba       0x52 main.o
-                0x000005ba                __vector_1
-                0x0000060c                . = ALIGN (0x2)
+                0x00000802       0x52 main.o
+                0x00000802                __vector_1
+                0x00000854                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000060c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000060c                _exit
-                0x0000060c                exit
+ .fini9         0x00000854        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000854                _exit
+                0x00000854                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -511,45 +475,117 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000060c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000854        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000610                _etext = .
+                0x00000858                _etext = .
 
-.data           0x00800100       0x16 load address 0x00000610
+.data           0x00800100      0x11e load address 0x00000858
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.Weapon1_Confirm
+ .data.Weapon13_Confirm
                 0x00800100        0xb main.o
-                0x00800100                Weapon1_Confirm
- .data.Weapon1_Command
+                0x00800100                Weapon13_Confirm
+ .data.Weapon12_Confirm
                 0x0080010b        0xb main.o
-                0x0080010b                Weapon1_Command
+                0x0080010b                Weapon12_Confirm
+ .data.Weapon11_Confirm
+                0x00800116        0xb main.o
+                0x00800116                Weapon11_Confirm
+ .data.Weapon10_Confirm
+                0x00800121        0xb main.o
+                0x00800121                Weapon10_Confirm
+ .data.Weapon9_Confirm
+                0x0080012c        0xb main.o
+                0x0080012c                Weapon9_Confirm
+ .data.Weapon8_Confirm
+                0x00800137        0xb main.o
+                0x00800137                Weapon8_Confirm
+ .data.Weapon7_Confirm
+                0x00800142        0xb main.o
+                0x00800142                Weapon7_Confirm
+ .data.Weapon6_Confirm
+                0x0080014d        0xb main.o
+                0x0080014d                Weapon6_Confirm
+ .data.Weapon5_Confirm
+                0x00800158        0xb main.o
+                0x00800158                Weapon5_Confirm
+ .data.Weapon4_Confirm
+                0x00800163        0xb main.o
+                0x00800163                Weapon4_Confirm
+ .data.Weapon3_Confirm
+                0x0080016e        0xb main.o
+                0x0080016e                Weapon3_Confirm
+ .data.Weapon2_Confirm
+                0x00800179        0xb main.o
+                0x00800179                Weapon2_Confirm
+ .data.Weapon1_Confirm
+                0x00800184        0xb main.o
+                0x00800184                Weapon1_Confirm
+ .data.Weapon13_Command
+                0x0080018f        0xb main.o
+                0x0080018f                Weapon13_Command
+ .data.Weapon12_Command
+                0x0080019a        0xb main.o
+                0x0080019a                Weapon12_Command
+ .data.Weapon11_Command
+                0x008001a5        0xb main.o
+                0x008001a5                Weapon11_Command
+ .data.Weapon10_Command
+                0x008001b0        0xb main.o
+                0x008001b0                Weapon10_Command
+ .data.Weapon9_Command
+                0x008001bb        0xb main.o
+                0x008001bb                Weapon9_Command
+ .data.Weapon8_Command
+                0x008001c6        0xb main.o
+                0x008001c6                Weapon8_Command
+ .data.Weapon7_Command
+                0x008001d1        0xb main.o
+                0x008001d1                Weapon7_Command
+ .data.Weapon6_Command
+                0x008001dc        0xb main.o
+                0x008001dc                Weapon6_Command
+ .data.Weapon5_Command
+                0x008001e7        0xb main.o
+                0x008001e7                Weapon5_Command
+ .data.Weapon4_Command
+                0x008001f2        0xb main.o
+                0x008001f2                Weapon4_Command
+ .data.Weapon3_Command
+                0x008001fd        0xb main.o
+                0x008001fd                Weapon3_Command
+ .data.Weapon2_Command
+                0x00800208        0xb main.o
+                0x00800208                Weapon2_Command
+ .data.Weapon1_Command
+                0x00800213        0xb main.o
+                0x00800213                Weapon1_Command
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x00800116                . = ALIGN (0x2)
-                0x00800116                _edata = .
-                0x00800116                PROVIDE (__data_end, .)
+                0x0080021e                . = ALIGN (0x2)
+                0x0080021e                _edata = .
+                0x0080021e                PROVIDE (__data_end, .)
 
-.bss            0x00800116        0xc
-                0x00800116                PROVIDE (__bss_start, .)
+.bss            0x0080021e        0xc
+                0x0080021e                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.rx_flag   0x00800116        0x1 main.o
-                0x00800116                rx_flag
+ .bss.rx_flag   0x0080021e        0x1 main.o
+                0x0080021e                rx_flag
  *(COMMON)
- COMMON         0x00800117        0xb main.o
-                0x00800117                CANRX_buffer
-                0x00800122                PROVIDE (__bss_end, .)
-                0x00000610                __data_load_start = LOADADDR (.data)
-                0x00000626                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080021f        0xb main.o
+                0x0080021f                CANRX_buffer
+                0x0080022a                PROVIDE (__bss_end, .)
+                0x00000858                __data_load_start = LOADADDR (.data)
+                0x00000976                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800122        0x0
+.noinit         0x0080022a        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800122                _end = .
+                0x0080022a                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -622,20 +658,20 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1d11
+.debug_info     0x00000000     0x1edd
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x8ea C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
- .debug_info    0x000008ea     0x1427 main.o
+ .debug_info    0x000008ea     0x15f3 main.o
 
-.debug_abbrev   0x00000000      0xbbe
+.debug_abbrev   0x00000000      0xc06
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x86e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
- .debug_abbrev  0x0000086e      0x350 main.o
+ .debug_abbrev  0x0000086e      0x398 main.o
 
-.debug_line     0x00000000      0xb0f
+.debug_line     0x00000000      0xc17
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1a5 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
- .debug_line    0x000001a5      0x96a main.o
+ .debug_line    0x000001a5      0xa72 main.o
 
 .debug_frame    0x00000000      0x2b8
  *(.debug_frame)
