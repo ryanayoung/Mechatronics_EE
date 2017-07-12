@@ -49,7 +49,7 @@ typedef struct
 {
 	uint16_t id;
 	struct {
-		int8_t rtr : 1;
+		uint8_t rtr : 1;
 		uint8_t length : 4;
 	} header;
 	uint8_t data[8];

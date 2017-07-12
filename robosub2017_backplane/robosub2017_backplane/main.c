@@ -42,10 +42,6 @@
 #define Rx3ID  0x001
 #define Rx4ID  0x001
 #define Rx5ID  0x001
-
-//TxID is the target ID you're transmitting to
-uint8_t TxID = 0x020;	//M
-//uint8_t TxID = 0x10;	//S
 /******************************************************************************/
 
 
@@ -93,12 +89,6 @@ int main(void)
 	USART_Transmit(10);//New Line
 	USART_Transmit(13);//Carriage return
 	
-	//setup the transmit frame
-	CANTX_buffer.id = TxID;			//set target device ID
-	CANTX_buffer.header.rtr = 0;	//no remote transmit(i.e. request info)
-	CANTX_buffer.header.length = 1;//single byte(could be up to 8)
-	
-
 	
 	ADCSRA |= (1<<ADSC); //start adc sample
 	
@@ -122,7 +112,7 @@ int main(void)
 				if(CANRX_buffer.id == Read_Request_Backplane_Current.id){
 					USART_CAN_TX(Request_Response_Backplane_Current);
 						//send over uart
-					mcp2515_send_message(&Request_Response_Backplane_Current);
+					mcp2515_send_message(&Request_Response_Weapon_status);
 						//send over can
 				}
 				rx_flag = 0;//clear receive flag
@@ -206,56 +196,38 @@ ISR(ADC_vect)
 ******************************************************************************/
 ISR(USART0_RX_vect)
 {
-	
 	uint8_t receive_buff = USART_Receive();
-	/*
-	//get serial data
-	CANTX_buffer.data[0] = USART_Receive();
-
-	//transmit usart_char over canbus
-	mcp2515_send_message(&CANTX_buffer);
-	*/
 	
 	//select which adc to sample from
 	switch(Rx_frame_state){
 		case s_RxIDH : //frameID High
-		
 			CANTX_buffer.id |= receive_buff <<3;
 			Rx_frame_state = s_RxIDL;
 		break;
 		case s_RxIDL : //frameID Low, rtr, & length = 0bXXXYZZZZ
-
 			CANTX_buffer.id |= (receive_buff >>5);
 			CANTX_buffer.header.rtr =  ((receive_buff >>4) & 0x01);
 			CANTX_buffer.header.length = (receive_buff & 0x0F);
-			
 			if(CANTX_buffer.header.rtr){
 				mcp2515_send_message(&CANTX_buffer);
 				receive_buff = 0;
 				Rx_frame_state = s_RxIDH;
-				TOGGLE(LED1);
 			} else {
 				Rx_frame_state = s_Rxdata1;
-				TOGGLE(LED2);
 			}
-		
 		break;
 		case s_Rxdata1 : //data1
 			CANTX_buffer.data[0] = receive_buff;
-			
 			if(Rx_frame_state < CANTX_buffer.header.length){
 				Rx_frame_state = s_Rxdata2;
-				TOGGLE(LED3);
 			}else{
 				mcp2515_send_message(&CANTX_buffer);
 				receive_buff = 0;
 				Rx_frame_state = s_RxIDH;
-				TOGGLE(LED4);
 			}
 		break;
 		case s_Rxdata2 ://data2
 			CANTX_buffer.data[1] = receive_buff;
-			
 			if(Rx_frame_state < CANTX_buffer.header.length){
 				Rx_frame_state = s_Rxdata3;
 				}else{
@@ -266,7 +238,6 @@ ISR(USART0_RX_vect)
 		break;
 		case s_Rxdata3 ://data3
 			CANTX_buffer.data[2] = receive_buff;
-			
 			if(Rx_frame_state < CANTX_buffer.header.length){
 				Rx_frame_state = s_Rxdata4;
 				}else{
@@ -277,7 +248,6 @@ ISR(USART0_RX_vect)
 		break;
 		case s_Rxdata4 ://data4
 			CANTX_buffer.data[3] = receive_buff;
-	
 			if(Rx_frame_state < CANTX_buffer.header.length){
 				Rx_frame_state = s_Rxdata5;
 				}else{
@@ -288,7 +258,6 @@ ISR(USART0_RX_vect)
 		break;
 		case s_Rxdata5 ://data5
 			CANTX_buffer.data[4] = receive_buff;
-			
 			if(Rx_frame_state < CANTX_buffer.header.length){
 				Rx_frame_state = s_Rxdata6;
 				}else{
@@ -299,7 +268,6 @@ ISR(USART0_RX_vect)
 		break;
 		case s_Rxdata6 ://data6
 			CANTX_buffer.data[5] = receive_buff;
-			
 			if(Rx_frame_state < CANTX_buffer.header.length){
 				Rx_frame_state = s_Rxdata7;
 				}else{
@@ -310,7 +278,6 @@ ISR(USART0_RX_vect)
 		break;
 		case s_Rxdata7 ://data7
 			CANTX_buffer.data[6] = receive_buff;
-			
 			if(Rx_frame_state < CANTX_buffer.header.length){
 				Rx_frame_state = s_Rxdata8;
 				}else{
@@ -321,15 +288,11 @@ ISR(USART0_RX_vect)
 		break;
 		case s_Rxdata8 ://data8
 			CANTX_buffer.data[7] = receive_buff;
-			
 			mcp2515_send_message(&CANTX_buffer);
 			receive_buff = 0;
 			Rx_frame_state = s_RxIDH;
 		break;
 		default : Rx_frame_state = s_RxIDH;
-		
 		break;
 	}
-	
-	
 }

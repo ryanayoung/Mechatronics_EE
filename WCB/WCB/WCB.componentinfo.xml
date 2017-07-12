@@ -9,13 +9,13 @@
 			<CSub></CSub>
 			<CVariant></CVariant>
 			<CVendor>Atmel</CVendor>
-			<CVersion>1.2.0</CVersion>
+			<CVersion>1.0.0</CVersion>
 			<DefaultRepoPath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs</DefaultRepoPath>
 			<DependentComponents xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
 			<Description></Description>
 			<Files xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
 				<d4p1:anyType i:type="FileInfo">
-					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.132\include</AbsolutePath>
+					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\include</AbsolutePath>
 					<Attribute></Attribute>
 					<Category>include</Category>
 					<Condition>C</Condition>
@@ -26,18 +26,18 @@
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
 				<d4p1:anyType i:type="FileInfo">
-					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.132\include\avr\iom328pb.h</AbsolutePath>
+					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\include\avr\iom328pb.h</AbsolutePath>
 					<Attribute></Attribute>
 					<Category>header</Category>
 					<Condition>C</Condition>
-					<FileContentHash>eJhJbbdOC75Nydiqf77PCg==</FileContentHash>
+					<FileContentHash>S9lG7vE9JgOISpwBltm26Q==</FileContentHash>
 					<FileVersion></FileVersion>
 					<Name>include/avr/iom328pb.h</Name>
 					<SelectString></SelectString>
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
 				<d4p1:anyType i:type="FileInfo">
-					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.132\templates\main.c</AbsolutePath>
+					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\templates\main.c</AbsolutePath>
 					<Attribute>template</Attribute>
 					<Category>source</Category>
 					<Condition>C Exe</Condition>
@@ -48,7 +48,7 @@
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
 				<d4p1:anyType i:type="FileInfo">
-					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.132\templates\main.cpp</AbsolutePath>
+					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\templates\main.cpp</AbsolutePath>
 					<Attribute>template</Attribute>
 					<Category>source</Category>
 					<Condition>C Exe</Condition>
@@ -59,7 +59,7 @@
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
 				<d4p1:anyType i:type="FileInfo">
-					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.132\gcc\dev\atmega328pb</AbsolutePath>
+					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\gcc\dev\atmega328pb</AbsolutePath>
 					<Attribute></Attribute>
 					<Category>libraryPrefix</Category>
 					<Condition>GCC</Condition>
@@ -71,15 +71,15 @@
 				</d4p1:anyType>
 			</Files>
 			<PackName>ATmega_DFP</PackName>
-			<PackPath>C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/Atmel.ATmega_DFP.pdsc</PackPath>
-			<PackVersion>1.2.132</PackVersion>
+			<PackPath>C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/Atmel.ATmega_DFP.pdsc</PackPath>
+			<PackVersion>1.0.106</PackVersion>
 			<PresentInProject>true</PresentInProject>
 			<ReferenceConditionId>ATmega328PB</ReferenceConditionId>
 			<RteComponents xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
 				<d4p1:string></d4p1:string>
 			</RteComponents>
 			<Status>Resolved</Status>
-			<VersionMode>Fixed</VersionMode>
+			<VersionMode>Latest</VersionMode>
 			<IsComponentInAtProject>true</IsComponentInAtProject>
 		</ProjectComponent>
 	</ProjectComponents>

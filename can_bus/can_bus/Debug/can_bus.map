@@ -12,7 +12,7 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 Allocating common symbols
 Common symbol       size              file
 
-spi_char            0xb               main.o
+CANRX_buffer        0xb               main.o
 CANTX_buffer        0xb               main.o
 
 Discarded input sections
@@ -22,6 +22,8 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .text.USART_Transmit_TX
+                0x00000000       0x44 main.o
  .data.Read_Request_Backplane_Current
                 0x00000000        0xb main.o
  .data.Read_Request_Weapon_status
@@ -158,7 +160,6 @@ Discarded input sections
  .data.CI_Leak  0x00000000        0xb main.o
  .data.CI_Kill_Switch
                 0x00000000        0xb main.o
- .data.TxID     0x00000000        0x1 main.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
@@ -347,7 +348,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x82c
+.text           0x00000000      0x866
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -446,54 +447,54 @@ END GROUP
  .text.SPI_txrx
                 0x00000116       0x18 main.o
                 0x00000116                SPI_txrx
- .text.USART_Init
-                0x0000012e       0x1e main.o
-                0x0000012e                USART_Init
- .text.USART_Receive
-                0x0000014c       0x10 main.o
-                0x0000014c                USART_Receive
- .text.USART_Transmit
-                0x0000015c       0x10 main.o
-                0x0000015c                USART_Transmit
- .text.USART_Transmit_TX
-                0x0000016c       0x44 main.o
-                0x0000016c                USART_Transmit_TX
  .text.mcp2515_write_register
-                0x000001b0       0x24 main.o
-                0x000001b0                mcp2515_write_register
+                0x0000012e       0x24 main.o
+                0x0000012e                mcp2515_write_register
  .text.mcp2515_read_register
-                0x000001d4       0x1e main.o
-                0x000001d4                mcp2515_read_register
+                0x00000152       0x1e main.o
+                0x00000152                mcp2515_read_register
  .text.mcp2515_bit_modify
-                0x000001f2       0x30 main.o
-                0x000001f2                mcp2515_bit_modify
+                0x00000170       0x30 main.o
+                0x00000170                mcp2515_bit_modify
  .text.mcp2515_read_status
-                0x00000222       0x10 main.o
-                0x00000222                mcp2515_read_status
+                0x000001a0       0x10 main.o
+                0x000001a0                mcp2515_read_status
  .text.mcp2515_init
-                0x00000232       0x7e main.o
-                0x00000232                mcp2515_init
+                0x000001b0       0x7e main.o
+                0x000001b0                mcp2515_init
  .text.mcp2515_get_message
-                0x000002b0      0x102 main.o
-                0x000002b0                mcp2515_get_message
+                0x0000022e      0x102 main.o
+                0x0000022e                mcp2515_get_message
  .text.mcp2515_send_message
-                0x000003b2      0x106 main.o
-                0x000003b2                mcp2515_send_message
- .text.main     0x000004b8       0xc4 main.o
-                0x000004b8                main
+                0x00000330      0x11e main.o
+                0x00000330                mcp2515_send_message
+ .text.USART_Init
+                0x0000044e       0x1e main.o
+                0x0000044e                USART_Init
+ .text.USART_Receive
+                0x0000046c       0x10 main.o
+                0x0000046c                USART_Receive
+ .text.USART_Transmit
+                0x0000047c       0x10 main.o
+                0x0000047c                USART_Transmit
+ .text.USART_CAN_TX
+                0x0000048c       0xbc main.o
+                0x0000048c                USART_CAN_TX
+ .text.main     0x00000548       0x6e main.o
+                0x00000548                main
  .text.__vector_1
-                0x0000057c       0x52 main.o
-                0x0000057c                __vector_1
+                0x000005b6       0x52 main.o
+                0x000005b6                __vector_1
  .text.__vector_18
-                0x000005ce      0x24e main.o
-                0x000005ce                __vector_18
- .text.libgcc   0x0000081c        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
-                0x0000081c                __tablejump2__
-                0x00000828                . = ALIGN (0x2)
+                0x00000608      0x24e main.o
+                0x00000608                __vector_18
+ .text.libgcc   0x00000856        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+                0x00000856                __tablejump2__
+                0x00000862                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000828        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
-                0x00000828                _exit
-                0x00000828                exit
+ .fini9         0x00000862        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000862                _exit
+                0x00000862                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -512,11 +513,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000828        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000862        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000082c                _etext = .
+                0x00000866                _etext = .
 
-.data           0x00800100       0x26 load address 0x0000082c
+.data           0x00800100        0x2 load address 0x00000866
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -525,33 +526,31 @@ END GROUP
                 0x00800100                Rx_frame_state
  *(.rodata)
  *(.rodata*)
- .rodata.str1.1
-                0x00800101       0x24 main.o
  *(.gnu.linkonce.d*)
-                0x00800126                . = ALIGN (0x2)
- *fill*         0x00800125        0x1 
-                0x00800126                _edata = .
-                0x00800126                PROVIDE (__data_end, .)
+                0x00800102                . = ALIGN (0x2)
+ *fill*         0x00800101        0x1 
+                0x00800102                _edata = .
+                0x00800102                PROVIDE (__data_end, .)
 
-.bss            0x00800126       0x17
-                0x00800126                PROVIDE (__bss_start, .)
+.bss            0x00800102       0x17
+                0x00800102                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.rx_flag   0x00800126        0x1 main.o
-                0x00800126                rx_flag
+ .bss.rx_flag   0x00800102        0x1 main.o
+                0x00800102                rx_flag
  *(COMMON)
- COMMON         0x00800127       0x16 main.o
-                0x00800127                spi_char
-                0x00800132                CANTX_buffer
-                0x0080013d                PROVIDE (__bss_end, .)
-                0x0000082c                __data_load_start = LOADADDR (.data)
-                0x00000852                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800103       0x16 main.o
+                0x00800103                CANRX_buffer
+                0x0080010e                CANTX_buffer
+                0x00800119                PROVIDE (__bss_end, .)
+                0x00000866                __data_load_start = LOADADDR (.data)
+                0x00000868                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080013d        0x0
+.noinit         0x00800119        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080013d                _end = .
+                0x00800119                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -616,38 +615,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xa8
+.debug_aranges  0x00000000       0xb0
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0xa8 main.o
+                0x00000000       0xb0 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1119
+.debug_info     0x00000000     0x114b
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x1119 main.o
+ .debug_info    0x00000000     0x114b main.o
 
-.debug_abbrev   0x00000000      0x338
+.debug_abbrev   0x00000000      0x33a
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x338 main.o
+ .debug_abbrev  0x00000000      0x33a main.o
 
-.debug_line     0x00000000      0x7f2
+.debug_line     0x00000000      0x81b
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x7f2 main.o
+ .debug_line    0x00000000      0x81b main.o
 
-.debug_frame    0x00000000      0x274
+.debug_frame    0x00000000      0x2b4
  *(.debug_frame)
- .debug_frame   0x00000000      0x274 main.o
+ .debug_frame   0x00000000      0x2b4 main.o
 
-.debug_str      0x00000000      0x831
+.debug_str      0x00000000      0x83d
  *(.debug_str)
- .debug_str     0x00000000      0x831 main.o
-                                0x8ad (size before relaxing)
+ .debug_str     0x00000000      0x83d main.o
+                                0x8b2 (size before relaxing)
 
-.debug_loc      0x00000000      0x914
+.debug_loc      0x00000000      0xa08
  *(.debug_loc)
- .debug_loc     0x00000000      0x914 main.o
+ .debug_loc     0x00000000      0xa08 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -667,9 +666,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xc8
+.debug_ranges   0x00000000       0xa0
  *(.debug_ranges)
- .debug_ranges  0x00000000       0xc8 main.o
+ .debug_ranges  0x00000000       0xa0 main.o
 
 .debug_macro
  *(.debug_macro)

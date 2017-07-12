@@ -12,6 +12,21 @@
 #include <avr/interrupt.h>
 #include <util/atomic.h>
 
+
+
+/******************************************************************************
+	CANBUS ID definition|
+		
+******************************************************************************/
+//RxID is your device ID that you allow messages to receive
+#define Rx0ID  0x002
+#define Rx1ID  0x002
+#define Rx2ID  0x002
+#define Rx3ID  0x002
+#define Rx4ID  0x002
+#define Rx5ID  0x002
+
+
 #include "Headers/global.h"
 #include "Headers/defines.h"
 #include "Headers/functions.h"
@@ -19,8 +34,12 @@
 //#include "Headers/usart_ry.h"
 #include "Headers/mcp2515_ry_def.h"
 #include "Headers/mcp2515_ry.h"
+#include "headers/can_frames.h"		//CAN frames in tCAN struct format
 
-
+/******************************************************************************
+	Function Prototypes|
+		
+******************************************************************************/
 void setup();
 void Laser_1();
 void Laser_2();
@@ -36,17 +55,19 @@ void Claw_5();
 void Claw_6();
 void Spare();
 
-uint8_t RxID = 0x10;  //M
-//uint8_t RxID = 0x20;	//S
 
-uint8_t TxID = 0x20;	//M
-//uint8_t TxID = 0x001;	//S
-tCAN spi_char;		// message package
+
+/******************************************************************************
+	global bariable definition|
+		
+******************************************************************************/
+tCAN CANRX_buffer;		// message package
+volatile uint8_t rx_flag = 0;
 
 int main(void)
 {
 	setup();
-	
+	/*
 	//This is temporary. Reference back to know how to make the frame
 	spi_char.id = 0x10;
 	spi_char.header.length = 4;
@@ -55,8 +76,7 @@ int main(void)
 	spi_char.data[1] = 'U';
 	spi_char.data[2] = 'C';
 	spi_char.data[3] = 'FK';
-	
-	
+	*/
 	
 	
 	//Percy's Poker Code
@@ -72,15 +92,29 @@ int main(void)
 		_delay_ms(145);
 	}
 	
+	
+
 	Laser_1();*/
 	//mcp2515_send_message(&spi_char);
 	
 	while(1) // Infinite loop while 1 is true.
 	{
-		 uint8_t test = mcp2515_send_message(&spi_char);
-		 if(test == 0x01){
-			 //Laser_1();
+		 //if data received on CAN...
+		 if(rx_flag){
+			 ATOMIC_BLOCK(ATOMIC_RESTORESTATE){//disables interrupts
+				Laser_2();				 
+				 //matches received ID.  if current request, returns
+				 //	current data
+				 //if more cases are required, will convert to a switch-case
+				 if(CANRX_buffer.id == Weapon1_Command.id){
+					 mcp2515_send_message(&Weapon1_Confirm);
+					 Laser_1();
+					 //send over can
+				 }
+				 rx_flag = 0;//clear receive flag
+			 }//end ATOMIC_BLOCK
 		 }
+		 
 	}
 }
 
@@ -186,6 +220,15 @@ void setup()
 }
 
 
+
+/******************************************************************************
+	CAN RECEIVE interrupt on pin PD2|
+******************************************************************************/
+ISR(INT0_vect)
+{
+	mcp2515_get_message(&CANRX_buffer);//get canbus message
+	rx_flag = 1;  //set flag
+}
 
 
 /*
