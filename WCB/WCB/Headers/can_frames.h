@@ -17,19 +17,19 @@ typedef struct
 
 //Critical Interrupts					
 tCAN CI_Kill_Switch 		= {.id = 8, .header.rtr = 1, .header.length = 0};
-tCAN CI_Leak 			= {.id = 16, .header.rtr = 0, .header.length = 3};
-tCAN CI_Depth 			= {.id = 24, .header.rtr = 0, .header.length = 2};
+tCAN CI_Leak 				= {.id = 16, .header.rtr = 0, .header.length = 3};
+tCAN CI_Depth 				= {.id = 24, .header.rtr = 0, .header.length = 2};
 tCAN CI_SIB_General 		= {.id = 32, .header.rtr = 0, .header.length = 1};
-tCAN CI_ESC1 			= {.id = 40, .header.rtr = 0, .header.length = 1};
-tCAN CI_ESC2 			= {.id = 48, .header.rtr = 0, .header.length = 1};
-tCAN CI_ESC3 			= {.id = 56, .header.rtr = 0, .header.length = 1};
-tCAN CI_ESC4 			= {.id = 64, .header.rtr = 0, .header.length = 1};
-tCAN CI_ESC5 			= {.id = 72, .header.rtr = 0, .header.length = 1};
-tCAN CI_ESC6 			= {.id = 80, .header.rtr = 0, .header.length = 1};
-tCAN CI_ESC7 			= {.id = 88, .header.rtr = 0, .header.length = 1};
-tCAN CI_ESC8 			= {.id = 96, .header.rtr = 0, .header.length = 1};
+tCAN CI_ESC1 				= {.id = 40, .header.rtr = 0, .header.length = 1};
+tCAN CI_ESC2 				= {.id = 48, .header.rtr = 0, .header.length = 1};
+tCAN CI_ESC3 				= {.id = 56, .header.rtr = 0, .header.length = 1};
+tCAN CI_ESC4 				= {.id = 64, .header.rtr = 0, .header.length = 1};
+tCAN CI_ESC5 				= {.id = 72, .header.rtr = 0, .header.length = 1};
+tCAN CI_ESC6 				= {.id = 80, .header.rtr = 0, .header.length = 1};
+tCAN CI_ESC7 				= {.id = 88, .header.rtr = 0, .header.length = 1};
+tCAN CI_ESC8 				= {.id = 96, .header.rtr = 0, .header.length = 1};
 tCAN CI_Backplane_Current 	= {.id = 104, .header.rtr = 1, .header.length = 2};
-tCAN CI_Auto 			= {.id = 112, .header.rtr = 1, .header.length = 0};
+tCAN CI_Auto 				= {.id = 112, .header.rtr = 1, .header.length = 0};
 
 //Weapon Commands
 tCAN Weapon1_Command 		= {.id = 122, .header.rtr = 1, .header.length = 0};
@@ -86,17 +86,17 @@ tCAN Request_Response_Weapon_status 	= {.id = 488, .header.rtr = 0, .header.leng
 tCAN Request_Response_Backplane_Current = {.id = 496, .header.rtr = 0, .header.length = 8};
 
 tCAN Read_Request_SIB_Pressure 		= {.id = 507, .header.rtr = 1, .header.length = 0};
-tCAN Read_Request_SIB_Temp 		= {.id = 515, .header.rtr = 1, .header.length = 0};
-tCAN Read_Request_HYDRAS 		= {.id = 524, .header.rtr = 1, .header.length = 0};
+tCAN Read_Request_SIB_Temp 			= {.id = 515, .header.rtr = 1, .header.length = 0};
+tCAN Read_Request_HYDRAS 			= {.id = 524, .header.rtr = 1, .header.length = 0};
 tCAN Read_Request_HYDRAS_RAW 		= {.id = 532, .header.rtr = 1, .header.length = 0};
 tCAN Read_Request_ESC_Vitals 		= {.id = 538, .header.rtr = 1, .header.length = 0};
-tCAN Read_Request_ESC1 			= {.id = 546, .header.rtr = 1, .header.length = 0};
-tCAN Read_Request_ESC2 			= {.id = 554, .header.rtr = 1, .header.length = 0};
-tCAN Read_Request_ESC3 			= {.id = 562, .header.rtr = 1, .header.length = 0};
-tCAN Read_Request_ESC4 			= {.id = 570, .header.rtr = 1, .header.length = 0};
-tCAN Read_Request_ESC5 			= {.id = 578, .header.rtr = 1, .header.length = 0};
-tCAN Read_Request_ESC6 			= {.id = 586, .header.rtr = 1, .header.length = 0};
-tCAN Read_Request_ESC7 			= {.id = 594, .header.rtr = 1, .header.length = 0};
-tCAN Read_Request_ESC8 			= {.id = 602, .header.rtr = 1, .header.length = 0};
+tCAN Read_Request_ESC1 				= {.id = 546, .header.rtr = 1, .header.length = 0};
+tCAN Read_Request_ESC2 				= {.id = 554, .header.rtr = 1, .header.length = 0};
+tCAN Read_Request_ESC3 				= {.id = 562, .header.rtr = 1, .header.length = 0};
+tCAN Read_Request_ESC4 				= {.id = 570, .header.rtr = 1, .header.length = 0};
+tCAN Read_Request_ESC5 				= {.id = 578, .header.rtr = 1, .header.length = 0};
+tCAN Read_Request_ESC6 				= {.id = 586, .header.rtr = 1, .header.length = 0};
+tCAN Read_Request_ESC7 				= {.id = 594, .header.rtr = 1, .header.length = 0};
+tCAN Read_Request_ESC8 				= {.id = 602, .header.rtr = 1, .header.length = 0};
 tCAN Read_Request_Weapon_status 	= {.id = 610, .header.rtr = 1, .header.length = 0};
 tCAN Read_Request_Backplane_Current 	= {.id = 617, .header.rtr = 1, .header.length = 0};
