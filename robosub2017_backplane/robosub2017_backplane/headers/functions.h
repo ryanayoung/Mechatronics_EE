@@ -31,7 +31,6 @@ void GPIO_init(void)
 	SET_INPUT(V24_pin);
 	SET_INPUT(V6_pin);
 	SET_INPUT(V5_pin);
-	SET_INPUT(V20_pin);
 	
 	
 }

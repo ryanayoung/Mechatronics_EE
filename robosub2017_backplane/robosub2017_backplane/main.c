@@ -11,18 +11,18 @@
 
 /*=============================================================================
 				[TODO]
-				
+	
+	-remove 20v sense, no longer in use
 	-determine ADC input range to map to for each input/resistor value
 		-adjust response frame to tegra request
 	-setup over/under current critical interrupt
 		-setup error lights accordingly
 	
-	-add acceptance of all can messages intended for tegra into
-		buffer1 and relay over serial & trigger error leds
-	-setup backup serial2can interface if tegra can board doesn't work.
-		-create FIFO buffer and do zero message interpretting.
 =============================================================================*/
 
+/******************************************************************************
+	Prebuilt Includes|
+******************************************************************************/
 #define F_CPU 16000000UL // 16MHz clock from the debug processor
 #include <avr/io.h>
 #include <util/delay.h>
@@ -44,26 +44,31 @@
 #define Rx5ID  0x001
 /******************************************************************************/
 
-
+/******************************************************************************
+	Headerfiles|
+		Order is important!
+******************************************************************************/
 #include "headers/global.h"			//general define header pulled from net
 #include "headers/defines.h"		//Pin name definitions
 #include "headers/functions.h"		//general functions
 #include "headers/spi_ry.h"			//SPI protocol implementation
 #include "headers/mcp2515_ry_def.h"	//MCP2515 register and bit definitions
 #include "headers/mcp2515_ry.h"		//MCP2515 functions
-#include "headers/usart_ry.h"		//serial communication with PC
 #include "headers/can_frames.h"		//CAN frames in tCAN struct format
+#include "headers/usart_ry.h"		//serial communication with PC
 
 
 		
-
+/******************************************************************************
+	Gloval Variables|
+******************************************************************************/
 tCAN CANTX_buffer;	//transmit package
 tCAN CANRX_buffer;	//receive package
 
-volatile uint8_t rx_flag = 0;
-volatile uint8_t Rx_frame_state = 0x10;
+volatile uint8_t rx_flag = 0; //receive interupt flag
+volatile uint8_t Rx_frame_state = start_byte; //receive state machine counter
 
-uint16_t voltage_sense[4];
+uint16_t voltage_sense[3];
 uint8_t adc_select = 0;
 
 /******************************************************************************
@@ -94,11 +99,6 @@ int main(void)
 	
 	while(1)
     {
-		
-		
-		
-		
-	
 		//if data received on CAN...
 		if(rx_flag){
 			ATOMIC_BLOCK(ATOMIC_RESTORESTATE){//disables interrupts
@@ -118,7 +118,6 @@ int main(void)
 				rx_flag = 0;//clear receive flag
 			}//end ATOMIC_BLOCK
 		}
-		
     }
 }
 
@@ -136,7 +135,6 @@ ISR(INT0_vect)
 *******************************************************************************/ 
 ISR(ADC_vect) 
 { 
-	
 	/*
 		store ADC value remapped to 0-5.0Volts
 		this allows them to fit into byte size readings instead of 10bit.
@@ -144,39 +142,29 @@ ISR(ADC_vect)
 		should sit at 2.5V.  above 2.5V is + current, below 2.5 is 
 		negative current.
 		
-			voltage_sens = {ADC0, ADC1, ADC6, ADC7} 
+			voltage_sens = {ADC7, ADC6, ADC0} 
 			which corresponds to
-			voltage_sens = {P5V_SENSE, P20V_SENSE, P24V_SENS, P6V_SENSE} 
+			voltage_sens = {P6V_SENSE, P24V_SENS, P5V_SENSE} 
 	*/
 	voltage_sense[adc_select] = ADCH;
 	
-	
 	adc_select++;
-	if(adc_select > 3){//resets count at 4 and stores values in CAN frame
+	if(adc_select > 2){//resets count at 3 and stores values in CAN frame
 		adc_select = 0;
-		for(uint8_t j = 0; j < 4; j++){
+		for(uint8_t j = 0; j < 3; j++){
 		Request_Response_Backplane_Current.data[j] = voltage_sense[j];
-		
 		}
-		
 	}
 	
 	//select which adc to sample from
 	switch(adc_select){
 		case 0 : ADMUX &= 0b11110000; //set ADC0
-		
 			break;	
-		case 1 : ADMUX &= 0b11110001; //set ADC1
-		
+		case 1 : ADMUX &= 0b11110110; //set ADC6
 		break;
-		case 2 : ADMUX &= 0b11110110; //set ADC6
-		
-		break;
-		case 3 : ADMUX &= 0b11110111; //set ADC7
-		
+		case 2 : ADMUX &= 0b11110111; //set ADC7
 		break;
 		default : ADMUX &= 0b11110000; //set ADC0
-		
 		break;
 	}
 	ADCSRA |= (1<<ADSC); //start adc sample
@@ -187,10 +175,6 @@ ISR(ADC_vect)
 /******************************************************************************
 	USART Receive interrupt|
 	
-	[TODO]
-	Implement ring buffer
-	update to receive a full can frame
-		-define "start byte" as 0xEE
 	"UART Confined CAN FRAME"(UCCF) defined in excel file
 		~/"RoboSub 17 CAN Frames Rev.4.xlsx"
 ******************************************************************************/
@@ -200,6 +184,11 @@ ISR(USART0_RX_vect)
 	
 	//select which adc to sample from
 	switch(Rx_frame_state){
+		case s_RxStart : //start byte
+		if (receive_buff == start_byte){
+			Rx_frame_state = s_RxIDH;
+		}
+		break;
 		case s_RxIDH : //frameID High
 			CANTX_buffer.id |= receive_buff <<3;
 			Rx_frame_state = s_RxIDL;
