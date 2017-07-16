@@ -39,8 +39,9 @@
 #include "headers/spi_ry.h"			//SPI protocol implementation
 #include "headers/mcp2515_ry_def.h"	//MCP2515 register and bit definitions
 #include "headers/mcp2515_ry.h"		//MCP2515 functions
-#include "headers/usart_ry.h"		//serial communication with PC
 #include "headers/can_frames.h"
+#include "headers/usart_ry.h"		//serial communication with PC
+
 
 tCAN CANTX_buffer;	//transmit package
 tCAN CANRX_buffer;		//receive package
@@ -98,6 +99,10 @@ ISR(USART_RX_vect)
 	
 	//select which adc to sample from
 	switch(Rx_frame_state){
+		case s_RxStart : //start byte
+		if (receive_buff == start_byte){
+			Rx_frame_state = s_RxIDH;
+		}
 		case s_RxIDH : //frameID High
 		CANTX_buffer.id |= (receive_buff <<3);
 		Rx_frame_state = s_RxIDL;

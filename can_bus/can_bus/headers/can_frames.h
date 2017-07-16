@@ -15,6 +15,9 @@ typedef struct
 } tCAN;
 */
 
+#define start_byte 0xEE
+
+
 //Critical Interrupts					
 tCAN CI_Kill_Switch 		= {.id = 8, .header.rtr = 1, .header.length = 0};
 tCAN CI_Leak 			= {.id = 16, .header.rtr = 0, .header.length = 3};

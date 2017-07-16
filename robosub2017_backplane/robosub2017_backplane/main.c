@@ -11,8 +11,6 @@
 
 /*=============================================================================
 				[TODO]
-	
-	-remove 20v sense, no longer in use
 	-determine ADC input range to map to for each input/resistor value
 		-adjust response frame to tegra request
 	-setup over/under current critical interrupt

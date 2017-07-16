@@ -21,8 +21,9 @@
 #define RxIDHi	(uint8_t)(RxID >> 3)
 
 //Uart Receive statemachine states
-#define s_RxIDH 0x10
-#define s_RxIDL 0x20
+#define s_RxStart 0x10
+#define s_RxIDH 0x20
+#define s_RxIDL 0x30
 #define s_Rxdata1 0x01
 #define s_Rxdata2 0x02
 #define s_Rxdata3 0x03

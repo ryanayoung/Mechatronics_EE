@@ -71,6 +71,7 @@ void USART_Transmit_TX(char string[])
 ******************************************************************************/
 void USART_CAN_TX(tCAN data)
 {
+	USART_Transmit(start_byte); //start_byte
 	USART_Transmit(data.id >> 3); //CanID_High
 	
 	USART_Transmit((data.id << 5) | (data.header.rtr <<4) | data.header.length);
