@@ -45,7 +45,7 @@
 #define R_ACK 0x50
 #define R_NACK 0x58
 
-#define LAST_STATE 3
+#define LAST_STATE 6
 
 #define LEAK 1
 #define DEPTH 2 
@@ -68,6 +68,12 @@
 #define SET_TWEN TWCR0 |= 0b00000100;
 #define SET_TWIE TWCR0 |= 0b00000001;
 
+#define I2C_NEXT TWCR0 = (0<<TWSTA) | (0<<TWSTO) | (1<<TWINT) | (1<<TWEN) | (1<<TWIE)
+#define I2C_STOP TWCR0 = (0<<TWSTA) | (1<<TWSTO) | (1<<TWINT) | (1<<TWEN) | (1<<TWIE)
+#define I2C_START TWCR0 =  (1<<TWSTA) | (0<<TWSTO) | (1<<TWINT) | (1<<TWEN) | (1<<TWIE)
+#define I2C_ACK TWCR0 =  (0<<TWSTA) | (0<<TWSTO) | (1<<TWINT) | (1<<TWEN) | (1<<TWIE) | (1<<TWEA);
+
+
 void i2c_FSM(void);
 void init_i2c(void);
 //void init_temp(void);
@@ -83,6 +89,12 @@ void init_state_timer(void);
 void initUART(void);
 void txUART(unsigned char data);
 void sendString(unsigned char* stringIndex);
+
+void int_temp_CAN(void);
+void ext_press_CAN(void);
+void int_press_CAN(void);
+
+void debug_can_tx(void);
 
 void sys_config(void)
 {
@@ -117,9 +129,9 @@ void sys_config(void)
 }
 
 
-uint16_t getMax(uint16_t num1, uint16_t num2, uint16_t num3)
+uint32_t getMax(uint32_t num1, uint32_t num2, uint32_t num3)
 {
-	uint16_t temp;
+	uint32_t temp;
 	if (num1 > num2)
 	{
 		temp = num1;
@@ -139,9 +151,9 @@ uint16_t getMax(uint16_t num1, uint16_t num2, uint16_t num3)
 	}
 }
 
-uint16_t getMin(uint16_t num1, uint16_t num2, uint16_t num3)
+uint32_t getMin(uint32_t num1, uint32_t num2, uint32_t num3)
 {
-	uint16_t temp;
+	uint32_t temp;
 	if (num1 < num2)
 	{
 		temp = num1;
@@ -161,9 +173,9 @@ uint16_t getMin(uint16_t num1, uint16_t num2, uint16_t num3)
 	}
 }
 
-uint16_t getMedian_of3(uint16_t num1, uint16_t num2, uint16_t num3)
+uint32_t getMedian_of3(uint32_t num1, uint32_t num2, uint32_t num3)
 {
-	uint16_t max, min;
+	uint32_t max, min;
 	
 	max = getMax(num1,num2,num3);
 	min = getMin(num1,num2,num3);

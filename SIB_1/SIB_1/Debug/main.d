@@ -21,11 +21,10 @@ main.d main.o: .././main.c .././headers/defines2.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\atomic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h \
- .././headers/SIB.h .././headers/global.h .././headers/functions.h \
- .././headers/spi_ry.h .././headers/mcp2515_ry_def.h \
- .././headers/mcp2515_ry.h .././headers/can_frames.h \
- .././headers/usart_ry.h .././headers/SIB_i2c.h .././headers/uart.h \
- .././headers/ADC.h
+ .././headers/SIB.h .././headers/global.h .././headers/uart.h \
+ .././headers/functions.h .././headers/spi_ry.h \
+ .././headers/mcp2515_ry_def.h .././headers/mcp2515_ry.h \
+ .././headers/can_frames.h .././headers/usart_ry.h .././headers/ADC.h
 
 .././headers/defines2.h:
 
@@ -77,6 +76,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 .././headers/global.h:
 
+.././headers/uart.h:
+
 .././headers/functions.h:
 
 .././headers/spi_ry.h:
@@ -88,9 +89,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 .././headers/can_frames.h:
 
 .././headers/usart_ry.h:
-
-.././headers/SIB_i2c.h:
-
-.././headers/uart.h:
 
 .././headers/ADC.h:
