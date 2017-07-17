@@ -45,7 +45,7 @@ RYAN YOUNG
 			the length: from 0 to 8 bytes(0 if rtr is 1)
 			the 8 bytes
 ******************************************************************************/
-typedef struct
+/*typedef struct
 {
 	uint16_t id;
 	struct {
@@ -54,7 +54,7 @@ typedef struct
 	} header;
 	uint8_t data[8];
 } tCAN;
-
+*/
 
 void mcp2515_write_register( uint8_t adress, uint8_t data )
 {
@@ -308,6 +308,8 @@ uint8_t mcp2515_get_message(tCAN *message)
 // ----------------------------------------------------------------------------
 uint8_t mcp2515_send_message(tCAN *message)
 {
+	
+	
 	uint8_t status = mcp2515_read_status(CAN_READ_STATUS);
 
 	/*  status info from data sheet:
@@ -368,11 +370,6 @@ uint8_t mcp2515_send_message(tCAN *message)
 	address = (address == 0) ? 1 : address;
 	SPI_txrx(CAN_RTS | address);
 	SET_H(SS);
-	
-	message->id = 0;
-	message->header.rtr = 0;
-	message->header.length = 0;
-	memset(message->data, 0, sizeof(message->data));
 
 	return address;
 }

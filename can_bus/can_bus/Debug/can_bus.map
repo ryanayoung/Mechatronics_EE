@@ -348,7 +348,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x896
+.text           0x00000000      0x91c
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -447,54 +447,54 @@ END GROUP
  .text.SPI_txrx
                 0x00000136       0x18 main.o
                 0x00000136                SPI_txrx
- .text.mcp2515_write_register
-                0x0000014e       0x24 main.o
-                0x0000014e                mcp2515_write_register
- .text.mcp2515_read_register
-                0x00000172       0x1e main.o
-                0x00000172                mcp2515_read_register
- .text.mcp2515_bit_modify
-                0x00000190       0x30 main.o
-                0x00000190                mcp2515_bit_modify
- .text.mcp2515_read_status
-                0x000001c0       0x10 main.o
-                0x000001c0                mcp2515_read_status
- .text.mcp2515_init
-                0x000001d0       0x7e main.o
-                0x000001d0                mcp2515_init
- .text.mcp2515_get_message
-                0x0000024e      0x102 main.o
-                0x0000024e                mcp2515_get_message
- .text.mcp2515_send_message
-                0x00000350      0x11e main.o
-                0x00000350                mcp2515_send_message
  .text.USART_Init
-                0x0000046e       0x1e main.o
-                0x0000046e                USART_Init
+                0x0000014e       0x1e main.o
+                0x0000014e                USART_Init
  .text.USART_Receive
-                0x0000048c       0x10 main.o
-                0x0000048c                USART_Receive
+                0x0000016c       0x10 main.o
+                0x0000016c                USART_Receive
  .text.USART_Transmit
-                0x0000049c       0x10 main.o
-                0x0000049c                USART_Transmit
+                0x0000017c       0x10 main.o
+                0x0000017c                USART_Transmit
  .text.USART_CAN_TX
-                0x000004ac       0xc2 main.o
-                0x000004ac                USART_CAN_TX
- .text.main     0x0000056e       0x6e main.o
-                0x0000056e                main
+                0x0000018c       0xc2 main.o
+                0x0000018c                USART_CAN_TX
+ .text.mcp2515_write_register
+                0x0000024e       0x24 main.o
+                0x0000024e                mcp2515_write_register
+ .text.mcp2515_read_register
+                0x00000272       0x1e main.o
+                0x00000272                mcp2515_read_register
+ .text.mcp2515_bit_modify
+                0x00000290       0x30 main.o
+                0x00000290                mcp2515_bit_modify
+ .text.mcp2515_read_status
+                0x000002c0       0x10 main.o
+                0x000002c0                mcp2515_read_status
+ .text.mcp2515_init
+                0x000002d0       0x7e main.o
+                0x000002d0                mcp2515_init
+ .text.mcp2515_get_message
+                0x0000034e      0x102 main.o
+                0x0000034e                mcp2515_get_message
+ .text.mcp2515_send_message
+                0x00000450      0x106 main.o
+                0x00000450                mcp2515_send_message
+ .text.main     0x00000556       0xaa main.o
+                0x00000556                main
  .text.__vector_1
-                0x000005dc       0x52 main.o
-                0x000005dc                __vector_1
+                0x00000600       0x52 main.o
+                0x00000600                __vector_1
  .text.__vector_18
-                0x0000062e      0x258 main.o
-                0x0000062e                __vector_18
- .text.libgcc   0x00000886        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
-                0x00000886                __tablejump2__
-                0x00000892                . = ALIGN (0x2)
+                0x00000652      0x2ba main.o
+                0x00000652                __vector_18
+ .text.libgcc   0x0000090c        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_tablejump2.o)
+                0x0000090c                __tablejump2__
+                0x00000918                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000892        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
-                0x00000892                _exit
-                0x00000892                exit
+ .fini9         0x00000918        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000918                _exit
+                0x00000918                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -513,11 +513,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000892        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000918        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000896                _etext = .
+                0x0000091c                _etext = .
 
-.data           0x00800100        0x2 load address 0x00000896
+.data           0x00800100        0x2 load address 0x0000091c
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -543,8 +543,8 @@ END GROUP
                 0x00800103                CANRX_buffer
                 0x0080010e                CANTX_buffer
                 0x00800119                PROVIDE (__bss_end, .)
-                0x00000896                __data_load_start = LOADADDR (.data)
-                0x00000898                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000091c                __data_load_start = LOADADDR (.data)
+                0x0000091e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800119        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -623,30 +623,30 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x115f
+.debug_info     0x00000000     0x1165
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x115f main.o
+ .debug_info    0x00000000     0x1165 main.o
 
-.debug_abbrev   0x00000000      0x33a
+.debug_abbrev   0x00000000      0x334
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x33a main.o
+ .debug_abbrev  0x00000000      0x334 main.o
 
-.debug_line     0x00000000      0x82d
+.debug_line     0x00000000      0x860
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x82d main.o
+ .debug_line    0x00000000      0x860 main.o
 
-.debug_frame    0x00000000      0x2b4
+.debug_frame    0x00000000      0x2c8
  *(.debug_frame)
- .debug_frame   0x00000000      0x2b4 main.o
+ .debug_frame   0x00000000      0x2c8 main.o
 
-.debug_str      0x00000000      0x83d
+.debug_str      0x00000000      0x83c
  *(.debug_str)
- .debug_str     0x00000000      0x83d main.o
-                                0x8b2 (size before relaxing)
+ .debug_str     0x00000000      0x83c main.o
+                                0x8b1 (size before relaxing)
 
-.debug_loc      0x00000000      0xa08
+.debug_loc      0x00000000      0xa54
  *(.debug_loc)
- .debug_loc     0x00000000      0xa08 main.o
+ .debug_loc     0x00000000      0xa54 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -666,9 +666,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xa0
+.debug_ranges   0x00000000       0xb8
  *(.debug_ranges)
- .debug_ranges  0x00000000       0xa0 main.o
+ .debug_ranges  0x00000000       0xb8 main.o
 
 .debug_macro
  *(.debug_macro)

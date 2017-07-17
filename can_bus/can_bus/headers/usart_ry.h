@@ -75,7 +75,11 @@ void USART_CAN_TX(tCAN data)
 	USART_Transmit(data.id >> 3); //CanID_High
 	
 	USART_Transmit((data.id << 5) | (data.header.rtr <<4) | data.header.length);
-	
+	/*
+	USART_Transmit(data.id << 5);
+	USART_Transmit(data.header.rtr << 4);
+	USART_Transmit(data.header.length);
+	*/
 	//read back all data received.
 	if(!data.header.rtr){
 		for (uint8_t t = 0; t < data.header.length;t++) {

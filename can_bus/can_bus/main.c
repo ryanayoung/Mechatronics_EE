@@ -37,17 +37,18 @@
 #include "headers/defines.h"		//Pin name definitions
 #include "headers/functions.h"		//general functions
 #include "headers/spi_ry.h"			//SPI protocol implementation
+#include "headers/usart_ry.h"		//serial communication with PC
 #include "headers/mcp2515_ry_def.h"	//MCP2515 register and bit definitions
 #include "headers/mcp2515_ry.h"		//MCP2515 functions
 #include "headers/can_frames.h"
-#include "headers/usart_ry.h"		//serial communication with PC
+
 
 
 tCAN CANTX_buffer;	//transmit package
 tCAN CANRX_buffer;		//receive package
 
 volatile uint8_t rx_flag = 0;
-volatile uint8_t Rx_frame_state = 0x10;
+volatile uint8_t Rx_frame_state = s_RxStart;
 
 /******************************************************************************
 	start of main()|
@@ -72,12 +73,17 @@ int main(void)
 	
 	while (1)
 	{
+		
 		//if rx_flag is set, that means there's a received message stored in
 		//spi_char, so ATOMIC_BLOCK disabled interrupts, then transmits it
 		//over uart.
 		if(rx_flag){
-				ATOMIC_BLOCK(ATOMIC_FORCEON){
+				ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
 				USART_CAN_TX(CANRX_buffer);
+				CANRX_buffer.id = 0;
+				CANRX_buffer.header.rtr = 0;
+				CANRX_buffer.header.length = 0;
+				memset(CANRX_buffer.data, 0, sizeof(CANRX_buffer.data));
 				rx_flag = 0;
 				}
 		}
@@ -97,27 +103,33 @@ ISR(USART_RX_vect)
 {	
 	uint8_t receive_buff = USART_Receive();
 	
-	//select which adc to sample from
 	switch(Rx_frame_state){
 		case s_RxStart : //start byte
 		if (receive_buff == start_byte){
+			CANTX_buffer.id = 0;
+			CANTX_buffer.header.rtr = 0;
+			CANTX_buffer.header.length = 0;
+			memset(CANTX_buffer.data, 0, sizeof(CANTX_buffer.data));
 			Rx_frame_state = s_RxIDH;
 		}
+		break;
 		case s_RxIDH : //frameID High
-		CANTX_buffer.id |= (receive_buff <<3);
+		CANTX_buffer.id |= (receive_buff << 3);
 		Rx_frame_state = s_RxIDL;
 		break;
 		case s_RxIDL : //frameID Low, rtr, & length = 0bXXXYZZZZ
-		CANTX_buffer.id |= (receive_buff >>5);
-		CANTX_buffer.header.rtr =  ((receive_buff >>4) & 0x01);
+		CANTX_buffer.id |= (receive_buff >> 5);
+		CANTX_buffer.header.rtr =  ((receive_buff >> 4) & 0x01);
 		CANTX_buffer.header.length = (receive_buff & 0x0F);
 		if(CANTX_buffer.header.rtr){
+			USART_CAN_TX(CANTX_buffer);//[DEBUG]
 			mcp2515_send_message(&CANTX_buffer);
 			receive_buff = 0;
-			Rx_frame_state = s_RxIDH;
+			Rx_frame_state = s_RxStart;
 			} else {
 			Rx_frame_state = s_Rxdata1;
 		}
+		//USART_CAN_TX(CANTX_buffer);//[DEBUG]
 		break;
 		case s_Rxdata1 : //data1
 		CANTX_buffer.data[0] = receive_buff;
@@ -126,7 +138,7 @@ ISR(USART_RX_vect)
 			}else{
 			mcp2515_send_message(&CANTX_buffer);
 			receive_buff = 0;
-			Rx_frame_state = s_RxIDH;
+			Rx_frame_state = s_RxStart;
 		}
 		break;
 		case s_Rxdata2 ://data2
@@ -136,7 +148,7 @@ ISR(USART_RX_vect)
 			}else{
 			mcp2515_send_message(&CANTX_buffer);
 			receive_buff = 0;
-			Rx_frame_state = s_RxIDH;
+			Rx_frame_state = s_RxStart;
 		}
 		break;
 		case s_Rxdata3 ://data3
@@ -146,7 +158,7 @@ ISR(USART_RX_vect)
 			}else{
 			mcp2515_send_message(&CANTX_buffer);
 			receive_buff = 0;
-			Rx_frame_state = s_RxIDH;
+			Rx_frame_state = s_RxStart;
 		}
 		break;
 		case s_Rxdata4 ://data4
@@ -156,7 +168,7 @@ ISR(USART_RX_vect)
 			}else{
 			mcp2515_send_message(&CANTX_buffer);
 			receive_buff = 0;
-			Rx_frame_state = s_RxIDH;
+			Rx_frame_state = s_RxStart;
 		}
 		break;
 		case s_Rxdata5 ://data5
@@ -166,7 +178,7 @@ ISR(USART_RX_vect)
 			}else{
 			mcp2515_send_message(&CANTX_buffer);
 			receive_buff = 0;
-			Rx_frame_state = s_RxIDH;
+			Rx_frame_state = s_RxStart;
 		}
 		break;
 		case s_Rxdata6 ://data6
@@ -176,7 +188,7 @@ ISR(USART_RX_vect)
 			}else{
 			mcp2515_send_message(&CANTX_buffer);
 			receive_buff = 0;
-			Rx_frame_state = s_RxIDH;
+			Rx_frame_state = s_RxStart;
 		}
 		break;
 		case s_Rxdata7 ://data7
@@ -186,16 +198,17 @@ ISR(USART_RX_vect)
 			}else{
 			mcp2515_send_message(&CANTX_buffer);
 			receive_buff = 0;
-			Rx_frame_state = s_RxIDH;
+			Rx_frame_state = s_RxStart;
 		}
 		break;
 		case s_Rxdata8 ://data8
 		CANTX_buffer.data[7] = receive_buff;
 		mcp2515_send_message(&CANTX_buffer);
 		receive_buff = 0;
-		Rx_frame_state = s_RxIDH;
+		Rx_frame_state = s_RxStart;
 		break;
-		default : Rx_frame_state = s_RxIDH;
+		default : Rx_frame_state = s_RxStart;
 		break;
 	}
+	
 }

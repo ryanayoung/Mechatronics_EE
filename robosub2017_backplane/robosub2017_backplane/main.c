@@ -100,7 +100,6 @@ int main(void)
 		//if data received on CAN...
 		if(rx_flag){
 			ATOMIC_BLOCK(ATOMIC_RESTORESTATE){//disables interrupts
-				//[FOR DEBUGGING]transimts received frame over uart.
 				USART_CAN_TX(CANRX_buffer);
 				TOGGLE(LED4);
 				

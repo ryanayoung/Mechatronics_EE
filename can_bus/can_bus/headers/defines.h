@@ -32,3 +32,15 @@
 #define s_Rxdata6 0x06
 #define s_Rxdata7 0x07
 #define s_Rxdata8 0x08
+
+#define start_byte 0xEE
+
+typedef struct
+{
+	uint16_t id;
+	struct {
+		uint8_t rtr : 1;
+		uint8_t length : 4;
+	} header;
+	uint8_t data[8];
+} tCAN;
