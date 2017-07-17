@@ -21,7 +21,7 @@ typedef struct
 tCAN CI_Kill_Switch 		= {.id = 8, .header.rtr = 1, .header.length = 0};
 tCAN CI_Leak 			= {.id = 16, .header.rtr = 0, .header.length = 3};
 tCAN CI_Depth 			= {.id = 24, .header.rtr = 0, .header.length = 2};
-tCAN CI_SIB_General 		= {.id = 32, .header.rtr = 0, .header.length = 1};
+tCAN CI_SIB_General 		= {.id = 32, .header.rtr = 0, .header.length = 6};
 tCAN CI_ESC1 			= {.id = 40, .header.rtr = 0, .header.length = 1};
 tCAN CI_ESC2 			= {.id = 48, .header.rtr = 0, .header.length = 1};
 tCAN CI_ESC3 			= {.id = 56, .header.rtr = 0, .header.length = 1};

@@ -112,6 +112,9 @@ int main(void)
 					mcp2515_send_message(&Request_Response_Weapon_status);
 						//send over can
 				}
+				CANRX_buffer.id = 0;
+				CANRX_buffer.header.rtr = 0;
+				CANRX_buffer.header.length = 0;
 				rx_flag = 0;//clear receive flag
 			}//end ATOMIC_BLOCK
 		}
@@ -183,6 +186,10 @@ ISR(USART0_RX_vect)
 	switch(Rx_frame_state){
 		case s_RxStart : //start byte
 		if (receive_buff == start_byte){
+			CANTX_buffer.id = 0;
+			CANTX_buffer.header.rtr = 0;
+			CANTX_buffer.header.length = 0;
+			memset(CANTX_buffer.data, 0, sizeof(CANTX_buffer.data));
 			Rx_frame_state = s_RxIDH;
 		}
 		break;
@@ -197,7 +204,7 @@ ISR(USART0_RX_vect)
 			if(CANTX_buffer.header.rtr){
 				mcp2515_send_message(&CANTX_buffer);
 				receive_buff = 0;
-				Rx_frame_state = s_RxIDH;
+				Rx_frame_state = s_RxStart;
 			} else {
 				Rx_frame_state = s_Rxdata1;
 			}
@@ -209,7 +216,7 @@ ISR(USART0_RX_vect)
 			}else{
 				mcp2515_send_message(&CANTX_buffer);
 				receive_buff = 0;
-				Rx_frame_state = s_RxIDH;
+				Rx_frame_state = s_RxStart;
 			}
 		break;
 		case s_Rxdata2 ://data2
@@ -219,7 +226,7 @@ ISR(USART0_RX_vect)
 				}else{
 				mcp2515_send_message(&CANTX_buffer);
 				receive_buff = 0;
-				Rx_frame_state = s_RxIDH;
+				Rx_frame_state = s_RxStart;
 			}
 		break;
 		case s_Rxdata3 ://data3
@@ -229,7 +236,7 @@ ISR(USART0_RX_vect)
 				}else{
 				mcp2515_send_message(&CANTX_buffer);
 				receive_buff = 0;
-				Rx_frame_state = s_RxIDH;
+				Rx_frame_state = s_RxStart;
 			}
 		break;
 		case s_Rxdata4 ://data4
@@ -239,7 +246,7 @@ ISR(USART0_RX_vect)
 				}else{
 				mcp2515_send_message(&CANTX_buffer);
 				receive_buff = 0;
-				Rx_frame_state = s_RxIDH;
+				Rx_frame_state = s_RxStart;
 			}
 		break;
 		case s_Rxdata5 ://data5
@@ -249,7 +256,7 @@ ISR(USART0_RX_vect)
 				}else{
 				mcp2515_send_message(&CANTX_buffer);
 				receive_buff = 0;
-				Rx_frame_state = s_RxIDH;
+				Rx_frame_state = s_RxStart;
 			}
 		break;
 		case s_Rxdata6 ://data6
@@ -259,7 +266,7 @@ ISR(USART0_RX_vect)
 				}else{
 				mcp2515_send_message(&CANTX_buffer);
 				receive_buff = 0;
-				Rx_frame_state = s_RxIDH;
+				Rx_frame_state = s_RxStart;
 			}
 		break;
 		case s_Rxdata7 ://data7
@@ -269,16 +276,16 @@ ISR(USART0_RX_vect)
 				}else{
 				mcp2515_send_message(&CANTX_buffer);
 				receive_buff = 0;
-				Rx_frame_state = s_RxIDH;
+				Rx_frame_state = s_RxStart;
 			}
 		break;
 		case s_Rxdata8 ://data8
 			CANTX_buffer.data[7] = receive_buff;
 			mcp2515_send_message(&CANTX_buffer);
 			receive_buff = 0;
-			Rx_frame_state = s_RxIDH;
+			Rx_frame_state = s_RxStart;
 		break;
-		default : Rx_frame_state = s_RxIDH;
+		default : Rx_frame_state = s_RxStart;
 		break;
 	}
 }

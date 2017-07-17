@@ -375,13 +375,5 @@ uint8_t mcp2515_send_message(tCAN *message)
 	SPI_txrx(CAN_RTS | address);
 	SET_H(SS);
 	
-	message->id = 0;
-	message->header.rtr = 0;
-	message->header.length = 0;
-	memset(message->data, 0, sizeof(message->data));
-	
-	
-	
-
 	return address;
 }
