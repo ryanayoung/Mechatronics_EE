@@ -35,10 +35,6 @@ RyanAYoung81@gmail.com
 #define	DDR(x)			_ddr2(x)
 #define	PIN(x)			_pin2(x)
 
-#define	_port2(x)	PORT ## x
-#define	_ddr2(x)	DDR ## x
-#define	_pin2(x)	PIN ## x
-
 #define	_XRS(x,y)	PORT(x) &= ~(1<<y)
 #define	_XS(x,y)	PORT(x) |= (1<<y)
 #define	_XT(x,y)	PIN(x) |= (1<<y)
@@ -48,6 +44,8 @@ RyanAYoung81@gmail.com
 
 #define	_XR(x,y)	((PIN(x) & (1<<y)) != 0)
 
-
+#define	_port2(x)	PORT ## x
+#define	_ddr2(x)	DDR ## x
+#define	_pin2(x)	PIN ## x
 
 #endif	// GLOBAL_H

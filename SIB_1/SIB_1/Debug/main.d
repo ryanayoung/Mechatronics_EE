@@ -1,4 +1,4 @@
-main.d main.o: .././main.c .././headers/defines2.h \
+main.d main.o: .././main.c .././headers/defines.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
@@ -26,7 +26,7 @@ main.d main.o: .././main.c .././headers/defines2.h \
  .././headers/mcp2515_ry_def.h .././headers/mcp2515_ry.h \
  .././headers/can_frames.h .././headers/usart_ry.h .././headers/ADC.h
 
-.././headers/defines2.h:
+.././headers/defines.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h:
 

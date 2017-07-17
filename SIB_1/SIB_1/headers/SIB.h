@@ -78,23 +78,39 @@ void i2c_FSM(void);
 void init_i2c(void);
 //void init_temp(void);
 void init_int_press(void);
-void i2c_read(uint8_t, uint8_t);
-void i2c_write(uint8_t, uint8_t);
-void verify_int_press(void);
-void load_i2c_data(void);
-void get_ext_press(void);
+uint8_t i2c_read(uint8_t, uint8_t);
+uint8_t i2c_write(uint8_t, uint8_t);
 
-void sys_config(void);
+void load_i2c_data(void);
+//void get_ext_press(void);
+
 void init_state_timer(void);
 void initUART(void);
 void txUART(unsigned char data);
 void sendString(unsigned char* stringIndex);
 
-void int_temp_CAN(void);
-void ext_press_CAN(void);
-void int_press_CAN(void);
+void CAN_HANDLE(void);
+void it_CAN(void);
+void ep_CAN(void);
+void ip_CAN(void);
 
 void debug_can_tx(void);
+void debug_state(void);
+
+void int_p1(void);
+void int_p2(void);
+void int_p3(void);
+
+void int_t1(void);
+void int_t2(void);
+void int_t3(void);
+
+void update_ep(void);
+
+void error_TCA(uint8_t);
+void error_MPLW(uint8_t);
+void error_MPLR(uint8_t);
+void error_LM92(uint8_t);
 
 void sys_config(void)
 {

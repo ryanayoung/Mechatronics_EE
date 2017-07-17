@@ -36,20 +36,23 @@ RYAN YOUNG
 ******************************************************************************/
 
 
+#include "string.h"
+
+
 /******************************************************************************
 	tCAN|
 		this is a structure to hold a canbus message frame.
 		It contains:
 			the message ID
 			if it's a "remote transmit receive" frame
-			the length: from 1 to 8 bytes
+			the length: from 0 to 8 bytes(0 if rtr is 1)
 			the 8 bytes
 ******************************************************************************/
 typedef struct
 {
 	uint16_t id;
 	struct {
-		uint8_t rtr : 1;
+		int8_t rtr : 1;
 		uint8_t length : 4;
 	} header;
 	uint8_t data[8];
@@ -117,7 +120,7 @@ uint8_t mcp2515_read_status(uint8_t type)
 		sets up speed, initial conditions, interrupts, GPIO, 
 			and receive filters for the canbus transceiver.
 		
-		
+		If error, PB0 is set high to turn on an error LED.
 ******************************************************************************/
 uint8_t mcp2515_init(uint8_t speed)
 {
@@ -150,7 +153,7 @@ uint8_t mcp2515_init(uint8_t speed)
 
 	// test if we could read back the value => is the chip accessible?
 	if (mcp2515_read_register(CNF1) != speed) {
-		SET_H(LED4);
+		//SET_H(LED4);
 
 		return false;
 	}
@@ -254,7 +257,7 @@ uint8_t mcp2515_init(uint8_t speed)
 
 	// reset device to normal mode
 	mcp2515_write_register(CANCTRL, 0);
-	SET_L(LED4);
+	//SET_L(LED4);
 	return true;
 }
 
@@ -315,6 +318,8 @@ uint8_t mcp2515_get_message(tCAN *message)
 uint8_t mcp2515_send_message(tCAN *message)
 {
 	uint8_t status = mcp2515_read_status(CAN_READ_STATUS);
+	
+	
 
 	/*  status info from data sheet:
 	  Bit	Function
@@ -350,6 +355,7 @@ uint8_t mcp2515_send_message(tCAN *message)
 	SPI_txrx(0);
 
 	uint8_t length = message->header.length & 0x0f;
+	
 
 	if (message->header.rtr) {
 		// a rtr-frame has a length, but contains no data
@@ -365,7 +371,8 @@ uint8_t mcp2515_send_message(tCAN *message)
 		}
 	}
 	SET_H(SS);
-
+	
+	
 	//Wait for message to "settle" in register
 	_delay_us(1);
 
@@ -375,12 +382,10 @@ uint8_t mcp2515_send_message(tCAN *message)
 	SPI_txrx(CAN_RTS | address);
 	SET_H(SS);
 	
-	message->id = 0;
+	/*message->id = 0;
 	message->header.rtr = 0;
 	message->header.length = 0;
-	memset(message->data, 0, sizeof(message->data));
-	
-	
+	memset(message->data, 0, sizeof(message->data));*/
 	
 
 	return address;

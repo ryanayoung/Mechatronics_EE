@@ -14,17 +14,6 @@
 #define SCK B,5
 #define INT D,2
 
-//status light
-#define LED1 D,3
-#define LED2 D,4
-#define LED3 D,5
-#define LED4 D,6
-
-//ADC inputs
-#define V24_pin E,2
-#define V6_pin E,3
-#define V5_pin C,0
-#define V20_pin C,1
 
 //Filter 1
 #define Rx0IDLow	((Rx0ID & 0x07) << 5)
@@ -52,7 +41,7 @@
 #define RXMaskHi  0x00
 
 //Uart Receive statemachine states
-#define s_RxIDH 0x10
+#define s_RxIDH	0x10
 #define s_RxIDL 0x20
 #define s_Rxdata1 0x01
 #define s_Rxdata2 0x02
@@ -62,3 +51,34 @@
 #define s_Rxdata6 0x06
 #define s_Rxdata7 0x07
 #define s_Rxdata8 0x08
+
+
+#define TCA_W_ADD 0b11100000
+#define TCA_R_ADD 0b11100001
+#define MPL_W_ADD 0b11000000
+#define MPL_R_ADD 0b11000001
+
+#define RR_Press_ID 507
+#define RR_Temp_ID 515
+
+#define LEAK 1
+#define DEPTH 2
+#define GENERAL 3
+
+#define DEG_C 35
+#define T_CRIT DEG_C / .0625
+
+#define Rx0ID  0x000
+#define Rx1ID  0x000
+#define Rx2ID  0x001
+#define Rx3ID  0x001
+#define Rx4ID  0x001
+#define Rx5ID 0x001
+
+#define IP1 1
+#define IP2 2
+#define IP3 3
+#define T1 4
+#define T2 5
+#define T3 6
+
