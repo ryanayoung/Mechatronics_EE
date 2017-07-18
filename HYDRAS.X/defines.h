@@ -9,10 +9,10 @@
 
 ******************************************************************************/
 //gpio pins formatted for using global.h
-#define SS   B,0
-#define MOSI B,3
-#define SCK B,5
-#define INT D,2
+#define SS   C,2
+#define MOSI C,0
+#define SCK B,3
+#define INT B,14
 
 //status light
 #define LED2			B,0

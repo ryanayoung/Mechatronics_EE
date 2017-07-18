@@ -3,7 +3,7 @@
 /******************************************************************************/
 
 /* Device header file */
- 
+
 
 #if defined(__XC16__)
     #include <xc.h>
@@ -66,18 +66,18 @@ uint8_t TxID = 0x10;	//S
 /******************************************************************************
 	start of main()|
 ******************************************************************************/
-//tCAN usart_char;	//transmit package
-//tCAN spi_char;		//receive package
+tCAN usart_char;	//transmit package
+tCAN spi_char;		//receive package
 int main(void)
 {
 		//initialization functions
-	//GPIO_init();
-	//INTERRUPT_init();
+	GPIO_init();
+	INTERRUPT_init();
 	//USART_Init(103);//103 sets baud rate at 9600
-	//SPI_masterInit();
-	
+	SPI_masterInit();
+
 	//MCP2515 initialization
-	/*if(mcp2515_init(CANSPEED_500))
+	if(mcp2515_init(CANSPEED_500))
 	{
 		USART_Transmit_TX("Can Init SUCCESS!");
 	}else
@@ -86,23 +86,23 @@ int main(void)
 	}
 	USART_Transmit(10);//New Line
 	USART_Transmit(13);//Carriage return
-	
+
 	//setup the transmit frame
 	usart_char.id = TxID;			//set target device ID
 	usart_char.header.rtr = 0;		//no remote transmit(i.e. request info)
 	usart_char.header.length = 1;	//single byte(could be up to 8)
-	
+
 	while (1)
 	{
 		if(!(UCSR0A & (1<<RXC0)))//if data in serial buffer
 		{
 			//get serial data
 			usart_char.data[0] = USART_Receive();
-			
+
 			//transmit usart_char over canbus
 			mcp2515_send_message(&usart_char);
 		}
-	}*/
+	}
     return 0;
 }/****end of main()**********************************************************/
 
