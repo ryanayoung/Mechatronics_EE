@@ -21,8 +21,9 @@
 #define RxIDHi	(uint8_t)(RxID >> 3)
 
 //Uart Receive statemachine states
-#define s_RxIDH 0x10
-#define s_RxIDL 0x20
+#define s_RxStart 0x10
+#define s_RxIDH 0x20
+#define s_RxIDL 0x30
 #define s_Rxdata1 0x01
 #define s_Rxdata2 0x02
 #define s_Rxdata3 0x03
@@ -31,3 +32,15 @@
 #define s_Rxdata6 0x06
 #define s_Rxdata7 0x07
 #define s_Rxdata8 0x08
+
+#define start_byte 0xEE
+
+typedef struct
+{
+	uint16_t id;
+	struct {
+		uint8_t rtr : 1;
+		uint8_t length : 4;
+	} header;
+	uint8_t data[8];
+} tCAN;
