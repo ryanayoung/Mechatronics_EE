@@ -156,9 +156,9 @@
 /******************************************************************************/
 
 /* TODO Add interrupt routine code here. */
-void __attribute__((interrupt,auto_psv)) <Vector Name>(void)
+void __attribute__((interrupt,auto_psv)) _INT1Interrupt(void)
 {
      mcp2515_get_message(&CANRX_buffer);
      //clear interrupt flag
-     IFS4.LVDIF = 0;
+     IFS1.INT1IF = 0;
 }

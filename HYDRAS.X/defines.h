@@ -13,7 +13,8 @@
 #define MOSI C,0
 #define SCK B,3
 #define INT B,14
-
+#define TX C,8
+#define RX C,9
 //status light
 #define LED2			B,0
 

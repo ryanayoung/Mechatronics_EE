@@ -19,7 +19,7 @@ void SPI_masterInit(void)
   //_RPO(10,20,7);
   //sets pin 38 to serial clock output
   //_RPO(10,21,8);
-  RPINR20bits.SDI1R = 2; //sets pin 2 to MISO function
+  RPINR20bits.SDI1R = 22; //sets pin 2 to MISO function
   IFS0bits.SPI1IF = 0;
   IEC0bits.SPI1IE = 0;
   SPI1STATbits.SPIEN = 0;

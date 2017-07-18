@@ -70,6 +70,7 @@ tCAN usart_char;	//transmit package
 tCAN spi_char;		//receive package
 int main(void)
 {
+  AD1PCFG = 0xFFFF;
 		//initialization functions
 	GPIO_init();
 	INTERRUPT_init();
@@ -79,13 +80,11 @@ int main(void)
 	//MCP2515 initialization
 	if(mcp2515_init(CANSPEED_500))
 	{
-		USART_Transmit_TX("Can Init SUCCESS!");
+		USART_Transmit(0xFF);
 	}else
 	{
-		USART_Transmit_TX("Can Init FAILURE!");
+		USART_Transmit(0x00);
 	}
-	USART_Transmit(10);//New Line
-	USART_Transmit(13);//Carriage return
 
 	//setup the transmit frame
 	usart_char.id = TxID;			//set target device ID
