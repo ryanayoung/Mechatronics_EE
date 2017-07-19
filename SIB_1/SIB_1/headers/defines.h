@@ -68,12 +68,12 @@
 #define DEG_C 35
 #define T_CRIT DEG_C / .0625
 
-#define Rx0ID  0x000
-#define Rx1ID  0x000
-#define Rx2ID  0x001
-#define Rx3ID  0x001
-#define Rx4ID  0x001
-#define Rx5ID 0x001
+#define Rx0ID  0x003
+#define Rx1ID  0x003
+#define Rx2ID  0x003
+#define Rx3ID  0x003
+#define Rx4ID  0x003
+#define Rx5ID 0x003
 
 #define IP1 1
 #define IP2 2
