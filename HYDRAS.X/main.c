@@ -18,7 +18,7 @@
 #endif
 #define _XTAL_FREQ 16000000UL
 #define F_CPU 16000000UL
-#define SYS_FREQ 32000000L
+//#define SYS_FREQ 32000000L
 #define FCY SYS_FREQ/2
 #include <stdio.h>
 #include <stdint.h>        /* Includes uint16_t definition                    */
@@ -26,10 +26,12 @@
 #include <libpic30.h>
 #include "pic_global.h"
 #include "defines.h"
-#include "mcp2515_ry_def.h"
 #include "pic_spi_ry.h"
+#include "mcp2515_ry.h"
+#include "mcp2515_ry_def.h"
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "user.h"          /* User funct/params, such as InitApp              */
+
 /******************************************************************************
 	CANBUS ID definition|
 		change values for different devices so that M can talk to S and

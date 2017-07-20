@@ -1,6 +1,10 @@
 /*
 description! coming soon
 */
+
+#ifndef PIC_SPI_RY
+#define PIC_SPI_RY
+
 //please test
 //in progress, needs commenting, basically done
 void SPI_masterInit(void)
@@ -49,3 +53,6 @@ char SPI_txrx(char val)
 
 
 }
+
+
+#endif
