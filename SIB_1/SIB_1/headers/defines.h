@@ -58,8 +58,8 @@
 #define MPL_W_ADD 0b11000000
 #define MPL_R_ADD 0b11000001
 
-#define RR_Press_ID 507
-#define RR_Temp_ID 515
+#define RR_Press_ID 523
+#define RR_Temp_ID 531
 
 #define LEAK 1
 #define DEPTH 2

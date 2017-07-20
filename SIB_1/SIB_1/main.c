@@ -306,22 +306,22 @@ int main(void)
 	while (1) 
     {
 		int_p1();
-		debug_state();
+		//debug_state();
 		int_p2();
-		debug_state();
+		//debug_state();
 		update_ep();
 
 		int_p3();
-		debug_state();
+		//debug_state();
 		int_t1();
-		debug_state();
+		//debug_state();
 
 		update_ep();
 
 		int_t2();
-		debug_state();
+		//debug_state();
 		int_t3();
-		debug_state();
+		//debug_state();
 		update_ep();
 		CAN_HANDLE();
 		//CAN_TX_INT(crit_depth,crit_leak,crit_general);
@@ -1165,10 +1165,10 @@ void ip_CAN(void)
 void ep_CAN(void)
 {
 	ATOMIC_BLOCK(ATOMIC_FORCEON){
-		Request_Response_SIB_Pressure.data[0] = ep1_raw[history];
-		Request_Response_SIB_Pressure.data[1] = (ep1_raw[history] >>8) | (ep2_raw[history] <<2);
-		Request_Response_SIB_Pressure.data[2] = (ep2_raw[history] >>6) | (ep3_raw[history] << 4);
-		Request_Response_SIB_Pressure.data[3] = ep3_raw[history] >>4;
+		Request_Response_SIB_Pressure.data[0] = ep1_raw[ep_history];
+		Request_Response_SIB_Pressure.data[1] = (ep1_raw[ep_history] >>8) | (ep2_raw[ep_history] <<2);
+		Request_Response_SIB_Pressure.data[2] = (ep2_raw[ep_history] >>6) | (ep3_raw[ep_history] << 4);
+		Request_Response_SIB_Pressure.data[3] = ep3_raw[ep_history] >>4;
 	}
 }
 
@@ -1190,13 +1190,12 @@ void update_ep(void)
 		//IF ADC ISR LAST STATE/CHANNEL
 		ep_CAN();
 		adc_Cycle_Done = 0;
-		/*sprintf(string_out, "EP1: %d\n\r", ep1_raw[history]);
+		sprintf(string_out, "EP1: %d\n\r", ep1_raw[ep_history]);
 		sendString(string_out);
-		sprintf(string_out, "EP1: %d\n\r", ep1_raw[history]);
+		sprintf(string_out, "EP2: %d\n\r", ep2_raw[ep_history]);
 		sendString(string_out);
-		sprintf(string_out, "EP1: %d\n\r", ep1_raw[history]);
+		sprintf(string_out, "EP3: %d\n\r", ep3_raw[ep_history]);
 		sendString(string_out);
-		adc_Cycle_Done = 0;*/
 	}
 }
 
