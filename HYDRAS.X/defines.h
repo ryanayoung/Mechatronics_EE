@@ -8,6 +8,9 @@
 	RedID:		817447547
 
 ******************************************************************************/
+#ifndef _DEFINES
+#define _DEFINES
+
 //gpio pins formatted for using global.h
 #define SS   C,2
 #define MOSI C,0
@@ -20,3 +23,5 @@
 
 #define RxIDLow	((RxID & 0x07) << 5)
 #define RxIDHi	(uint8_t)(RxID >> 3)
+
+#endif

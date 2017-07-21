@@ -24,7 +24,8 @@ main.d main.o: .././main.c .././headers/defines.h \
  .././headers/SIB.h .././headers/global.h .././headers/uart.h \
  .././headers/functions.h .././headers/spi_ry.h \
  .././headers/mcp2515_ry_def.h .././headers/mcp2515_ry.h \
- .././headers/can_frames.h .././headers/usart_ry.h .././headers/ADC.h
+ .././headers/can_frames_MASTER.h .././headers/usart_ry.h \
+ .././headers/ADC.h
 
 .././headers/defines.h:
 
@@ -86,7 +87,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 .././headers/mcp2515_ry.h:
 
-.././headers/can_frames.h:
+.././headers/can_frames_MASTER.h:
 
 .././headers/usart_ry.h:
 

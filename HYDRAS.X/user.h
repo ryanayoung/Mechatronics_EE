@@ -10,4 +10,9 @@
 
 /* TODO User level functions prototypes (i.e. InitApp) go here */
 
+#ifndef USER_H
+#define USER_H
+
 void InitApp(void);         /* I/O and Peripheral Initialization */
+
+#endif

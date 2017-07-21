@@ -41,7 +41,7 @@
 #include "headers/spi_ry.h"			//SPI protocol implementation
 #include "headers/mcp2515_ry_def.h"	//MCP2515 register and bit definitions
 #include "headers/mcp2515_ry.h"		//MCP2515 functions
-#include "headers/can_frames.h"
+#include "headers/can_frames_MASTER.h"
 #include "headers/usart_ry.h"		//serial communication with PC
 #include "headers/ADC.h"
 
@@ -49,7 +49,7 @@
 	CANBUS ID definition|
 ******************************************************************************/
 //RxID is your device ID that you allow messages to receive
-uint16_t RxID = 0x03;	//SIB
+//uint16_t RxID = 0x03;	//SIB
 
 /******************************************************************************
 	CANBUS Related variabes
@@ -113,6 +113,7 @@ uint8_t read_done = 0;
 //Debug string for output
 
 char i2c_status_error[35]= "\n\ri2c status not recognized\n\r";
+char string_out[50];
 
 //used to track if a number of consecutive unsuccessful i2c transmit
 //Related Error handling still needs to be written
@@ -170,8 +171,8 @@ ISR(TIMER1_COMPA_vect)
 	//GENERATE START CONDITION IF I2C DISABLED
 	if(end_state)
 	{
-		sprintf(string_out, "state %d, ++\n\r", state);
-		sendString(string_out);
+		//sprintf(string_out, "state %d, ++\n\r", state);
+		//sendString(string_out);
 		
 		//timer increments state number and should toggle an LED every 1 second
 		if(state < LAST_STATE)
@@ -253,7 +254,7 @@ ISR(ADC_vect)
 
 			//AREF, Right Adjusted, ADC0
 			ADMUX = 0b00000000;
-
+			
 			adc_Cycle_Done = 1;
 		}
 	
@@ -263,6 +264,7 @@ ISR(ADC_vect)
 
 ISR(INT0_vect)
 {
+	//LED_TOGGLE;
 	mcp2515_get_message(&CANRX_buffer);//get canbus message
 	rx_flag = 1;  //set flag
 }
@@ -299,22 +301,28 @@ int main(void)
 	{
 		USART_Transmit_TX("Can Init FAILURE!");
 	}
-	_delay_ms(100);
+	//_delay_ms(100);
 
 	while (1) 
     {
 		int_p1();
+		//debug_state();
 		int_p2();
+		//debug_state();
 		update_ep();
-		CAN_HANDLE();
+
 		int_p3();
+		//debug_state();
 		int_t1();
+		//debug_state();
+
 		update_ep();
-		CAN_HANDLE();
+
 		int_t2();
+		//debug_state();
 		int_t3();
+		//debug_state();
 		update_ep();
-		debug_can_tx();
 		CAN_HANDLE();
 		//CAN_TX_INT(crit_depth,crit_leak,crit_general);
     }
@@ -388,7 +396,7 @@ void i2c_FSM(void)
 						if(read_done == 1)
 						{
 							read_done = 0;
-							debug_state();
+							//debug_state();
 							CLEAR_TWEN;
 							end_state = 1;
 						}
@@ -440,7 +448,7 @@ void i2c_FSM(void)
 						if(read_done==1)
 						{
 							read_done = 0;
-							debug_state();
+							//debug_state();
 							CLEAR_TWEN;
 							end_state = 1;
 						}
@@ -493,7 +501,7 @@ void i2c_FSM(void)
 						{
 							read_done =0;
 							ip_CAN();
-							debug_state();
+							//debug_state();
 							CLEAR_TWEN;
 							end_state = 1;
 						}
@@ -511,7 +519,7 @@ void i2c_FSM(void)
 					if(read_done ==1)
 					{
 						read_done = 0;
-						debug_state();
+						//debug_state();
 						CLEAR_TWEN;
 						end_state = 1;
 					}
@@ -529,7 +537,7 @@ void i2c_FSM(void)
 					if(read_done ==1)
 					{
 						read_done = 0;
-						debug_state();
+						//debug_state();
 						CLEAR_TWEN;
 						end_state = 1;
 					}
@@ -546,7 +554,7 @@ void i2c_FSM(void)
 					if(read_done == 1)
 					{
 						read_done =0;
-						debug_state();
+						//debug_state();
 						CLEAR_TWEN;
 						end_state = 1;
 						it_CAN();
@@ -948,7 +956,7 @@ uint8_t i2c_write(uint8_t address, uint8_t cycle)
 			sendString(string_out);*/
 			if (nack_count > 10)
 			{
-				sprintf(string_out, "T_NACKx10, %d", state);
+				sprintf(string_out, "T_NACKx10, %d\n\r", state);
 				sendString(string_out);
 				write_done = 2;
 				I2C_STOP;
@@ -1065,58 +1073,6 @@ void init_i2c(void)
 	//SCL freq = 400k
 }
 
-void debug_state(void)
-{
-	return;
-	/*switch(state)
-	{
-		case 1:
-				sprintf(string_out, "IP read, state: %d\n\r", state);
-				sendString(string_out);
-
-				break;
-		case 2:
-				sprintf(string_out, "IP read, state: %d\n\r", state);
-				sendString(string_out);
-				break;
-
-		case 3:
-				sprintf(string_out, "IP read, state: %d\n\r", state);
-				sendString(string_out);
-
-				sprintf(string_out, "IP1: %l\n\r", ip1_raw[history]);
-				sendString(string_out);
-				sprintf(string_out, "IP2: %l\n\r", ip2_raw[history]);
-				sendString(string_out);
-				sprintf(string_out, "IP3: %l\n\r", ip3_raw[history]);
-				sendString(string_out);
-				break;
-				
-		case 4:
-				sprintf(string_out, "T read, state: %d\n\r", state);
-				sendString(string_out);
-				break;
-
-		case 5:
-				sprintf(string_out, "T read, state: %d\n\r", state);
-				sendString(string_out);
-				break;
-
-		case 6:
-				sprintf(string_out, "T read, state: %d\n\r", state);
-				sendString(string_out);
-
-				sprintf(string_out, "T1: %d\n\r", t1_raw[history]);
-				sendString(string_out);
-				sprintf(string_out, "T2: %d\n\r", t2_raw[history]);
-				sendString(string_out);
-				sprintf(string_out, "T3: %d\n\r", t3_raw[history]);
-				sendString(string_out);
-				break;
-
-	}*/
-}
-
 void int_p1(void)
 {
 		if(state_ready && (state == IP1))
@@ -1209,10 +1165,10 @@ void ip_CAN(void)
 void ep_CAN(void)
 {
 	ATOMIC_BLOCK(ATOMIC_FORCEON){
-		Request_Response_SIB_Pressure.data[0] = ep1_raw[history];
-		Request_Response_SIB_Pressure.data[1] = (ep1_raw[history] >>8) | (ep2_raw[history] <<2);
-		Request_Response_SIB_Pressure.data[2] = (ep2_raw[history] >>6) | (ep3_raw[history] << 4);
-		Request_Response_SIB_Pressure.data[3] = ep3_raw[history] >>4;
+		Request_Response_SIB_Pressure.data[0] = ep1_raw[ep_history];
+		Request_Response_SIB_Pressure.data[1] = (ep1_raw[ep_history] >>8) | (ep2_raw[ep_history] <<2);
+		Request_Response_SIB_Pressure.data[2] = (ep2_raw[ep_history] >>6) | (ep3_raw[ep_history] << 4);
+		Request_Response_SIB_Pressure.data[3] = ep3_raw[ep_history] >>4;
 	}
 }
 
@@ -1232,14 +1188,14 @@ void update_ep(void)
 	if(adc_Cycle_Done)
 	{
 		//IF ADC ISR LAST STATE/CHANNEL
-		//ext_press_CAN();
-		sprintf(string_out, "EP1: %d\n\r", ep1_raw[history]);
-		sendString(string_out);
-		sprintf(string_out, "EP1: %d\n\r", ep1_raw[history]);
-		sendString(string_out);
-		sprintf(string_out, "EP1: %d\n\r", ep1_raw[history]);
-		sendString(string_out);
+		ep_CAN();
 		adc_Cycle_Done = 0;
+		sprintf(string_out, "EP1: %d\n\r", ep1_raw[ep_history]);
+		sendString(string_out);
+		sprintf(string_out, "EP2: %d\n\r", ep2_raw[ep_history]);
+		sendString(string_out);
+		sprintf(string_out, "EP3: %d\n\r", ep3_raw[ep_history]);
+		sendString(string_out);
 	}
 }
 
@@ -1248,8 +1204,7 @@ void CAN_HANDLE(void)
 	if(rx_flag){
 		ATOMIC_BLOCK(ATOMIC_FORCEON){//disables interrupts
 			//[FOR DEBUGGING]transmits received frame over uart.
-			USART_CAN_TX(CANRX_buffer);
-					
+			//USART_CAN_TX(CANRX_buffer);
 			//matches received ID.
 			switch (CANRX_buffer.id)
 			{
@@ -1313,10 +1268,12 @@ void debug_can_tx(void)
 		CI_SIB_General.data[3] = (t2_raw[history]>>4);
 		CI_SIB_General.data[4] = (t3_raw[history]);
 		CI_SIB_General.data[5] = (t3_raw[history]>>8);*/
-		USART_CAN_TX(Request_Response_SIB_Temp);
+		//USART_CAN_TX(Request_Response_SIB_Temp);
 		mcp2515_send_message(&Request_Response_SIB_Temp);
-		mcp2515_send_message(&Request_Response_SIB_Pressure);
-		USART_CAN_TX(Request_Response_SIB_Pressure);
+		_delay_ms(1000);
+		//mcp2515_send_message(&Request_Response_SIB_Pressure);
+		//USART_CAN_TX(Request_Response_SIB_Pressure);
+		//_delay_ms(300);
 		//mcp2515_send_message(&CI_ESC1);
 		//mcp2515_send_message(&CI_Kill_Switch);
 		//USART_CAN_TX(Request_Response_SIB_Temp);
@@ -1384,5 +1341,38 @@ void error_LM92(uint8_t type)
 			end_state = 1;
 			break;
 		default: break;
+	}
+}
+
+void debug_state(void)
+{
+	switch(state)
+	{
+		case IP1:
+			sprintf(string_out, "IP 1: %lu\n\r", ip1_raw[history]);
+			sendString(string_out);
+			break;
+		case IP2:
+			sprintf(string_out, "IP 2: %lu\n\r", ip2_raw[history]);
+			sendString(string_out);
+			break;
+		case IP3:
+			sprintf(string_out, "IP 3: %lu\n\r", ip3_raw[history]);
+			sendString(string_out);
+			break;
+		case T1:
+			sprintf(string_out, "T 1: %u\n\r", t1_raw[history]);
+			sendString(string_out);
+			break;
+		case T2:
+			sprintf(string_out, "T 2: %u\n\r", t2_raw[history]);
+			sendString(string_out);
+			break;
+		case T3:
+			sprintf(string_out, "T 3: %u\n\r", t3_raw[history]);
+			sendString(string_out);
+			break;
+		default:
+			break;
 	}
 }

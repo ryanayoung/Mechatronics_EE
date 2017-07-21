@@ -1,0 +1,141 @@
+make -f nbproject/Makefile-XC16_24FJ256GA110.mk SUBPROJECTS= .build-conf
+make[1]: Entering directory 'C:/Users/grimj/Documents/GitHub/Mechatronics_EE/HYDRAS.X'
+make  -f nbproject/Makefile-XC16_24FJ256GA110.mk dist/XC16_24FJ256GA110/production/HYDRAS.X.production.hex
+make[2]: Entering directory 'C:/Users/grimj/Documents/GitHub/Mechatronics_EE/HYDRAS.X'
+"C:\Program Files (x86)\Microchip\xc16\v1.30\bin\xc16-gcc.exe"   interrupts.c  -o build/XC16_24FJ256GA110/production/interrupts.o  -c -mcpu=24FJ256GA110  -MMD -MF "build/XC16_24FJ256GA110/production/interrupts.o.d"        -g -omf=elf -DXPRJ_XC16_24FJ256GA110=XC16_24FJ256GA110  -no-legacy-libc    -O0 -msmart-io=1 -Wall -msfr-warn=off  
+"C:\Program Files (x86)\Microchip\xc16\v1.30\bin\xc16-gcc.exe"   main.c  -o build/XC16_24FJ256GA110/production/main.o  -c -mcpu=24FJ256GA110  -MMD -MF "build/XC16_24FJ256GA110/production/main.o.d"        -g -omf=elf -DXPRJ_XC16_24FJ256GA110=XC16_24FJ256GA110  -no-legacy-libc    -O0 -msmart-io=1 -Wall -msfr-warn=off  
+pic_spi_ry.h: In function 'SPI_masterInit':
+In file included from interrupts.c:24:0:
+pic_spi_ry.h:14:3: error: 'TRISCBITS' has no member named 'TRISC0'
+mcp2515_ry.h: In function 'mcp2515_write_register':
+In file included from interrupts.c:25:0:
+mcp2515_ry.h:67:11: error: 'CAN_WRITE' undeclared (first use in this function)
+mcp2515_ry.h:67:11: note: each undeclared identifier is reported only once for each function it appears in
+mcp2515_ry.h: In function 'mcp2515_read_register':
+mcp2515_ry.h:80:11: error: 'CAN_READ' undeclared (first use in this function)
+mcp2515_ry.h: In function 'mcp2515_bit_modify':
+mcp2515_ry.h:95:11: error: 'CAN_BIT_MODIFY' undeclared (first use in this function)
+mcp2515_ry.h: In function 'mcp2515_init':
+mcp2515_ry.h:131:11: error: 'CAN_RESET' undeclared (first use in this function)
+mcp2515_ry.h:140:11: error: 'CAN_WRITE' undeclared (first use in this function)
+mcp2515_ry.h:141:11: error: 'CNF3' undeclared (first use in this function)
+mcp2515_ry.h:143:15: error: 'PHSEG21' undeclared (first use in this function)
+mcp2515_ry.h:148:15: error: 'BTLMODE' undeclared (first use in this function)
+mcp2515_ry.h:148:28: error: 'PHSEG11' undeclared (first use in this function)
+mcp2515_ry.h:152:15: error: 'RX1IE' undeclared (first use in this function)
+mcp2515_ry.h:152:26: error: 'RX0IE' undeclared (first use in this function)
+mcp2515_ry.h:156:28: error: 'CNF1' undeclared (first use in this function)
+mcp2515_ry.h:163:25: error: 'BFPCTRL' undeclared (first use in this function)
+mcp2515_ry.h:166:25: error: 'TXRTSCTRL' undeclared (first use in this function)
+mcp2515_ry.h:182:25: error: 'RXB0CTRL' undeclared (first use in this function)
+mcp2515_ry.h:182:39: error: 'RXM0' undeclared (first use in this function)
+mcp2515_ry.h:183:25: error: 'RXB1CTRL' undeclared (first use in this function)
+mcp2515_ry.h:189:11: error: 'RXM0SIDH' undeclared (first use in this function)
+mcp2515_ry.h:198:11: error: 'RXM1SIDH' undeclared (first use in this function)
+mcp2515_ry.h:208:11: error: 'RXF0SIDH' undeclared (first use in this function)
+mcp2515_ry.h:209:11: error: 'RxID' undeclared (first use in this function)
+mcp2515_ry.h:217:11: error: 'RXF1SIDH' undeclared (first use in this function)
+mcp2515_ry.h:225:11: error: 'RXF2SIDH' undeclared (first use in this function)
+mcp2515_ry.h:233:11: error: 'RXF3SIDH' undeclared (first use in this function)
+pic_spi_ry.h: In function 'SPI_masterInit':
+In file included from main.c:29:0:
+pic_spi_ry.h:14:3: error: 'TRISCBITS' has no member named 'TRISC0'
+mcp2515_ry.h:241:11: error: 'RXF4SIDH' undeclared (first use in this function)
+mcp2515_ry.h:251:25: error: 'CANCTRL' undeclared (first use in this function)
+mcp2515_ry.h: In function 'mcp2515_get_message':
+mcp2515_ry.h:260:39: error: 'CAN_RX_STATUS' undeclared (first use in this function)
+mcp2515_ry.h:265:10: error: 'CAN_READ_RX_BUFF' undeclared (first use in this function)
+mcp2515_ry.h:300:22: error: 'CANINTF' undeclared (first use in this function)
+mcp2515_ry.h:300:35: error: 'RX0IF' undeclared (first use in this function)
+mcp2515_ry.h:303:35: error: 'RX1IF' undeclared (first use in this function)
+mcp2515_ry.h: In function 'mcp2515_write_register':
+In file included from main.c:30:0:
+mcp2515_ry.h:67:11: error: 'CAN_WRITE' undeclared (first use in this function)
+mcp2515_ry.h:67:11: note: each undeclared identifier is reported only once for each function it appears in
+mcp2515_ry.h: In function 'mcp2515_send_message':
+mcp2515_ry.h:312:39: error: 'CAN_READ_STATUS' undeclared (first use in this function)
+mcp2515_ry.h: In function 'mcp2515_read_register':
+mcp2515_ry.h:80:11: error: 'CAN_READ' undeclared (first use in this function)
+mcp2515_ry.h:338:11: error: 'CAN_LOAD_TX_BUFF' undeclared (first use in this function)
+mcp2515_ry.h: In function 'mcp2515_bit_modify':
+mcp2515_ry.h:95:11: error: 'CAN_BIT_MODIFY' undeclared (first use in this function)
+mcp2515_ry.h:351:16: error: 'RTR' undeclared (first use in this function)
+mcp2515_ry.h: In function 'mcp2515_init':
+mcp2515_ry.h:370:11: error: 'CAN_RTS' undeclared (first use in this function)
+mcp2515_ry.h:131:11: error: 'CAN_RESET' undeclared (first use in this function)
+nbproject/Makefile-XC16_24FJ256GA110.mk:142: recipe for target 'build/XC16_24FJ256GA110/production/interrupts.o' failed
+mcp2515_ry.h:136:2: error: 'SYS_FREQ' undeclared (first use in this function)
+mcp2515_ry.h:140:11: error: 'CAN_WRITE' undeclared (first use in this function)
+mcp2515_ry.h:141:11: error: 'CNF3' undeclared (first use in this function)
+mcp2515_ry.h:143:15: error: 'PHSEG21' undeclared (first use in this function)
+mcp2515_ry.h:148:15: error: 'BTLMODE' undeclared (first use in this function)
+mcp2515_ry.h:148:28: error: 'PHSEG11' undeclared (first use in this function)
+mcp2515_ry.h:152:15: error: 'RX1IE' undeclared (first use in this function)
+mcp2515_ry.h:152:26: error: 'RX0IE' undeclared (first use in this function)
+mcp2515_ry.h:156:28: error: 'CNF1' undeclared (first use in this function)
+mcp2515_ry.h:163:25: error: 'BFPCTRL' undeclared (first use in this function)
+mcp2515_ry.h:166:25: error: 'TXRTSCTRL' undeclared (first use in this function)
+mcp2515_ry.h:182:25: error: 'RXB0CTRL' undeclared (first use in this function)
+mcp2515_ry.h:182:39: error: 'RXM0' undeclared (first use in this function)
+mcp2515_ry.h:183:25: error: 'RXB1CTRL' undeclared (first use in this function)
+mcp2515_ry.h:189:11: error: 'RXM0SIDH' undeclared (first use in this function)
+mcp2515_ry.h:198:11: error: 'RXM1SIDH' undeclared (first use in this function)
+mcp2515_ry.h:208:11: error: 'RXF0SIDH' undeclared (first use in this function)
+mcp2515_ry.h:209:11: error: 'RxID' undeclared (first use in this function)
+mcp2515_ry.h:217:11: error: 'RXF1SIDH' undeclared (first use in this function)
+mcp2515_ry.h:225:11: error: 'RXF2SIDH' undeclared (first use in this function)
+mcp2515_ry.h:233:11: error: 'RXF3SIDH' undeclared (first use in this function)
+mcp2515_ry.h:241:11: error: 'RXF4SIDH' undeclared (first use in this function)
+mcp2515_ry.h:251:25: error: 'CANCTRL' undeclared (first use in this function)
+mcp2515_ry.h: In function 'mcp2515_get_message':
+mcp2515_ry.h:260:39: error: 'CAN_RX_STATUS' undeclared (first use in this function)
+interrupts.c: In function '_INT1Interrupt':
+interrupts.c:171:27: error: 'CANRX_buffer' undeclared (first use in this function)
+mcp2515_ry.h:265:10: error: 'CAN_READ_RX_BUFF' undeclared (first use in this function)
+interrupts.c:173:10: error: request for member 'INT1IF' in something not a structure or union
+mcp2515_ry.h:300:22: error: 'CANINTF' undeclared (first use in this function)
+mcp2515_ry.h:300:35: error: 'RX0IF' undeclared (first use in this function)
+mcp2515_ry.h:303:35: error: 'RX1IF' undeclared (first use in this function)
+mcp2515_ry.h: In function 'mcp2515_send_message':
+mcp2515_ry.h:312:39: error: 'CAN_READ_STATUS' undeclared (first use in this function)
+mcp2515_ry.h:338:11: error: 'CAN_LOAD_TX_BUFF' undeclared (first use in this function)
+mcp2515_ry.h:351:16: error: 'RTR' undeclared (first use in this function)
+mcp2515_ry.h:365:2: error: 'SYS_FREQ' undeclared (first use in this function)
+mcp2515_ry.h:370:11: error: 'CAN_RTS' undeclared (first use in this function)
+mcp2515_ry.h: At top level:
+In file included from main.c:48:0:
+mcp2515_ry.h:60:3: error: conflicting types for 'tCAN'
+mcp2515_ry.h:60:3: note: previous declaration of 'tCAN' was here
+mcp2515_ry.h:63:6: error: redefinition of 'mcp2515_write_register'
+mcp2515_ry.h:63:6: note: previous definition of 'mcp2515_write_register' was here
+mcp2515_ry.h:74:9: error: redefinition of 'mcp2515_read_register'
+mcp2515_ry.h:74:9: note: previous definition of 'mcp2515_read_register' was here
+mcp2515_ry.h:91:6: error: redefinition of 'mcp2515_bit_modify'
+mcp2515_ry.h:91:6: note: previous definition of 'mcp2515_bit_modify' was here
+mcp2515_ry.h:104:9: error: redefinition of 'mcp2515_read_status'
+mcp2515_ry.h:104:9: note: previous definition of 'mcp2515_read_status' was here
+mcp2515_ry.h:126:9: error: redefinition of 'mcp2515_init'
+mcp2515_ry.h:126:9: note: previous definition of 'mcp2515_init' was here
+mcp2515_ry.h:257:9: error: conflicting types for 'mcp2515_get_message'
+mcp2515_ry.h:257:9: note: previous definition of 'mcp2515_get_message' was here
+mcp2515_ry.h:310:9: error: conflicting types for 'mcp2515_send_message'
+mcp2515_ry.h:310:9: note: previous definition of 'mcp2515_send_message' was here
+make[2]: *** [build/XC16_24FJ256GA110/production/interrupts.o] Error 255
+make[2]: *** Waiting for unfinished jobs....
+nbproject/Makefile-XC16_24FJ256GA110.mk:149: recipe for target 'build/XC16_24FJ256GA110/production/main.o' failed
+make[2]: Leaving directory 'C:/Users/grimj/Documents/GitHub/Mechatronics_EE/HYDRAS.X'
+nbproject/Makefile-XC16_24FJ256GA110.mk:84: recipe for target '.build-conf' failed
+make[1]: Leaving directory 'C:/Users/grimj/Documents/GitHub/Mechatronics_EE/HYDRAS.X'
+nbproject/Makefile-impl.mk:39: recipe for target '.build-impl' failed
+main.c: In function 'main':
+main.c:77:2: warning: implicit declaration of function 'GPIO_init'
+main.c:78:2: warning: implicit declaration of function 'INTERRUPT_init'
+main.c:85:3: warning: implicit declaration of function 'USART_Transmit'
+main.c:98:8: error: 'UCSR0A' undeclared (first use in this function)
+main.c:98:21: error: 'RXC0' undeclared (first use in this function)
+main.c:101:4: warning: implicit declaration of function 'USART_Receive'
+make[2]: *** [build/XC16_24FJ256GA110/production/main.o] Error 255
+make[1]: *** [.build-conf] Error 2
+make: *** [.build-impl] Error 2
+
+BUILD FAILED (exit value 2, total time: 364ms)
