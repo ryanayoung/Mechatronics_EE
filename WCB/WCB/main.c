@@ -38,7 +38,7 @@
 // #include "Headers/usart_ry.h"
 #include "Headers/mcp2515_ry_def.h"
 #include "Headers/mcp2515_ry.h"
-#include "headers/can_frames.h"		//CAN frames in tCAN struct format
+#include "headers/can_frames_MASTER.h"		//CAN frames in tCAN struct format
 
 
 

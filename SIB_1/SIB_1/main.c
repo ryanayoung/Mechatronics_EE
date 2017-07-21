@@ -306,22 +306,21 @@ int main(void)
 	while (1) 
     {
 		int_p1();
-		//debug_state();
+		CAN_HANDLE();
 		int_p2();
-		//debug_state();
+		CAN_HANDLE();
 		update_ep();
-
+		CAN_HANDLE();
 		int_p3();
-		//debug_state();
+		CAN_HANDLE();
 		int_t1();
-		//debug_state();
-
+		CAN_HANDLE();
 		update_ep();
-
+		CAN_HANDLE();
 		int_t2();
-		//debug_state();
+		CAN_HANDLE();
 		int_t3();
-		//debug_state();
+		CAN_HANDLE();
 		update_ep();
 		CAN_HANDLE();
 		//CAN_TX_INT(crit_depth,crit_leak,crit_general);
@@ -1210,7 +1209,7 @@ void CAN_HANDLE(void)
 			{
 				case RR_Press_ID:
 
-					USART_CAN_TX(Request_Response_SIB_Pressure);
+					//USART_CAN_TX(Request_Response_SIB_Pressure);
 					//send over uart
 					mcp2515_send_message(&Request_Response_SIB_Pressure);
 					//send over can
@@ -1222,7 +1221,7 @@ void CAN_HANDLE(void)
 
 				case RR_Temp_ID:
 					//this case may become obsolete
-					USART_CAN_TX(Request_Response_SIB_Temp);
+					//USART_CAN_TX(Request_Response_SIB_Temp);
 					//send over uart
 					mcp2515_send_message(&Request_Response_SIB_Temp);
 					//send over can
