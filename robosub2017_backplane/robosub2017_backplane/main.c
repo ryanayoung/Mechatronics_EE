@@ -84,14 +84,11 @@ int main(void)
 	//MCP2515 initialization
 	if(mcp2515_init(CANSPEED_500))
 	{//[TODO]these need to be updated to RAW serial messages
-		USART_Transmit_TX("Can Init SUCCESS!");
+		USART_Transmit(0xFF);
 	}else
 	{
-		USART_Transmit_TX("Can Init FAILURE!");
-	}
-	USART_Transmit(10);//New Line
-	USART_Transmit(13);//Carriage return
-	
+		USART_Transmit(0x00);
+	}	
 	
 	ADCSRA |= (1<<ADSC); //start adc sample
 	
@@ -135,25 +132,47 @@ ISR(INT0_vect)
 *******************************************************************************/ 
 ISR(ADC_vect) 
 { 
+	uint16_t ADC_buff;
+	int8_t 6V_sense;
+	int8_t 24V_sense;
+	int8_t 5V_sense;
+	
 	/*
-		store ADC value remapped to 0-5.0Volts
-		this allows them to fit into byte size readings instead of 10bit.
-		hopefully we don't need the full 10 bits.
-		should sit at 2.5V.  above 2.5V is + current, below 2.5 is 
-		negative current.
-		
 			voltage_sens = {ADC7, ADC6, ADC0} 
 			which corresponds to
 			voltage_sens = {P6V_SENSE, P24V_SENS, P5V_SENSE} 
 	*/
-	voltage_sense[adc_select] = ADCH;
+	
+	voltage_sense[adc_select] = ADCL;
+	voltage_sense[adc_select] |= (uint16_t)(ADCH<<8);
+	
+	6V_sense = map(voltage_sense[0],0,1023,-125,125);//map to +/-12.5Amps
+	24V_sense = map(voltage_sense[1],0,1023,-125,125);
+	5V_sense = map(voltage_sense[2],0,1023,-50,50);//map to +/-5Amps
+	
+	if(6V_sense > 70){
+		CI_Backplane_Current.data[0] = 4;
+		CI_Backplane_Current.data[1] = 6V_sense;
+		USART_CAN_TX(CI_Backplane_Current);
+	}
+	if(24V_sense > 70){
+		CI_Backplane_Current.data[0] = 5;
+		CI_Backplane_Current.data[1] = 24V_sense;
+		USART_CAN_TX(CI_Backplane_Current);
+	}
+	if(5V_sense > 45){
+		CI_Backplane_Current.data[0] = 6;
+		CI_Backplane_Current.data[1] = 5V_sense;
+		USART_CAN_TX(CI_Backplane_Current);
+	}
 	
 	adc_select++;
 	if(adc_select > 2){//resets count at 3 and stores values in CAN frame
 		adc_select = 0;
-		for(uint8_t j = 0; j < 3; j++){
-		Request_Response_Backplane_Current.data[j] = voltage_sense[j];
-		}
+		Request_Response_Backplane_Current.data[0] = 6V_sense;
+		Request_Response_Backplane_Current.data[1] = 24V_sense;
+		Request_Response_Backplane_Current.data[2] = 5V_sense;
+		
 	}
 	
 	//select which adc to sample from
