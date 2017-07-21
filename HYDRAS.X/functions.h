@@ -31,11 +31,11 @@ void INTERRUPT_init(void)
     //set a pin to be external interrupt
 		//set pin 37, rp20 to external interrupt
     RPINR0bits.INT1R = 20;
-    INTCON1.NSTDIS = 1;
+    INTCON1bits.NSTDIS = 1;
 	//EIMSK |= (1<<INT0);//enable
-    IPC5.INT1IP = 1;
-		IEC1.INT1IE = 1;
-		INTCON1.INT1EP = 1;
+    IPC5bits.INT1IP = 1;
+		IEC1bits.INT1IE = 1;
+		INTCON2bits.INT1EP = 1;
 	//EICRA &= ~(3<<ISC00);//low level interrupt for INT0
 
 	//sei(); //global interrupt enable

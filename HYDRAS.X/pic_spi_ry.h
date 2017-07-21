@@ -7,7 +7,7 @@ void SPI_masterInit(void)
 {
   //set SS, MOSI, SCK TO OUTPUT
   SET_OUTPUT(SS);
-  SET_OUTPUT(MOSI);
+  TRISCbits.TRISC0 = 1;
   SET_OUTPUT(SCK);
 
   //SS high, MIGHT NOT BE NEEDED?
