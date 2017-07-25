@@ -11,8 +11,8 @@
       <itemPath>mcp2515_ry_def.h</itemPath>
       <itemPath>pic_global.h</itemPath>
       <itemPath>mcp2515_ry.h</itemPath>
-      <itemPath>../../../../Downloads/Mechatronics_EE-e8f40a4d4f9f7f4c2c8f88ae651ad22dfb3e5c93/Mechatronics_EE-e8f40a4d4f9f7f4c2c8f88ae651ad22dfb3e5c93/HYDRAS.X/functions.h</itemPath>
-      <itemPath>../../../../Downloads/Mechatronics_EE-e8f40a4d4f9f7f4c2c8f88ae651ad22dfb3e5c93/Mechatronics_EE-e8f40a4d4f9f7f4c2c8f88ae651ad22dfb3e5c93/HYDRAS.X/usart.h</itemPath>
+      <itemPath>functions.h</itemPath>
+      <itemPath>usart.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -40,7 +40,6 @@
   <sourceRootList>
     <Elem>../../../Mechatronics/can_bus/can_bus/headers/pic</Elem>
     <Elem>.</Elem>
-    <Elem>../../../../Downloads/Mechatronics_EE-e8f40a4d4f9f7f4c2c8f88ae651ad22dfb3e5c93/Mechatronics_EE-e8f40a4d4f9f7f4c2c8f88ae651ad22dfb3e5c93/HYDRAS.X</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

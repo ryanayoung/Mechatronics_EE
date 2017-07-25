@@ -20,17 +20,19 @@
 #define F_CPU 16000000UL
 #define SYS_FREQ 32000000L
 #define FCY SYS_FREQ/2
+#define UART_BAUD 9600L
 #include <stdio.h>
 #include <stdint.h>        /* Includes uint16_t definition                    */
 #include <stdbool.h>       /* Includes true/false definition                  */
 #include <libpic30.h>
+#include "system.h"        /* System funct/params, like osc/peripheral config */
+#include "user.h" 
 #include "pic_global.h"
 #include "defines.h"
-#include "functions.h"
 #include "mcp2515_ry_def.h"
-#include "pic_spi_ry.h"
-#include "system.h"        /* System funct/params, like osc/peripheral config */
-#include "user.h"          /* User funct/params, such as InitApp              */
+#include "pic_spi_ry.h"         /* User funct/params, such as InitApp              */
+#include "functions.h"
+#include "usart.h"
 /******************************************************************************
 	CANBUS ID definition|
 		change values for different devices so that M can talk to S and
@@ -67,10 +69,9 @@ uint8_t TxID = 0x10;	//S
 /******************************************************************************
 	start of main()|
 ******************************************************************************/
+tCAN CANRX_buffer;
 tCAN usart_char;	//transmit package
 tCAN spi_char;		//receive package
-volatile tCAN CANRX_buffer;
-tCAN CANTX_buffer;
 int main(void)
 {
   AD1PCFG = 0xFFFF;
@@ -79,8 +80,7 @@ int main(void)
 	INTERRUPT_init();
 	//USART_Init(103);//103 sets baud rate at 9600
 	SPI_masterInit();
-    SET_OUTPUT(LED2);
-    SET_H(LED2);
+
 	//MCP2515 initialization
 	if(mcp2515_init(CANSPEED_500))
 	{
@@ -95,9 +95,9 @@ int main(void)
 	usart_char.header.rtr = 0;		//no remote transmit(i.e. request info)
 	usart_char.header.length = 1;	//single byte(could be up to 8)
 
-	while (1)
+while (1)
 	{
-		if(U1STAbits.TRMT == 0)//if data in serial buffer
+		while(U1STAbits.UTXBF == 1)//if data in serial buffer
 		{
 			//get serial data
 			usart_char.data[0] = USART_Receive();

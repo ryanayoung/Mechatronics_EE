@@ -34,8 +34,8 @@ void INTERRUPT_init(void)
     INTCON1bits.NSTDIS = 1;
 	//EIMSK |= (1<<INT0);//enable
     IPC5bits.INT1IP = 1;
-	IEC1bits.INT1IE = 1;
-	INTCON2bits.INT1EP = 1;
+		IEC1bits.INT1IE = 1;
+		INTCON2bits.INT1EP = 1;
 	//EICRA &= ~(3<<ISC00);//low level interrupt for INT0
 
 	//sei(); //global interrupt enable
