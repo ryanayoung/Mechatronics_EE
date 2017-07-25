@@ -83,8 +83,8 @@ ifneq ($(INFORMATION_MESSAGE), )
 endif
 	${MAKE}  -f nbproject/Makefile-XC16_24FJ256GA110.mk dist/${CND_CONF}/${IMAGE_TYPE}/HYDRAS.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
-MP_PROCESSOR_OPTION=24FJ256GA110
-MP_LINKER_FILE_OPTION=,--script=p24FJ256GA110.gld
+MP_PROCESSOR_OPTION=24FJ32GB004
+MP_LINKER_FILE_OPTION=,--script=p24FJ32GB004.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)

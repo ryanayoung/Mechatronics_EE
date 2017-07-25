@@ -26,6 +26,7 @@
 #include <libpic30.h>
 #include "pic_global.h"
 #include "defines.h"
+#include "functions.h"
 #include "mcp2515_ry_def.h"
 #include "pic_spi_ry.h"
 #include "system.h"        /* System funct/params, like osc/peripheral config */
@@ -68,6 +69,8 @@ uint8_t TxID = 0x10;	//S
 ******************************************************************************/
 tCAN usart_char;	//transmit package
 tCAN spi_char;		//receive package
+tCAN CANRX_buffer;
+tCAN CANTX_buffer;
 int main(void)
 {
   AD1PCFG = 0xFFFF;
@@ -76,7 +79,8 @@ int main(void)
 	INTERRUPT_init();
 	//USART_Init(103);//103 sets baud rate at 9600
 	SPI_masterInit();
-
+    SET_OUTPUT(LED2);
+    SET_H(LED2);
 	//MCP2515 initialization
 	if(mcp2515_init(CANSPEED_500))
 	{
@@ -93,7 +97,7 @@ int main(void)
 
 	while (1)
 	{
-		if(!(UCSR0A & (1<<RXC0)))//if data in serial buffer
+		if(U1STAbits.TRMT == 0)//if data in serial buffer
 		{
 			//get serial data
 			usart_char.data[0] = USART_Receive();

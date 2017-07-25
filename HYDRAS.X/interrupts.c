@@ -160,5 +160,5 @@ void __attribute__((interrupt,auto_psv)) _INT1Interrupt(void)
 {
      mcp2515_get_message(&CANRX_buffer);
      //clear interrupt flag
-     IFS1.INT1IF = 0;
+     IFS1bits.INT1IF = 0;
 }
