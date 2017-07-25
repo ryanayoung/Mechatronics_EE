@@ -69,7 +69,7 @@ uint8_t TxID = 0x10;	//S
 ******************************************************************************/
 tCAN usart_char;	//transmit package
 tCAN spi_char;		//receive package
-tCAN CANRX_buffer;
+volatile tCAN CANRX_buffer;
 tCAN CANTX_buffer;
 int main(void)
 {

@@ -9,5 +9,5 @@
 /******************************************************************************/
 
 /* TODO User level functions prototypes (i.e. InitApp) go here */
-
+//extern tCAN CANRX_buffer;
 void InitApp(void);         /* I/O and Peripheral Initialization */
