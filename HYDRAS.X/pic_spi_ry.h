@@ -1,17 +1,13 @@
 /*
 description! coming soon
 */
-
-#ifndef PIC_SPI_RY
-#define PIC_SPI_RY
-
 //please test
 //in progress, needs commenting, basically done
 void SPI_masterInit(void)
 {
   //set SS, MOSI, SCK TO OUTPUT
   SET_OUTPUT(SS);
-  TRISCbits.TRISC0 = 1;
+  SET_OUTPUT(MOSI);
   SET_OUTPUT(SCK);
 
   //SS high, MIGHT NOT BE NEEDED?
@@ -53,6 +49,3 @@ char SPI_txrx(char val)
 
 
 }
-
-
-#endif

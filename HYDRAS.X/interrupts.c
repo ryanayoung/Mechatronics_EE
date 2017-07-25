@@ -17,22 +17,7 @@
 
 #include <stdint.h>        /* Includes uint16_t definition */
 #include <stdbool.h>       /* Includes true/false definition */
-<<<<<<< HEAD
-#include "mcp2515_ry_def.h"
-#include <libpic30.h>
-=======
-#include <stdbool.h>       /* Includes true/false definition                  */
-#include <libpic30.h>
-#include "pic_global.h"
-#include "defines.h"
-#include "pic_spi_ry.h"
-#include "mcp2515_ry.h"
-#include "mcp2515_ry_def.h"
 
-#include "system.h"        /* System funct/params, like osc/peripheral config */
-#include "user.h"          /* User funct/params, such as InitApp              */
-
->>>>>>> 9a37bd4d1ab245d6b5fe4ad036046a60c25e007a
 /******************************************************************************/
 /* Interrupt Vector Options                                                   */
 /******************************************************************************/
@@ -173,7 +158,7 @@
 /* TODO Add interrupt routine code here. */
 void __attribute__((interrupt,auto_psv)) _INT1Interrupt(void)
 {
-     mcp2515_get_message(CAN_READ_RX_BUFF);
+     mcp2515_get_message(&CANRX_buffer);
      //clear interrupt flag
-     IFS1bits.INT1IF = 0;
+     IFS1.INT1IF = 0;
 }

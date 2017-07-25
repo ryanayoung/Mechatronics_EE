@@ -46,8 +46,6 @@ RYAN YOUNG
 			the 8 bytes
 ******************************************************************************/
 
-#ifndef MCP2515_RY
-#define MCP2515
 
 typedef struct
 {
@@ -372,5 +370,3 @@ uint8_t mcp2515_send_message(tCAN *message)
 
 	return address;
 }
-
-#endif

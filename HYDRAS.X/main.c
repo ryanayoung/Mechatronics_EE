@@ -18,30 +18,18 @@
 #endif
 #define _XTAL_FREQ 16000000UL
 #define F_CPU 16000000UL
-//#define SYS_FREQ 32000000L
+#define SYS_FREQ 32000000L
 #define FCY SYS_FREQ/2
-#define UART_BAUD 9600L
 #include <stdio.h>
 #include <stdint.h>        /* Includes uint16_t definition                    */
 #include <stdbool.h>       /* Includes true/false definition                  */
 #include <libpic30.h>
-#include "system.h"        /* System funct/params, like osc/peripheral config */
-#include "user.h" 
 #include "pic_global.h"
 #include "defines.h"
-<<<<<<< HEAD
 #include "mcp2515_ry_def.h"
-#include "pic_spi_ry.h"         /* User funct/params, such as InitApp              */
-#include "functions.h"
-#include "usart.h"
-=======
 #include "pic_spi_ry.h"
-#include "mcp2515_ry.h"
-#include "mcp2515_ry_def.h"
 #include "system.h"        /* System funct/params, like osc/peripheral config */
 #include "user.h"          /* User funct/params, such as InitApp              */
-
->>>>>>> 9a37bd4d1ab245d6b5fe4ad036046a60c25e007a
 /******************************************************************************
 	CANBUS ID definition|
 		change values for different devices so that M can talk to S and
@@ -103,7 +91,7 @@ int main(void)
 	usart_char.header.rtr = 0;		//no remote transmit(i.e. request info)
 	usart_char.header.length = 1;	//single byte(could be up to 8)
 
-/*	while (1)
+	while (1)
 	{
 		if(!(UCSR0A & (1<<RXC0)))//if data in serial buffer
 		{
@@ -113,7 +101,7 @@ int main(void)
 			//transmit usart_char over canbus
 			mcp2515_send_message(&usart_char);
 		}
-	}*/
+	}
     return 0;
 }/****end of main()**********************************************************/
 

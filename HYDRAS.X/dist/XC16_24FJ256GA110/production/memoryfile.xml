@@ -4,15 +4,15 @@
   <executable name="dist/XC16_24FJ256GA110/production/HYDRAS.X.production.elf">
     <memory name="data">
       <units>bytes</units>
-      <length>8192</length>
-      <used>26</used>
-      <free>8166</free>
+      <length>16384</length>
+      <used>2</used>
+      <free>16382</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
-      <length>33012</length>
-      <used>2145</used>
-      <free>30867</free>
+      <length>261876</length>
+      <used>1815</used>
+      <free>260061</free>
     </memory>
   </executable>
 </project>

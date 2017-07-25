@@ -42,9 +42,6 @@ RyanAYoung81@gmail.com
 	https://github.com/sparkfun/SparkFun_CAN-Bus_Arduino_Library
 ******************************************************************************/
 
-#ifndef MCP2515_RY_DEF
-#define MCP2515_RY_DEF
-
 #define CANSPEED_125 	7		// CAN speed at 125 kbps
 #define CANSPEED_250  	3		// CAN speed at 250 kbps
 #define CANSPEED_500	1		// CAN speed at 500 kbps
@@ -384,5 +381,3 @@ send three words
 #define	DLC2		2
 #define	DLC1		1
 #define DLC0		0
-
-#endif
