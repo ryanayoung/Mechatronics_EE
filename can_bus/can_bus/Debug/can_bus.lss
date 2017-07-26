@@ -295,10 +295,7 @@ void USART_CAN_TX(tCAN data)
  1f4:	8c 29       	or	r24, r12
  1f6:	80 2b       	or	r24, r16
  1f8:	0e 94 be 00 	call	0x17c	; 0x17c <USART_Transmit>
-	USART_Transmit(data.id << 5);
-	USART_Transmit(data.header.rtr << 4);
-	USART_Transmit(data.header.length);
-	*/
+
 	//read back all data received.
 	if(!data.header.rtr){
  1fc:	8b 81       	ldd	r24, Y+3	; 0x03
@@ -322,9 +319,9 @@ void USART_CAN_TX(tCAN data)
  21c:	f9 1f       	adc	r31, r25
  21e:	80 81       	ld	r24, Z
  220:	0e 94 be 00 	call	0x17c	; 0x17c <USART_Transmit>
-	USART_Transmit(data.header.rtr << 4);
-	USART_Transmit(data.header.length);
-	*/
+	
+	USART_Transmit((data.id << 5) | (data.header.rtr <<4) | data.header.length);
+
 	//read back all data received.
 	if(!data.header.rtr){
 		for (uint8_t t = 0; t < data.header.length;t++) {

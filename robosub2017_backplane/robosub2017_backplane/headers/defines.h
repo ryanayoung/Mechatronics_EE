@@ -20,6 +20,10 @@
 #define LED3 D,5
 #define LED4 D,6
 
+//Buttons
+#define RUN_EN C,2
+#define KILLSWITCH C,3
+
 //ADC inputs
 #define V24_pin E,2
 #define V6_pin E,3

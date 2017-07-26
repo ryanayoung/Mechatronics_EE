@@ -41,8 +41,9 @@
 #define RXMaskHi  0x00
 
 //Uart Receive statemachine states
-#define s_RxIDH	0x10
-#define s_RxIDL 0x20
+#define s_RxStart 0x10
+#define s_RxIDH	  0x20
+#define s_RxIDL   0x30
 #define s_Rxdata1 0x01
 #define s_Rxdata2 0x02
 #define s_Rxdata3 0x03
@@ -73,7 +74,7 @@
 #define Rx2ID  0x003
 #define Rx3ID  0x003
 #define Rx4ID  0x003
-#define Rx5ID 0x003
+#define Rx5ID  0x003
 
 #define IP1 1
 #define IP2 2

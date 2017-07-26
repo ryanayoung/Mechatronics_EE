@@ -48,8 +48,7 @@ RYAN YOUNG
 			the length: from 0 to 8 bytes(0 if rtr is 1)
 			the 8 bytes
 ******************************************************************************/
-typedef struct
-{
+typedef struct{
 	uint16_t id;
 	struct {
 		int8_t rtr : 1;
@@ -59,14 +58,11 @@ typedef struct
 } tCAN;
 
 
-void mcp2515_write_register( uint8_t adress, uint8_t data )
-{
+void mcp2515_write_register( uint8_t adress, uint8_t data ){
 	SET_L(SS);//enable slave
-
 	SPI_txrx(CAN_WRITE);//send write instruction
 	SPI_txrx(adress);//send address
 	SPI_txrx(data);//send value
-
 	SET_H(SS);//disable slave
 }
 

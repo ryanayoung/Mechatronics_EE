@@ -12,8 +12,6 @@
 #include <avr/interrupt.h>
 #include <util/atomic.h>
 
-
-
 /******************************************************************************
 	CANBUS ID definitions|
 		
@@ -26,7 +24,6 @@
 #define Rx4ID  0x002
 #define Rx5ID  0x002
 
-
 /******************************************************************************
 	CANBUS header files|
 	These must be placed after define RxIDs to prevent errors
@@ -38,9 +35,7 @@
 // #include "Headers/usart_ry.h"
 #include "Headers/mcp2515_ry_def.h"
 #include "Headers/mcp2515_ry.h"
-#include "headers/can_frames_MASTER.h"		//CAN frames in tCAN struct format
-
-
+#include "headers/can_frames.h"		//CAN frames in tCAN struct format
 
 /******************************************************************************
 	Function Prototypes|
@@ -62,8 +57,6 @@ void Claw_6();
 void Spare();
 void Poker();
 
-
-
 /******************************************************************************
 	global variable definitions|
 		
@@ -71,123 +64,90 @@ void Poker();
 tCAN CANRX_buffer;		// message package
 volatile uint8_t rx_flag = 0;
 
-
-
-
-int main(void)
-{
+int main(void){
 	setup();
-	
-	/*
-	//This is temporary. Reference back to know how to make the frame
-	spi_char.id = 0x10;
-	spi_char.header.length = 4;
-	spi_char.header.rtr = 0;
-	spi_char.data[0] = 'F';
-	spi_char.data[1] = 'U';
-	spi_char.data[2] = 'C';
-	spi_char.data[3] = 'FK';
-	*/
-	
-	// mcp2515_send_message(&spi_char);
-	
-	while(1) // Infinite loop while 1 is true.
-	{
-		 if(rx_flag)	// if data received on CAN...
-		 {
-			 ATOMIC_BLOCK(ATOMIC_RESTORESTATE)	// disables interrupts
-			 {
+	while(1){ // Infinite loop while 1 is true.
+		 if(rx_flag){	// if data received on CAN...
+			 ATOMIC_BLOCK(ATOMIC_RESTORESTATE){	// disables interrupts
 				 // matches received ID.  if current request, returns current data
-				 // if more cases are required, will convert to a switch-case
-				 if (CANRX_buffer.id == Weapon1_Command.id)
-				 {
+				 if (CANRX_buffer.id == Weapon1_Command.id){
 					 mcp2515_send_message(&Weapon1_Confirm);
 					 Laser_1();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon2_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon2_Command.id){
 					 mcp2515_send_message(&Weapon2_Confirm);
 					 Laser_2();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon3_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon3_Command.id){
 					 mcp2515_send_message(&Weapon3_Confirm);
 					 Torpedo_1();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon4_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon4_Command.id){
 					 mcp2515_send_message(&Weapon4_Confirm);
 					 Torpedo_2();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon5_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon5_Command.id){
 					 mcp2515_send_message(&Weapon5_Confirm);
 					 Dropper_1();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon6_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon6_Command.id){
 					 mcp2515_send_message(&Weapon6_Confirm);
 					 Dropper_2();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon7_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon7_Command.id){
 					 mcp2515_send_message(&Weapon7_Confirm);
 					 Claw_1();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon8_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon8_Command.id){
 					 mcp2515_send_message(&Weapon8_Confirm);
 					 Claw_2();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon9_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon9_Command.id){
 					 mcp2515_send_message(&Weapon9_Confirm);
 					 Claw_3();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon10_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon10_Command.id){
 					 mcp2515_send_message(&Weapon10_Confirm);
 					 Claw_4();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon11_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon11_Command.id){
 					 mcp2515_send_message(&Weapon11_Confirm);
 					 Claw_5();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon12_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon12_Command.id){
 					 mcp2515_send_message(&Weapon12_Confirm);
 					 Claw_6();
 					 //send over can
 				 }
-				 else if (CANRX_buffer.id == Weapon13_Command.id)
-				 {
+				 else if (CANRX_buffer.id == Weapon13_Command.id){
 					 mcp2515_send_message(&Weapon13_Confirm);
 					 Spare();
 					 //send over can
 				 }
+				 CANRX_buffer.id = 0;
+				 CANRX_buffer.header.rtr = 0;
+				 CANRX_buffer.header.length = 0;
+				 memset(CANRX_buffer.data, 0, sizeof(CANRX_buffer.data));
 				 rx_flag = 0;	// clear receive flag
 			 }	// end ATOMIC_BLOCK
 		 }
 	}
 }	// end main
 
-
-
-void setup()
-{
+void setup(){
 	// Set outputs
+	/*
 	DDRB |= (1<<DDB0);	// D8 -> PB0	Claw 4
 	DDRB |= (1<<DDB1);	// D9 -> PB1	Claw 3
 	
@@ -204,8 +164,22 @@ void setup()
 	
 	DDRE |= (1<<DDE2);	// A6 -> PE2	Claw 2
 	DDRE |= (1<<DDE3);	// A7 -> PE3	Claw 1
+	*/
+	//Replaces code above
+	SET_OUTPUT(CLAW1);
+	SET_OUTPUT(CLAW2);
+	SET_OUTPUT(CLAW3);
+	SET_OUTPUT(CLAW4);
+	SET_OUTPUT(CLAW5);
+	SET_OUTPUT(CLAW6);
+	SET_OUTPUT(DROPPER1);
+	SET_OUTPUT(DROPPER2);
+	SET_OUTPUT(LASER1);
+	SET_OUTPUT(LASER2);
+	SET_OUTPUT(SPARE);
 	
 	// Ensure all outputs are off
+	/*
 	PORTB &= ~(1<<PORTB0);
 	PORTB &= ~(1<<PORTB1);
 	
@@ -222,6 +196,24 @@ void setup()
 	
 	PORTE &= ~(1<<PORTE2);
 	PORTE &= ~(1<<PORTE3);
+	*/
+	
+	// Ensure all outputs are off
+	// Replaces code above
+	SET_L(CLAW1);
+	SET_L(CLAW2);
+	SET_L(CLAW3);
+	SET_L(CLAW4);
+	SET_L(CLAW5);
+	SET_L(CLAW6);
+	SET_L(DROPPER1);
+	SET_L(DROPPER2);
+	SET_L(TORPEDO1);
+	SET_L(TORPEDO2);
+	SET_L(LASER1);
+	SET_L(LASER2);
+	SET_L(SPARE);
+	
 	
 	// CAN bus stuff
 	GPIO_init();
@@ -241,27 +233,35 @@ void Laser_2(){
 
 // Each Weapon device will toggle on for 50mS and then toggle off
 void Torpedo_1(){
-	PORTC ^= (1<<PORTC3);
-	_delay_ms(50);
-	PORTC &= ~(1<<PORTC3);
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+		PORTC ^= (1<<PORTC3);
+		_delay_ms(50);
+		PORTC &= ~(1<<PORTC3);
+	}
 }
 
 void Torpedo_2(){
-	PORTC ^= (1<<PORTC2);
-	_delay_ms(50);
-	PORTC &= ~(1<<PORTC2);
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+		PORTC ^= (1<<PORTC2);
+		_delay_ms(50);
+		PORTC &= ~(1<<PORTC2);
+	}
 }
 
 void Dropper_1(){
-	PORTC ^= (1<<PORTC1);
-	_delay_ms(50);
-	PORTC &= ~(1<<PORTC1);
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+		PORTC ^= (1<<PORTC1);
+		_delay_ms(50);
+		PORTC &= ~(1<<PORTC1);
+	}
 }
 
 void Dropper_2(){
-	PORTC ^= (1<<PORTC0);
-	_delay_ms(50);
-	PORTC &= ~(1<<PORTC0);
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+		PORTC ^= (1<<PORTC0);
+		_delay_ms(50);
+		PORTC &= ~(1<<PORTC0);
+	}
 }
 
 // Each claw device will be triggered each time the function is called
@@ -293,37 +293,34 @@ void Spare(){
 	PORTD ^= (1<<PORTD5);
 }
 
-
-
 /******************************************************************************
 	Custom weapon functions|
 
 ******************************************************************************/
-void Poker()
-{
+void Poker(){
 	// Raise the poker
-	Claw_1();
-	_delay_ms(1000);
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+		Claw_1();
+		_delay_ms(1000);
 	
-	// Spam the poker
-	for(int x=0; x<20; x++)
-	{
-		Claw_2();
-		_delay_ms(25);
-		Claw_2();
-		_delay_ms(145);
+		// Spam the poker
+		for(int x=0; x<20; x++)
+		{
+			Claw_2();
+			_delay_ms(25);
+			Claw_2();
+			_delay_ms(145);
+		}
+	
+		// Lower the poker
+		Claw_1();
 	}
-	
-	// Lower the poker
-	Claw_1();
 }
-
 
 /******************************************************************************
 	CAN RECEIVE interrupt on pin PD2|
 ******************************************************************************/
-ISR(INT0_vect)
-{
+ISR(INT0_vect){
 	mcp2515_get_message(&CANRX_buffer);	// get canbus message
 	rx_flag = 1;  //set flag
 }

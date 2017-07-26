@@ -83,4 +83,5 @@ void USART_CAN_TX(tCAN data)
 			USART_Transmit(data.data[t]); //data
 		}
 	}
+	TOGGLE(LED1);
 }

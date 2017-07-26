@@ -14,7 +14,6 @@
 #define SCK B,5
 #define INT D,2
 
-
 //Filter 1
 #define Rx0IDLow	((Rx0ID & 0x07) << 5)
 #define Rx0IDHi		(uint8_t)(Rx0ID >> 3)
@@ -51,3 +50,18 @@
 #define s_Rxdata6 0x06
 #define s_Rxdata7 0x07
 #define s_Rxdata8 0x08
+
+//WCB Defines
+#define CLAW4 B,0
+#define CLAW3 B,1
+#define DROPPER2 C,0
+#define DROPPER1 C,1
+#define TORPEDO2 C,2
+#define TORPEDO1 C,3
+#define LASER2 D,3
+#define LASER1 D,4
+#define SPARE D,5
+#define CLAW6 D,6
+#define CLAW5 D,7
+#define CLAW2 E,2
+#define CLAW1 E,3
