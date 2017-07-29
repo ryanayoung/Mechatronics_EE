@@ -69,9 +69,9 @@ uint8_t TxID = 0x10;	//S
 /******************************************************************************
 	start of main()|
 ******************************************************************************/
-tCAN CANRX_buffer;
-tCAN usart_char;	//transmit package
-tCAN spi_char;		//receive package
+struct tCAN usart_char;	//transmit package
+struct tCAN spi_char;		//receive package
+struct tCAN CANRX_buffer;
 int main(void)
 {
   AD1PCFG = 0xFFFF;

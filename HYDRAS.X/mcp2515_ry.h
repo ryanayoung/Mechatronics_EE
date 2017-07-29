@@ -47,7 +47,7 @@ RYAN YOUNG
 ******************************************************************************/
 
 
-typedef struct
+struct tCAN
 {
 	uint16_t id;
 	struct {
@@ -55,9 +55,9 @@ typedef struct
 		uint8_t length : 4;
 	} header;
 	uint8_t data[8];
-} tCAN;
+};
 
-
+extern struct TCAN tCAN;
 void mcp2515_write_register( uint8_t adress, uint8_t data )
 {
 	SET_L(SS);//enable slave
@@ -252,7 +252,7 @@ uint8_t mcp2515_init(uint8_t speed)
 }
 
 // ----------------------------------------------------------------------------
-uint8_t mcp2515_get_message(tCAN *message)
+uint8_t mcp2515_get_message(struct tCAN *message)
 {
 	// read status
 	uint8_t status = mcp2515_read_status(CAN_RX_STATUS);
@@ -305,7 +305,7 @@ uint8_t mcp2515_get_message(tCAN *message)
 }
 
 // ----------------------------------------------------------------------------
-uint8_t mcp2515_send_message(tCAN *message)
+uint8_t mcp2515_send_message(struct tCAN *message)
 {
 	uint8_t status = mcp2515_read_status(CAN_READ_STATUS);
 

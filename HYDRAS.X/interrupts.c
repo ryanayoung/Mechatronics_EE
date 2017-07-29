@@ -15,10 +15,20 @@
     #endif
 #endif
 
-#include <stdint.h>        /* Includes uint16_t definition */
-#include <stdbool.h>       /* Includes true/false definition */
-#include "mcp2515_ry_def.h"
+#define _XTAL_FREQ 16000000UL
+#define F_CPU 16000000UL
+#define SYS_FREQ 32000000L
+#define FCY SYS_FREQ/2
+#define UART_BAUD 9600L
+#include <stdio.h>
+#include <stdint.h>        /* Includes uint16_t definition                    */
+#include <stdbool.h>       /* Includes true/false definition                  */
 #include <libpic30.h>
+#include "system.h"        /* System funct/params, like osc/peripheral config */
+#include "user.h" 
+#include "pic_global.h"
+#include "defines.h"
+
 /******************************************************************************/
 /* Interrupt Vector Options                                                   */
 /******************************************************************************/
@@ -155,7 +165,7 @@
 /******************************************************************************/
 /* Interrupt Routines                                                         */
 /******************************************************************************/
-extern tCAN CANRX_buffer;
+struct tCAN *CANRX_buffer;
 /* TODO Add interrupt routine code here. */
 void __attribute__((interrupt,auto_psv)) _INT1Interrupt(void)
 {
