@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <executable name="dist/default/production/pic2can.X.production.elf">
+    <memory name="data">
+      <units>bytes</units>
+      <length>8192</length>
+      <used>40</used>
+      <free>8152</free>
+    </memory>
+    <memory name="program">
+      <units>bytes</units>
+      <length>33012</length>
+      <used>2427</used>
+      <free>30585</free>
+    </memory>
+  </executable>
+</project>
